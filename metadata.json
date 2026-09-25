@@ -1,0 +1,6 @@
+{
+  "name": "POLYMATHE — Nous faisons de la robotique",
+  "description": "POLYMATHE — Nous faisons de la robotique",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
