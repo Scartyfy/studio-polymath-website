@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useInView } from 'motion/react';
+import React, { useState, useEffect } from 'react';
 
 interface ScrambleInProps {
   text: string;
@@ -8,54 +7,43 @@ interface ScrambleInProps {
   className?: string;
 }
 
-const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 export function ScrambleIn({ 
   text, 
-  scrambleSpeed = 25, 
-  scrambledLetterCount = 5,
+  scrambleSpeed = 30, 
+  scrambledLetterCount = 4,
   className = '' 
 }: ScrambleInProps) {
-  const [displayText, setDisplayText] = useState('');
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+  const [displayText, setDisplayText] = useState(text);
 
   useEffect(() => {
-    if (!isInView) {
-      // Just in case it's not in view yet, keep it empty or with a space to keep height
-      setDisplayText(' ');
-      return;
-    }
-
-    let iteration = 0;
-    const textLength = text.length;
-    let interval: NodeJS.Timeout;
+    if (!text) return;
     
-    // Calculate step size so it takes ~1.5 - 2 seconds max
-    const maxFrames = 1500 / scrambleSpeed; 
-    const step = Math.max(1 / 2, textLength / maxFrames);
+    let frame = 0;
+    const textLength = text.length;
+    const totalFrames = 25;
+    const step = textLength / totalFrames;
 
-    interval = setInterval(() => {
-      const resolvedText = text.substring(0, Math.floor(iteration));
-      
-      const remainingLength = Math.min(scrambledLetterCount, textLength - resolvedText.length);
-      let scrambledText = '';
-      for (let i = 0; i < remainingLength; i++) {
-        scrambledText += CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
-      }
-      
-      setDisplayText(resolvedText + scrambledText);
-      
-      if (iteration >= textLength) {
-        clearInterval(interval);
+    const interval = setInterval(() => {
+      frame++;
+      const resolvedLength = Math.min(textLength, Math.floor(frame * step));
+      if (resolvedLength >= textLength) {
         setDisplayText(text);
+        clearInterval(interval);
+        return;
       }
-      
-      iteration += step;
+
+      const resolved = text.slice(0, resolvedLength);
+      let scrambled = '';
+      for (let i = 0; i < Math.min(scrambledLetterCount, textLength - resolvedLength); i++) {
+        scrambled += CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
+      }
+      setDisplayText(resolved + scrambled);
     }, scrambleSpeed);
 
     return () => clearInterval(interval);
-  }, [isInView, text, scrambleSpeed, scrambledLetterCount]);
+  }, [text, scrambleSpeed, scrambledLetterCount]);
 
-  return <span ref={ref} className={className}>{displayText}</span>;
+  return <span className={className}>{displayText || text}</span>;
 }
