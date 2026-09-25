@@ -118,10 +118,10 @@ const translations: Record<Language, Record<string, string>> = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Language>('EN');
+  const [lang, setLang] = useState<Language>('FR');
 
-  const t = (key: string) => {
-    return translations[lang][key] || key;
+  const t = (key: string): string => {
+    return translations[lang]?.[key] ?? translations.FR?.[key] ?? translations.EN?.[key] ?? key;
   };
 
   return (

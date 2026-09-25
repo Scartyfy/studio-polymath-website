@@ -126,7 +126,13 @@ export function Home() {
           {/* Transition Band (New taller banner with rotated image) */}
           <div 
             className="relative z-40 bg-black border-t border-[var(--line-strong)] min-h-[25vh] md:min-h-[35vh] py-12 px-4 md:px-8 flex items-center justify-between pointer-events-auto cursor-pointer group overflow-hidden"
-            onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+            onClick={() => {
+              try {
+                window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+              } catch {
+                window.scrollTo(0, window.innerHeight);
+              }
+            }}
           >
             {/* Background Image Rotated */}
             <div className="absolute top-1/2 left-1/2 w-[100vh] h-[100vw] -translate-x-1/2 -translate-y-1/2 -rotate-90 z-0">
@@ -229,7 +235,17 @@ export function Home() {
                 </ul>
                 <ul className="flex flex-col gap-2 items-end">
                   <FooterLink onClick={() => navigate('/contact')}>{t('footer.contact')}</FooterLink>
-                  <FooterLink onClick={() => window.open('https://www.tiktok.com/@polymath.studio', '_blank')}>TikTok</FooterLink>
+                  <li className="relative group cursor-pointer inline-block overflow-hidden">
+                    <a 
+                      href="https://www.tiktok.com/@polymath.studio" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="relative z-10 px-1 block transition-colors duration-300 group-hover:text-black"
+                    >
+                      TikTok
+                    </a>
+                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white transition-all duration-300 ease-out group-hover:h-full -z-0"></span>
+                  </li>
                 </ul>
               </div>
 

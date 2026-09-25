@@ -25,7 +25,7 @@ export function LiquidButton({
   asChild = false,
   ...props
 }: LiquidButtonProps) {
-  const Component = asChild ? Slot : motion.button;
+  const Component: any = asChild ? Slot : motion.button;
 
   return (
     <Component
@@ -50,7 +50,7 @@ export function LiquidButton({
             "linear-gradient(var(--liquid-button-color) 0 0) no-repeat calc(200% - var(--liquid-button-fill-width, -1%)) 100% / 200% var(--liquid-button-fill-height, 0.2em)",
           backgroundColor: "var(--liquid-button-background-color)",
           transition: `background ${delay} var(--liquid-button-delay, 0s), color ${delay} ${delay}, background-position ${delay} calc(${delay} - var(--liquid-button-delay, 0s))`,
-        } as React.CSSProperties
+        } as any
       }
       {...props}
     />

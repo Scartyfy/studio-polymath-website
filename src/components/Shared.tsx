@@ -35,10 +35,18 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
 
   const handleNavigate = (path: string) => {
     if (location.pathname === path) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      try {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch {
+        window.scrollTo(0, 0);
+      }
     } else {
       navigate(path);
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      try {
+        window.scrollTo(0, 0);
+      } catch {
+        // Safe fallback
+      }
     }
   };
 

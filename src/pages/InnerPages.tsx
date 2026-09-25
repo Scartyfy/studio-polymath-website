@@ -33,8 +33,19 @@ export function Manifest() {
         {/* Narrative blocks */}
         <div className="space-y-10 text-base sm:text-lg md:text-xl text-[var(--text-dim)] font-light leading-relaxed">
           <p>
-            <strong className="font-medium text-white tracking-wide">{t('manifest.p2').split('.')[0]}.</strong>
-            {t('manifest.p2').substring(t('manifest.p2').indexOf('.') + 1)}
+            {(() => {
+              const text = t('manifest.p2') || '';
+              const dotIndex = text.indexOf('.');
+              if (dotIndex !== -1) {
+                return (
+                  <>
+                    <strong className="font-medium text-white tracking-wide">{text.slice(0, dotIndex + 1)}</strong>
+                    {text.slice(dotIndex + 1)}
+                  </>
+                );
+              }
+              return text;
+            })()}
           </p>
 
           {/* Highlight / Core Nature Thesis */}
