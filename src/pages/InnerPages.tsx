@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Mail, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Navigation, Footer } from '../components/Shared';
 import { useLanguage } from '../LanguageContext';
 
@@ -146,23 +147,170 @@ export function Team() {
 
 export function Contact() {
   const { t } = useLanguage();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || !message.trim()) {
+      setStatus('error');
+      setErrorMessage(t('form.required'));
+      return;
+    }
+
+    setStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/studiopolymath.contact@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name.trim() || 'Visiteur du site',
+          email: email.trim(),
+          _subject: subject.trim() 
+            ? `[Polymath Studio] ${subject.trim()}` 
+            : `[Polymath Studio] Nouveau message de ${name.trim() || email.trim()}`,
+          message: message.trim(),
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+
+      const data = await response.json().catch(() => null);
+
+      if (response.ok || (data && data.success === 'true')) {
+        setStatus('success');
+        setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
+      } else {
+        setStatus('error');
+        setErrorMessage(data?.message || t('form.error.desc'));
+      }
+    } catch (err) {
+      console.error('Contact form submission error:', err);
+      setStatus('error');
+      setErrorMessage(t('form.error.desc'));
+    }
+  };
+
   return (
     <PageLayout title={t('page.contact.title')}>
-      <form className="form" style={{ marginTop: 0, maxWidth: 620 }} onSubmit={e => e.preventDefault()}>
-         <label htmlFor="name" className="visually-hidden">{t('form.name')}</label>
-         <input type="text" id="name" className="form__input" placeholder={t('form.name')} />
-         
-         <label htmlFor="email" className="visually-hidden">{t('form.email')}</label>
-         <input type="email" id="email" className="form__input" placeholder={t('form.email')} />
-         
-         <label htmlFor="subject" className="visually-hidden">{t('form.subject')}</label>
-         <input type="text" id="subject" className="form__input" placeholder={t('form.subject')} />
-         
-         <label htmlFor="message" className="visually-hidden">{t('form.message')}</label>
-         <textarea id="message" className="form__input" placeholder={t('form.message')}></textarea>
-         
-         <button type="submit" className="btn btn--ghost" style={{ marginTop: 16 }}>{t('form.submit')}</button>
-      </form>
+      <div style={{ maxWidth: 620, width: '100%' }}>
+        {/* Direct email display */}
+        <div className="mb-8 p-4 border border-[var(--line-strong)] bg-white/[0.02] flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+          <div className="flex items-center gap-2.5 text-white/80">
+            <Mail className="w-4 h-4 text-white/60 shrink-0" />
+            <span className="uppercase tracking-widest text-[var(--text-dim)]">{t('contact.direct')} :</span>
+          </div>
+          <a 
+            href="mailto:studiopolymath.contact@gmail.com" 
+            className="text-white hover:text-white/70 transition-colors uppercase tracking-wider underline underline-offset-4 decoration-white/30 truncate"
+          >
+            studiopolymath.contact@gmail.com
+          </a>
+        </div>
+
+        {status === 'success' ? (
+          <div className="p-8 border border-white/20 bg-white/[0.03] backdrop-blur-sm flex flex-col items-center text-center">
+            <CheckCircle2 className="w-10 h-10 text-white mb-4 stroke-[1.5px]" />
+            <h2 className="text-xl font-light text-white uppercase tracking-wider mb-2 font-mono">
+              {t('form.success.title')}
+            </h2>
+            <p className="text-sm text-white/70 font-light leading-relaxed mb-8 max-w-md">
+              {t('form.success.desc')}
+            </p>
+            <button 
+              type="button" 
+              onClick={() => setStatus('idle')}
+              className="btn btn--ghost text-xs tracking-widest uppercase font-mono px-6 py-3 border border-white/20 hover:border-white transition-all"
+            >
+              {t('form.success.again')}
+            </button>
+          </div>
+        ) : (
+          <form className="form" style={{ marginTop: 0 }} onSubmit={handleSubmit}>
+            {status === 'error' && (
+              <div className="p-4 border border-red-500/30 bg-red-950/20 text-white/90 text-xs font-mono flex items-start gap-3 mb-2">
+                <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                <div className="flex-1 leading-relaxed">
+                  <div>{errorMessage || t('form.error.desc')}</div>
+                  <a 
+                    href={`mailto:studiopolymath.contact@gmail.com?subject=${encodeURIComponent(subject || 'Polymath Studio Contact')}&body=${encodeURIComponent(message)}`}
+                    className="underline hover:text-white mt-1.5 inline-block text-red-300"
+                  >
+                    studiopolymath.contact@gmail.com ↗
+                  </a>
+                </div>
+              </div>
+            )}
+
+            <label htmlFor="name" className="visually-hidden">{t('form.name')}</label>
+            <input 
+              type="text" 
+              id="name" 
+              className="form__input" 
+              placeholder={t('form.name')} 
+              value={name}
+              onChange={e => setName(e.target.value)}
+              disabled={status === 'submitting'}
+            />
+            
+            <label htmlFor="email" className="visually-hidden">{t('form.email')}</label>
+            <input 
+              type="email" 
+              id="email" 
+              required
+              className="form__input" 
+              placeholder={`${t('form.email')} *`}
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              disabled={status === 'submitting'}
+            />
+            
+            <label htmlFor="subject" className="visually-hidden">{t('form.subject')}</label>
+            <input 
+              type="text" 
+              id="subject" 
+              className="form__input" 
+              placeholder={t('form.subject')} 
+              value={subject}
+              onChange={e => setSubject(e.target.value)}
+              disabled={status === 'submitting'}
+            />
+            
+            <label htmlFor="message" className="visually-hidden">{t('form.message')}</label>
+            <textarea 
+              id="message" 
+              required
+              rows={4}
+              className="form__input resize-none" 
+              placeholder={`${t('form.message')} *`}
+              value={message}
+              onChange={e => setMessage(e.target.value)}
+              disabled={status === 'submitting'}
+            ></textarea>
+            
+            <button 
+              type="submit" 
+              className="btn btn--ghost" 
+              style={{ marginTop: 16 }}
+              disabled={status === 'submitting'}
+            >
+              {status === 'submitting' ? t('form.sending') : t('form.submit')}
+            </button>
+          </form>
+        )}
+      </div>
     </PageLayout>
   );
 }

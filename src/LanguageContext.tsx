@@ -59,7 +59,14 @@ const translations: Record<Language, Record<string, string>> = {
     'form.email': 'Email',
     'form.subject': 'Subject',
     'form.message': 'Message',
-    'form.submit': 'Transmit'
+    'form.submit': 'Transmit',
+    'form.sending': 'Transmitting...',
+    'form.success.title': 'Transmission confirmed',
+    'form.success.desc': 'Your message has been received. Our team will review your inquiry and reply promptly to your email.',
+    'form.success.again': 'Send another message',
+    'form.error.desc': 'An error occurred during transmission. Please write to us directly at:',
+    'form.required': 'Please enter a valid email and message.',
+    'contact.direct': 'Direct email'
   },
   FR: {
     'nav.home': 'Accueil',
@@ -111,7 +118,14 @@ const translations: Record<Language, Record<string, string>> = {
     'form.email': 'Email',
     'form.subject': 'Sujet',
     'form.message': 'Message',
-    'form.submit': 'Transmettre'
+    'form.submit': 'Transmettre',
+    'form.sending': 'Transmission en cours...',
+    'form.success.title': 'Transmission confirmée',
+    'form.success.desc': 'Votre message a été transmis avec succès. Notre équipe étudiera votre demande et vous répondra dans les plus brefs délais.',
+    'form.success.again': 'Envoyer un autre message',
+    'form.error.desc': 'Une erreur est survenue lors de la transmission. Vous pouvez nous écrire directement à :',
+    'form.required': 'Veuillez saisir un email valide et un message.',
+    'contact.direct': 'Email direct'
   }
 };
 
