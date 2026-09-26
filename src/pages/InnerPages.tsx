@@ -85,9 +85,9 @@ export function Team() {
   
   const FOUNDERS = [
     { name: "Arthur CHAUVIN", role: t('team.role1'), linkedin: "https://www.linkedin.com/in/arthur-chauvin-b798042bb/", img: "" },
-    { name: "Alann SAMSON", role: t('team.role1'), linkedin: "https://www.linkedin.com/in/alann-samson-1735512a1/", img: "" },
-    { name: "Joschka MAYER", role: t('team.role1'), linkedin: "https://www.linkedin.com/in/joschkamayer/", img: "" },
-    { name: "Alec MIGNOT", role: t('team.role1'), linkedin: "https://www.linkedin.com/in/alec-mignot-40bb9430b/", img: "" },
+    { name: "Alann SAMSON", role: t('team.role1'), linkedin: "https://www.linkedin.com/in/alann-samson-1735512a1/", img: `${import.meta.env.BASE_URL}alannpp.jpeg` },
+    { name: "Joschka MAYER", role: t('team.role1'), linkedin: "https://www.linkedin.com/in/joschkamayer/", img: `${import.meta.env.BASE_URL}jopp.jpeg` },
+    { name: "Alec MIGNOT", role: t('team.role1'), linkedin: "https://www.linkedin.com/in/alec-mignot-40bb9430b/", img: `${import.meta.env.BASE_URL}alecpp.jpeg` },
   ];
 
   return (
