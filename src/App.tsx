@@ -1,5 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Manifest, Team, Contact } from './pages/InnerPages';
 import { LanguageProvider } from './LanguageContext';
@@ -93,7 +93,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <LanguageProvider>
-        <BrowserRouter>
+        <HashRouter>
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -102,7 +102,7 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<Home />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </LanguageProvider>
     </ErrorBoundary>
   );

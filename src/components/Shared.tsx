@@ -1,6 +1,7 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Globe } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ExpandableActionBar } from './ui/expandable-action-bar';
+import { BookOpen, Cpu, Fingerprint, Mail, Home as HomeIcon, Globe } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 export function CyberGrid() {
@@ -26,10 +27,11 @@ export function CyberGrid() {
   );
 }
 
-export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen?: boolean, setIsMenuOpen?: (v: boolean) => void }) {
+export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean, setIsMenuOpen: (v: boolean) => void }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { t, lang, setLang } = useLanguage();
+  const activeId = location.pathname.substring(1) || 'home';
 
   const handleNavigate = (path: string) => {
     if (location.pathname === path) {
@@ -43,64 +45,102 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen?: boolean
       try {
         window.scrollTo(0, 0);
       } catch {
-        // Fallback
+        // Safe fallback
       }
     }
   };
 
-  const navLinks = [
-    { id: 'home', label: t('nav.home'), path: '/' },
-    { id: 'manifest', label: t('nav.manifest'), path: '/manifest' },
-    { id: 'team', label: t('nav.team'), path: '/team' },
-    { id: 'contact', label: t('nav.contact'), path: '/contact' },
+  const NAV_ITEMS = [
+    { id: "home", label: t('nav.home'), icon: <HomeIcon className="w-4 h-4" />, onClick: () => handleNavigate('/') },
+    { id: "manifest", label: t('nav.manifest'), icon: <BookOpen className="w-4 h-4" />, onClick: () => handleNavigate('/manifest') },
+    { id: "team", label: t('nav.team'), icon: <Cpu className="w-4 h-4" />, onClick: () => handleNavigate('/team') },
+    { id: "contact", label: t('nav.contact'), icon: <Mail className="w-4 h-4" />, onClick: () => handleNavigate('/contact') },
+    { id: "lang", label: lang === 'EN' ? 'Français' : 'English', icon: <Globe className="w-4 h-4" />, onClick: () => setLang(lang === 'EN' ? 'FR' : 'EN') }
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-8 md:px-12 py-4 bg-black/90 backdrop-blur-md border-b border-white/15">
-      {/* Studio Logo */}
-      <div 
-        onClick={() => handleNavigate('/')}
-        className="cursor-pointer flex items-center gap-2.5 group"
-      >
-        <span className="font-mono text-sm sm:text-base md:text-lg font-bold tracking-[0.25em] text-white group-hover:text-white/80 transition-colors uppercase">
-          POLYMATH
-        </span>
-        <span className="hidden sm:inline-block w-1.5 h-1.5 bg-white/40 rounded-full group-hover:bg-white transition-colors" />
-        <span className="hidden sm:inline-block font-mono text-[10px] uppercase tracking-widest text-white/50">
-          Studio
-        </span>
+    <header className="nav flex justify-center w-full relative">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+        <ExpandableActionBar items={NAV_ITEMS} activeId={activeId} size={window.innerWidth < 768 ? "sm" : "md"} />
       </div>
-
-      {/* Nav Links */}
-      <nav className="flex items-center gap-1 sm:gap-2 md:gap-3">
-        {navLinks.map((link) => {
-          const isActive = (link.id === 'home' && location.pathname === '/') || location.pathname === link.path;
-          return (
-            <button
-              key={link.id}
-              onClick={() => handleNavigate(link.path)}
-              className={`px-2.5 py-1.5 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[11px] sm:text-xs md:text-sm font-mono uppercase tracking-[0.16em] transition-all duration-200 cursor-pointer rounded border ${
-                isActive 
-                  ? 'border-white text-white bg-white/10 shadow-[0_0_12px_rgba(255,255,255,0.15)] font-medium' 
-                  : 'border-transparent text-white/70 hover:text-white hover:border-white/30 hover:bg-white/5'
-              }`}
-            >
-              {link.label}
-            </button>
-          );
-        })}
-
-        {/* Language Switch */}
-        <button
-          onClick={() => setLang(lang === 'FR' ? 'EN' : 'FR')}
-          className="ml-1 sm:ml-2 px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono uppercase tracking-[0.16em] text-white/70 hover:text-white border border-white/20 hover:border-white/50 rounded transition-colors cursor-pointer flex items-center gap-1.5"
-          title={lang === 'FR' ? 'Switch to English' : 'Passer en Français'}
-        >
-          <Globe className="w-3.5 h-3.5" />
-          <span>{lang}</span>
-        </button>
-      </nav>
     </header>
+  );
+}
+
+export function MobileMenu({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean, setIsMenuOpen: (v: boolean) => void }) {
+  const { t, lang, setLang } = useLanguage();
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 901 && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMenuOpen]);
+
+  return (
+    <div 
+      id="mobileMenu"
+      className="mobile-menu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Site menu"
+      aria-hidden={!isMenuOpen}
+      inert={isMenuOpen ? undefined : true}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) setIsMenuOpen(false);
+      }}
+    >
+      <nav className="mobile-menu__nav" aria-label="Main Mobile" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {[
+          { label: t('nav.manifest'), href: '/manifest' },
+          { label: t('nav.team'), href: '/team' },
+          { label: t('nav.contact'), href: '/contact' },
+        ].map((link, i) => (
+          <Link 
+            key={link.label}
+            to={link.href} 
+            className="mobile-menu__link" 
+            style={{ '--i': i } as React.CSSProperties}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            {link.label}
+          </Link>
+        ))}
+        
+        <div 
+          className="mobile-menu__link"
+          style={{ '--i': 3, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-dim)' } as React.CSSProperties}
+          onClick={() => {
+            setLang(lang === 'EN' ? 'FR' : 'EN');
+            setIsMenuOpen(false);
+          }}
+        >
+          <Globe className="w-6 h-6" />
+          {lang === 'EN' ? 'Passer en Français' : 'Switch to English'}
+        </div>
+      </nav>
+    </div>
   );
 }
 
@@ -110,7 +150,7 @@ export function Footer() {
   return (
     <footer className="relative w-full h-[25vh] md:h-[35vh] bg-black border-t border-[var(--line-strong)] mt-24 overflow-hidden">
       <div className="absolute top-1/2 left-1/2 w-[25vh] md:w-[35vh] h-[100vw] -translate-x-1/2 -translate-y-1/2 -rotate-90 z-0">
-        <img src="/mur.jpg" className="w-full h-full object-cover" alt="Footer Background" />
+        <img src={`${import.meta.env.BASE_URL}mur.jpg`} className="w-full h-full object-cover" alt="Footer Background" />
       </div>
       <div className="absolute inset-0 bg-black/20 z-10" />
 

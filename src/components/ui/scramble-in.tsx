@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useInView } from 'motion/react';
 
 interface ScrambleInProps {
   text: string;
@@ -7,43 +8,54 @@ interface ScrambleInProps {
   className?: string;
 }
 
-const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
 
 export function ScrambleIn({ 
   text, 
-  scrambleSpeed = 30, 
-  scrambledLetterCount = 4,
+  scrambleSpeed = 25, 
+  scrambledLetterCount = 5,
   className = '' 
 }: ScrambleInProps) {
-  const [displayText, setDisplayText] = useState(text);
+  const [displayText, setDisplayText] = useState('');
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
 
   useEffect(() => {
-    if (!text) return;
-    
-    let frame = 0;
+    if (!isInView) {
+      // Just in case it's not in view yet, keep it empty or with a space to keep height
+      setDisplayText(' ');
+      return;
+    }
+
+    let iteration = 0;
     const textLength = text.length;
-    const totalFrames = 25;
-    const step = textLength / totalFrames;
+    let interval: ReturnType<typeof setInterval>;
+    
+    // Calculate step size so it takes ~1.5 - 2 seconds max
+    const maxFrames = 1500 / scrambleSpeed; 
+    const step = Math.max(1 / 2, textLength / maxFrames);
 
-    const interval = setInterval(() => {
-      frame++;
-      const resolvedLength = Math.min(textLength, Math.floor(frame * step));
-      if (resolvedLength >= textLength) {
-        setDisplayText(text);
+    interval = setInterval(() => {
+      const resolvedText = text.substring(0, Math.floor(iteration));
+      
+      const remainingLength = Math.min(scrambledLetterCount, textLength - resolvedText.length);
+      let scrambledText = '';
+      for (let i = 0; i < remainingLength; i++) {
+        scrambledText += CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
+      }
+      
+      setDisplayText(resolvedText + scrambledText);
+      
+      if (iteration >= textLength) {
         clearInterval(interval);
-        return;
+        setDisplayText(text);
       }
-
-      const resolved = text.slice(0, resolvedLength);
-      let scrambled = '';
-      for (let i = 0; i < Math.min(scrambledLetterCount, textLength - resolvedLength); i++) {
-        scrambled += CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
-      }
-      setDisplayText(resolved + scrambled);
+      
+      iteration += step;
     }, scrambleSpeed);
 
     return () => clearInterval(interval);
-  }, [text, scrambleSpeed, scrambledLetterCount]);
+  }, [isInView, text, scrambleSpeed, scrambledLetterCount]);
 
-  return <span className={className}>{displayText || text}</span>;
+  return <span ref={ref} className={className}>{displayText}</span>;
 }
