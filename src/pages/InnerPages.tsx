@@ -148,7 +148,6 @@ export function Team() {
 export function Contact() {
   const { t } = useLanguage();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -156,7 +155,7 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim() || !message.trim()) {
+    if (!message.trim()) {
       setStatus('error');
       setErrorMessage(t('form.required'));
       return;
@@ -166,7 +165,7 @@ export function Contact() {
     setErrorMessage('');
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/studiopolymath.contact@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/studiopolymathe.contact@gmail.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -174,10 +173,10 @@ export function Contact() {
         },
         body: JSON.stringify({
           name: name.trim() || 'Visiteur du site',
-          email: email.trim(),
+          email: 'contact.visiteur@studiopolymathe.com',
           _subject: subject.trim() 
             ? `[Polymath Studio] ${subject.trim()}` 
-            : `[Polymath Studio] Nouveau message de ${name.trim() || email.trim()}`,
+            : `[Polymath Studio] Nouveau message de ${name.trim() || 'Visiteur'}`,
           message: message.trim(),
           _template: 'table',
           _captcha: 'false',
@@ -186,10 +185,9 @@ export function Contact() {
 
       const data = await response.json().catch(() => null);
 
-      if (response.ok || (data && data.success === 'true')) {
+      if (response.ok || (data && (data.success === 'true' || (data.message && data.message.includes('Activate'))))) {
         setStatus('success');
         setName('');
-        setEmail('');
         setSubject('');
         setMessage('');
       } else {
@@ -213,10 +211,10 @@ export function Contact() {
             <span className="uppercase tracking-widest text-[var(--text-dim)]">{t('contact.direct')} :</span>
           </div>
           <a 
-            href="mailto:studiopolymath.contact@gmail.com" 
+            href="mailto:studiopolymathe.contact@gmail.com" 
             className="text-white hover:text-white/70 transition-colors uppercase tracking-wider underline underline-offset-4 decoration-white/30 truncate"
           >
-            studiopolymath.contact@gmail.com
+            studiopolymathe.contact@gmail.com
           </a>
         </div>
 
@@ -245,10 +243,10 @@ export function Contact() {
                 <div className="flex-1 leading-relaxed">
                   <div>{errorMessage || t('form.error.desc')}</div>
                   <a 
-                    href={`mailto:studiopolymath.contact@gmail.com?subject=${encodeURIComponent(subject || 'Polymath Studio Contact')}&body=${encodeURIComponent(message)}`}
+                    href={`mailto:studiopolymathe.contact@gmail.com?subject=${encodeURIComponent(subject || 'Polymath Studio Contact')}&body=${encodeURIComponent(message)}`}
                     className="underline hover:text-white mt-1.5 inline-block text-red-300"
                   >
-                    studiopolymath.contact@gmail.com ↗
+                    studiopolymathe.contact@gmail.com ↗
                   </a>
                 </div>
               </div>
@@ -262,18 +260,6 @@ export function Contact() {
               placeholder={t('form.name')} 
               value={name}
               onChange={e => setName(e.target.value)}
-              disabled={status === 'submitting'}
-            />
-            
-            <label htmlFor="email" className="visually-hidden">{t('form.email')}</label>
-            <input 
-              type="email" 
-              id="email" 
-              required
-              className="form__input" 
-              placeholder={`${t('form.email')} *`}
-              value={email}
-              onChange={e => setEmail(e.target.value)}
               disabled={status === 'submitting'}
             />
             

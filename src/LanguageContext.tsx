@@ -65,7 +65,8 @@ const translations: Record<Language, Record<string, string>> = {
     'form.success.desc': 'Your message has been received. Our team will review your inquiry and reply promptly to your email.',
     'form.success.again': 'Send another message',
     'form.error.desc': 'An error occurred during transmission. Please write to us directly at:',
-    'form.required': 'Please enter a valid email and message.',
+    'form.required': 'Please enter a message.',
+    'form.success.desc': 'Your message has been transmitted to Polymath Studio.',
     'contact.direct': 'Direct email'
   },
   FR: {
@@ -121,10 +122,10 @@ const translations: Record<Language, Record<string, string>> = {
     'form.submit': 'Transmettre',
     'form.sending': 'Transmission en cours...',
     'form.success.title': 'Transmission confirmée',
-    'form.success.desc': 'Votre message a été transmis avec succès. Notre équipe étudiera votre demande et vous répondra dans les plus brefs délais.',
+    'form.success.desc': 'Votre message a été transmis avec succès à l\'équipe Polymath.',
     'form.success.again': 'Envoyer un autre message',
     'form.error.desc': 'Une erreur est survenue lors de la transmission. Vous pouvez nous écrire directement à :',
-    'form.required': 'Veuillez saisir un email valide et un message.',
+    'form.required': 'Veuillez saisir votre message.',
     'contact.direct': 'Email direct'
   }
 };
