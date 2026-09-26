@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr" style="background-color: #000000; color: #ffffff;">
+  <head>
+    <meta charset="utf-8" />
+    <title>POLYMATHE — Nous faisons de la robotique</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        background-color: #000000;
+        color: #ffffff;
+        font-family: sans-serif;
+      }
+    </style>
+    <script>
+      (function() {
+        var path = window.location.pathname;
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+        
+        // Remove trailing or leading repo name if present
+        var repo = '/studio-polymath-website';
+        if (path.indexOf(repo) === 0) {
+          path = path.slice(repo.length);
+        }
+        
+        // Clean leading slash
+        if (!path.startsWith('/')) {
+          path = '/' + path;
+        }
+
+        // If path is root, default to /
+        if (path === '' || path === '/') {
+          path = '/';
+        }
+
+        var base = window.location.pathname.indexOf(repo) === 0 ? repo + '/' : '/';
+        var redirectUrl = window.location.origin + base + '#' + path + search + hash;
+        window.location.replace(redirectUrl);
+      })();
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
