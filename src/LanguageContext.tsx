@@ -62,11 +62,10 @@ const translations: Record<Language, Record<string, string>> = {
     'form.submit': 'Transmit',
     'form.sending': 'Transmitting...',
     'form.success.title': 'Transmission confirmed',
-    'form.success.desc': 'Your message has been received. Our team will review your inquiry and reply promptly to your email.',
+    'form.success.desc': 'Your message has been transmitted to Polymath Studio.',
     'form.success.again': 'Send another message',
     'form.error.desc': 'An error occurred during transmission. Please write to us directly at:',
     'form.required': 'Please enter a message.',
-    'form.success.desc': 'Your message has been transmitted to Polymath Studio.',
     'contact.direct': 'Direct email'
   },
   FR: {
