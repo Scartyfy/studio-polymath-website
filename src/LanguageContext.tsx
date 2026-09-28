@@ -132,10 +132,36 @@ const translations: Record<Language, Record<string, string>> = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Language>('FR');
+  const [lang, setLangState] = useState<Language>(() => {
+    try {
+      const saved = localStorage.getItem('polymath_lang');
+      if (saved === 'FR' || saved === 'EN') return saved;
+    } catch {
+      // ignore
+    }
+    return 'EN';
+  });
+
+  const setLang = (newLang: Language) => {
+    setLangState(newLang);
+    try {
+      localStorage.setItem('polymath_lang', newLang);
+      document.documentElement.lang = newLang.toLowerCase();
+    } catch {
+      // ignore
+    }
+  };
+
+  React.useEffect(() => {
+    try {
+      document.documentElement.lang = lang.toLowerCase();
+    } catch {
+      // ignore
+    }
+  }, [lang]);
 
   const t = (key: string): string => {
-    return translations[lang]?.[key] ?? translations.FR?.[key] ?? translations.EN?.[key] ?? key;
+    return translations[lang]?.[key] ?? translations.EN?.[key] ?? translations.FR?.[key] ?? key;
   };
 
   return (
