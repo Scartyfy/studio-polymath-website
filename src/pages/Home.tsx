@@ -93,7 +93,7 @@ export function Home() {
                 maskImage: 'radial-gradient(ellipse closest-side at 50% 55%, black 45%, transparent 90%)',
                 WebkitMaskImage: 'radial-gradient(ellipse closest-side at 50% 55%, black 45%, transparent 90%)'
               }}
-              src={`${import.meta.env.BASE_URL}polymath-video.mp4`}
+              src={`${import.meta.env.BASE_URL}dogpostit.mp4`}
               autoPlay
               muted
               loop
