@@ -127,7 +127,7 @@ export function Home() {
 
           {/* Transition Band (New taller banner with rotated image) */}
           <div 
-            className="relative z-40 bg-black border-t border-[var(--line-strong)] min-h-[25vh] md:min-h-[35vh] py-12 px-4 md:px-8 flex items-center justify-between pointer-events-auto cursor-pointer group overflow-hidden"
+            className="relative z-40 bg-black border-t border-[var(--line-strong)] min-h-[25vh] md:min-h-[35vh] py-8 md:py-12 px-4 md:px-8 flex items-center justify-between pointer-events-auto cursor-pointer group overflow-hidden"
             onClick={() => {
               try {
                 window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
@@ -147,7 +147,7 @@ export function Home() {
             {/* Translating Text inside Transition Band */}
             <div className="relative z-20 max-w-[320px] md:max-w-lg text-white" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
               <p className="text-sm md:text-base font-light leading-relaxed text-white/80 text-justify uppercase group-hover:text-white transition-colors duration-300">
-                <ScrambleIn text={t('manifest.scroll')} />
+                <ScrambleIn text={t('manifest.scroll')} autoStart />
               </p>
             </div>
             

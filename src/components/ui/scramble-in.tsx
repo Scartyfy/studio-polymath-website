@@ -6,6 +6,8 @@ interface ScrambleInProps {
   scrambleSpeed?: number;
   scrambledLetterCount?: number;
   className?: string;
+  autoStart?: boolean;
+  inViewMargin?: string;
 }
 
 const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
@@ -14,14 +16,18 @@ export function ScrambleIn({
   text, 
   scrambleSpeed = 25, 
   scrambledLetterCount = 5,
-  className = '' 
+  className = '',
+  autoStart = false,
+  inViewMargin = "0px 0px -20px 0px"
 }: ScrambleInProps) {
   const [displayText, setDisplayText] = useState('');
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+  const isInView = useInView(ref, { once: true, margin: inViewMargin as any });
+
+  const active = autoStart || isInView;
 
   useEffect(() => {
-    if (!isInView) {
+    if (!active) {
       // Just in case it's not in view yet, keep it empty or with a space to keep height
       setDisplayText(' ');
       return;
@@ -55,7 +61,7 @@ export function ScrambleIn({
     }, scrambleSpeed);
 
     return () => clearInterval(interval);
-  }, [isInView, text, scrambleSpeed, scrambledLetterCount]);
+  }, [active, text, scrambleSpeed, scrambledLetterCount]);
 
   return <span ref={ref} className={className}>{displayText}</span>;
 }
