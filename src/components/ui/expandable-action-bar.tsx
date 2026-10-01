@@ -289,7 +289,7 @@ export function ExpandableActionBar({
                 {isActive && (
                   <motion.span
                     layoutId="action-bar-active"
-                    className="absolute bottom-[2px] w-1 h-1 rounded-none bg-white"
+                    className="absolute top-[2.5px] w-1.5 h-1.5 rounded-none bg-white"
                     transition={ITEM_TRANSITION}
                   />
                 )}
