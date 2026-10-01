@@ -31,9 +31,7 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
   const navigate = useNavigate();
   const location = useLocation();
   const { t, lang, setLang } = useLanguage();
-  const rawPath = location.pathname || '';
-  const cleanPath = rawPath.replace(/^\/+/, '');
-  const activeId = cleanPath || 'home';
+  const activeId = location.pathname.substring(1) || 'home';
 
   const handleNavigate = (path: string) => {
     if (location.pathname === path) {
@@ -53,11 +51,11 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
   };
 
   const NAV_ITEMS = [
-    { id: "home", label: t('nav.home'), icon: <HomeIcon className="w-4 h-4" />, onClick: () => handleNavigate('/'), active: activeId === 'home' },
-    { id: "manifest", label: t('nav.manifest'), icon: <BookOpen className="w-4 h-4" />, onClick: () => handleNavigate('/manifest'), active: activeId === 'manifest' },
-    { id: "team", label: t('nav.team'), icon: <Cpu className="w-4 h-4" />, onClick: () => handleNavigate('/team'), active: activeId === 'team' },
-    { id: "contact", label: t('nav.contact'), icon: <Mail className="w-4 h-4" />, onClick: () => handleNavigate('/contact'), active: activeId === 'contact' },
-    { id: "lang", label: lang === 'EN' ? 'Français' : 'English', icon: <Globe className="w-4 h-4" />, onClick: () => setLang(lang === 'EN' ? 'FR' : 'EN'), active: false }
+    { id: "home", label: t('nav.home'), icon: <HomeIcon className="w-4 h-4" />, onClick: () => handleNavigate('/') },
+    { id: "manifest", label: t('nav.manifest'), icon: <BookOpen className="w-4 h-4" />, onClick: () => handleNavigate('/manifest') },
+    { id: "team", label: t('nav.team'), icon: <Cpu className="w-4 h-4" />, onClick: () => handleNavigate('/team') },
+    { id: "contact", label: t('nav.contact'), icon: <Mail className="w-4 h-4" />, onClick: () => handleNavigate('/contact') },
+    { id: "lang", label: lang === 'EN' ? 'Français' : 'English', icon: <Globe className="w-4 h-4" />, onClick: () => setLang(lang === 'EN' ? 'FR' : 'EN') }
   ];
 
   return (
