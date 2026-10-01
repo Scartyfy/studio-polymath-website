@@ -89,9 +89,9 @@ export function Home() {
             <video 
               className="w-full max-w-2xl h-auto aspect-video saturate-[1.25] contrast-[1.05]"
               style={{
-                /* Tighter horizontal radius (36%) brings the left/right gradient closer to center while preserving vertical height (50%) */
-                maskImage: 'radial-gradient(ellipse 36% 50% at 50% 50%, black 55%, transparent 95%)',
-                WebkitMaskImage: 'radial-gradient(ellipse 36% 50% at 50% 50%, black 55%, transparent 95%)'
+                /* Balanced horizontal radius (42%) and vertical height (50%) */
+                maskImage: 'radial-gradient(ellipse 42% 50% at 50% 50%, black 60%, transparent 96%)',
+                WebkitMaskImage: 'radial-gradient(ellipse 42% 50% at 50% 50%, black 60%, transparent 96%)'
               }}
               src={`${import.meta.env.BASE_URL}dogpostit.mp4`}
               autoPlay
