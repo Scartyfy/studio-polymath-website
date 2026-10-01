@@ -89,9 +89,9 @@ export function Home() {
             <video 
               className="w-full max-w-2xl h-auto aspect-video saturate-[1.25] contrast-[1.05]"
               style={{
-                /* closest-side ensures the gradient reaches 100% transparency exactly at the nearest edge (top/bottom) */
-                maskImage: 'radial-gradient(ellipse closest-side at 50% 55%, black 45%, transparent 90%)',
-                WebkitMaskImage: 'radial-gradient(ellipse closest-side at 50% 55%, black 45%, transparent 90%)'
+                /* closest-side ensures the gradient reaches 100% transparency exactly at the edges */
+                maskImage: 'radial-gradient(ellipse closest-side at 50% 50%, black 72%, transparent 98%)',
+                WebkitMaskImage: 'radial-gradient(ellipse closest-side at 50% 50%, black 72%, transparent 98%)'
               }}
               src={`${import.meta.env.BASE_URL}dogpostit.mp4`}
               autoPlay
