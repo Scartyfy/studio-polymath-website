@@ -52,9 +52,11 @@ const TimelineRow = ({ number, title, subtitle, desc, linkText, onClick, isRight
 
       <div className={isRight ? "md:col-start-2 md:pl-24" : "md:pr-24"}>
         <div className="text-[var(--text-dim)] uppercase tracking-[0.1em] text-sm mb-4">{number} / {subtitle}</div>
-        <h2 className="text-3xl md:text-5xl font-light mb-8 lowercase">{title}</h2>
+        <h2 className="text-3xl md:text-5xl font-light mb-8 lowercase">
+          <ScrambleIn text={title} />
+        </h2>
         <p className="text-[var(--text-dim)] text-lg leading-relaxed mb-8">
-          <ScrambleIn text={desc} />
+          {desc}
         </p>
         <LiquidButton 
           onClick={onClick}
@@ -159,15 +161,6 @@ export function Home() {
         {/* Scrollable Content */}
         <div className="relative z-40">
           <section className="relative z-10 bg-black text-white">
-            {/* Subtle Dot Pattern Background */}
-            <div 
-              className="absolute inset-0 pointer-events-none" 
-              style={{ 
-                backgroundImage: 'radial-gradient(circle at center, rgba(255,255,255,0.15) 1px, transparent 1px)', 
-                backgroundSize: '24px 24px'
-              }} 
-            />
-            
             <div className="relative max-w-6xl mx-auto px-[var(--gutter)] pb-32 pt-12 flex flex-col gap-32">
               
               <TimelineRow 
