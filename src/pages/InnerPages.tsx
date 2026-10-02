@@ -150,9 +150,11 @@ export function Team() {
 export function Contact() {
   const { t } = useLanguage();
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [isActivationSent, setIsActivationSent] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -165,9 +167,10 @@ export function Contact() {
 
     setStatus('submitting');
     setErrorMessage('');
+    setIsActivationSent(false);
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/studiopolymathe.contact@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/studiopolymath.contact@gmail.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -175,10 +178,11 @@ export function Contact() {
         },
         body: JSON.stringify({
           name: name.trim() || 'Visiteur du site',
-          email: 'contact.visiteur@studiopolymathe.com',
+          email: email.trim() || 'visiteur@polymath-studio.eu',
+          _replyto: email.trim() || undefined,
           _subject: subject.trim() 
             ? `[Polymath Studio] ${subject.trim()}` 
-            : `[Polymath Studio] Nouveau message de ${name.trim() || 'Visiteur'}`,
+            : `[Polymath Studio] Nouveau message de ${name.trim() || email.trim() || 'Visiteur'}`,
           message: message.trim(),
           _template: 'table',
           _captcha: 'false',
@@ -187,9 +191,18 @@ export function Contact() {
 
       const data = await response.json().catch(() => null);
 
-      if (response.ok || (data && (data.success === 'true' || (data.message && data.message.includes('Activate'))))) {
+      if (response.ok || (data && (data.success === 'true' || data.success === true))) {
         setStatus('success');
         setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
+      } else if (data && data.message && data.message.toLowerCase().includes('activat')) {
+        // FormSubmit sent initial activation email to studiopolymath.contact@gmail.com
+        setStatus('success');
+        setIsActivationSent(true);
+        setName('');
+        setEmail('');
         setSubject('');
         setMessage('');
       } else {
@@ -213,10 +226,10 @@ export function Contact() {
             <span className="uppercase tracking-widest text-[var(--text-dim)]">{t('contact.direct')} :</span>
           </div>
           <a 
-            href="mailto:studiopolymathe.contact@gmail.com" 
+            href="mailto:studiopolymath.contact@gmail.com" 
             className="text-white hover:text-white/70 transition-colors uppercase tracking-wider underline underline-offset-4 decoration-white/30 truncate"
           >
-            studiopolymathe.contact@gmail.com
+            studiopolymath.contact@gmail.com
           </a>
         </div>
 
@@ -226,9 +239,14 @@ export function Contact() {
             <h2 className="text-xl font-light text-white uppercase tracking-wider mb-2 font-mono">
               {t('form.success.title')}
             </h2>
-            <p className="text-sm text-white/70 font-light leading-relaxed mb-8 max-w-md">
+            <p className="text-sm text-white/70 font-light leading-relaxed mb-4 max-w-md">
               {t('form.success.desc')}
             </p>
+            {isActivationSent && (
+              <div className="mb-6 p-3 border border-amber-400/30 bg-amber-950/20 text-amber-200 text-xs font-mono text-left max-w-md">
+                ℹ️ <strong>Première configuration :</strong> FormSubmit a envoyé un e-mail à <code>studiopolymath.contact@gmail.com</code> (vérifiez spams/promotions) contenant un bouton <em>"Activate Form"</em>. Cliquez dessus une fois pour autoriser la réception directe de tous vos messages !
+              </div>
+            )}
             <button 
               type="button" 
               onClick={() => setStatus('idle')}
@@ -245,10 +263,10 @@ export function Contact() {
                 <div className="flex-1 leading-relaxed">
                   <div>{errorMessage || t('form.error.desc')}</div>
                   <a 
-                    href={`mailto:studiopolymathe.contact@gmail.com?subject=${encodeURIComponent(subject || 'Polymath Studio Contact')}&body=${encodeURIComponent(message)}`}
+                    href={`mailto:studiopolymath.contact@gmail.com?subject=${encodeURIComponent(subject || 'Polymath Studio Contact')}&body=${encodeURIComponent(message)}`}
                     className="underline hover:text-white mt-1.5 inline-block text-red-300"
                   >
-                    studiopolymathe.contact@gmail.com ↗
+                    studiopolymath.contact@gmail.com ↗
                   </a>
                 </div>
               </div>
@@ -262,6 +280,18 @@ export function Contact() {
               placeholder={t('form.name')} 
               value={name}
               onChange={e => setName(e.target.value)}
+              disabled={status === 'submitting'}
+            />
+
+            <label htmlFor="email" className="visually-hidden">{t('form.email')}</label>
+            <input 
+              type="email" 
+              id="email" 
+              required
+              className="form__input" 
+              placeholder={`${t('form.email')} *`} 
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               disabled={status === 'submitting'}
             />
             
@@ -282,7 +312,7 @@ export function Contact() {
               required
               rows={4}
               className="form__input resize-none" 
-              placeholder={`${t('form.message')} *`}
+              placeholder={`${t('form.message')} *`} 
               value={message}
               onChange={e => setMessage(e.target.value)}
               disabled={status === 'submitting'}
