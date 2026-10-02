@@ -68,7 +68,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Alec
     'team.alec.role': 'Chief Architect / Co-founder',
-    'team.alec.bio': "He designs the backbone of projects and ensures it stands strong, from concept to delivery.",
+    'team.alec.bio': "I design the backbone of projects and ensure it stands strong, from concept to delivery.",
     'team.alec.skill1.title': 'Systems Architecture',
     'team.alec.skill1.desc': 'thinking of the solution as a coherent whole, breaking the problem into articulated subsystems.',
     'team.alec.skill2.title': 'Design Systems',
@@ -80,7 +80,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Arthur
     'team.arthur.role': 'Chief Design Officer / Co-founder',
-    'team.arthur.bio': "He keeps the focus on humans and ensures meaning in everything built.",
+    'team.arthur.bio': "I keep the focus on humans and ensure meaning in everything built.",
     'team.arthur.skill1.title': 'Human-Robot Interaction',
     'team.arthur.skill1.desc': 'designing the relationship between human and machine.',
     'team.arthur.skill2.title': 'Ethics & Impact',
@@ -92,7 +92,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Alann
     'team.alann.role': 'CEO / Co-founder',
-    'team.alann.bio': "He drives the studio's vision and strategy, and engineers the physical hardware that makes ideas tangible.",
+    'team.alann.bio': "I drive the studio's vision and strategy, and engineer the physical hardware that makes ideas tangible.",
     'team.alann.skill1.title': 'Product Vision / Strategy',
     'team.alann.skill1.desc': 'defining the what and why — strategic choices and roadmap decisions.',
     'team.alann.skill2.title': 'Mechanical Engineering',
@@ -104,7 +104,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Joschka
     'team.joschka.role': 'CTO / Co-founder',
-    'team.joschka.bio': "He leads technical execution and breathes life into hardware, from circuitry to environmental perception.",
+    'team.joschka.bio': "I lead technical execution and breathe life into hardware, from circuitry to environmental perception.",
     'team.joschka.skill1.title': 'Electronics',
     'team.joschka.skill1.desc': 'designing and implementing electrical circuits and power systems.',
     'team.joschka.skill2.title': 'Embedded Systems',
@@ -187,7 +187,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Alec
     'team.alec.role': 'Chief Architect / Co-founder',
-    'team.alec.bio': "Il conçoit l'ossature des projets et vérifie qu'elle tient debout, du concept à la réalisation.",
+    'team.alec.bio': "Je conçois l'ossature des projets et vérifie qu'elle tient debout, du concept à la réalisation.",
     'team.alec.skill1.title': 'Systems Architecture',
     'team.alec.skill1.desc': 'penser la solution comme un tout cohérent, découper le problème en sous-systèmes articulés.',
     'team.alec.skill2.title': 'Design Systems',
@@ -199,7 +199,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Arthur
     'team.arthur.role': 'Chief Design Officer / Co-founder',
-    'team.arthur.bio': "Il garde le cap sur l'humain et veille au sens de ce qui est construit.",
+    'team.arthur.bio': "Je garde le cap sur l'humain et veille au sens de ce qui est construit.",
     'team.arthur.skill1.title': 'Human-Robot Interaction',
     'team.arthur.skill1.desc': "concevoir la relation entre l'utilisateur et la machine.",
     'team.arthur.skill2.title': 'Ethics & Impact',
@@ -211,7 +211,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Alann
     'team.alann.role': 'CEO / Co-founder',
-    'team.alann.bio': "Il porte la vision et la direction du studio, et conçoit la partie physique qui rend les idées tangibles.",
+    'team.alann.bio': "Je porte la vision et la direction du studio, et conçois la partie physique qui rend les idées tangibles.",
     'team.alann.skill1.title': 'Product Vision / Strategy',
     'team.alann.skill1.desc': 'définir le quoi et le pourquoi — les directions à prendre et les arbitrages.',
     'team.alann.skill2.title': 'Mechanical Engineering',
@@ -223,7 +223,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Joschka
     'team.joschka.role': 'CTO / Co-founder',
-    'team.joschka.bio': "Il porte la technique et donne vie à l'objet, du circuit à la perception de son environnement.",
+    'team.joschka.bio': "Je porte la technique et donne vie à l'objet, du circuit à la perception de son environnement.",
     'team.joschka.skill1.title': 'Electronics',
     'team.joschka.skill1.desc': 'conception et mise en œuvre des circuits et systèmes électriques.',
     'team.joschka.skill2.title': 'Embedded Systems',
