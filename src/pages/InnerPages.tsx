@@ -150,7 +150,6 @@ export function Team() {
 export function Contact() {
   const { t } = useLanguage();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -178,11 +177,10 @@ export function Contact() {
         },
         body: JSON.stringify({
           name: name.trim() || 'Visiteur du site',
-          email: email.trim() || 'visiteur@polymath-studio.eu',
-          _replyto: email.trim() || undefined,
+          email: 'contact@polymath-studio.eu',
           _subject: subject.trim() 
             ? `[Polymath Studio] ${subject.trim()}` 
-            : `[Polymath Studio] Nouveau message de ${name.trim() || email.trim() || 'Visiteur'}`,
+            : `[Polymath Studio] Nouveau message de ${name.trim() || 'Visiteur'}`,
           message: message.trim(),
           _template: 'table',
           _captcha: 'false',
@@ -194,7 +192,6 @@ export function Contact() {
       if (response.ok || (data && (data.success === 'true' || data.success === true))) {
         setStatus('success');
         setName('');
-        setEmail('');
         setSubject('');
         setMessage('');
       } else if (data && data.message && data.message.toLowerCase().includes('activat')) {
@@ -202,7 +199,6 @@ export function Contact() {
         setStatus('success');
         setIsActivationSent(true);
         setName('');
-        setEmail('');
         setSubject('');
         setMessage('');
       } else {
@@ -280,18 +276,6 @@ export function Contact() {
               placeholder={t('form.name')} 
               value={name}
               onChange={e => setName(e.target.value)}
-              disabled={status === 'submitting'}
-            />
-
-            <label htmlFor="email" className="visually-hidden">{t('form.email')}</label>
-            <input 
-              type="email" 
-              id="email" 
-              required
-              className="form__input" 
-              placeholder={`${t('form.email')} *`} 
-              value={email}
-              onChange={e => setEmail(e.target.value)}
               disabled={status === 'submitting'}
             />
             
