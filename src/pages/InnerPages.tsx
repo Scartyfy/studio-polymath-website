@@ -121,6 +121,7 @@ export function Team() {
         { title: t('team.alann.skill1.title'), desc: t('team.alann.skill1.desc') },
         { title: t('team.alann.skill2.title'), desc: t('team.alann.skill2.desc') },
         { title: t('team.alann.skill3.title'), desc: t('team.alann.skill3.desc') },
+        { title: t('team.alann.skill4.title'), desc: t('team.alann.skill4.desc') },
       ],
       linkedin: "https://www.linkedin.com/in/alann-samson-1735512a1/", 
       img: `${import.meta.env.BASE_URL}alannpp.jpeg` 
@@ -143,23 +144,17 @@ export function Team() {
   return (
     <PageLayout title={t('page.team.title')}>
       <div className="w-full flex flex-col justify-center items-center py-6 sm:py-10 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 w-full max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 w-full max-w-5xl">
           {FOUNDERS.map((member, idx) => {
             const initials = member.name.split(' ').map(n => n[0]).join('');
             return (
               <div 
                 key={idx} 
-                className="border border-[var(--line-strong)] bg-black/60 backdrop-blur-sm p-6 sm:p-8 flex flex-col justify-between relative group hover:border-white transition-colors duration-300"
+                className="flex flex-col justify-between group"
               >
-                {/* Tech corner accents */}
-                <div className="absolute top-2 left-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
-                <div className="absolute top-2 right-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
-                <div className="absolute bottom-2 left-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
-                <div className="absolute bottom-2 right-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
-
                 <div>
                   {/* Top Header: Photo + Info */}
-                  <div className="flex items-center gap-5 sm:gap-6 mb-6">
+                  <div className="flex items-center gap-5 sm:gap-6 mb-5">
                     <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-[var(--line-strong)] bg-white/[0.02] overflow-hidden shrink-0 relative transition-all duration-500 group-hover:border-white">
                       {member.img ? (
                         <img 
@@ -193,7 +188,7 @@ export function Team() {
                   </div>
 
                   {/* Bio quote */}
-                  <div className="border-l-2 border-white/60 pl-4 py-1 mb-6 text-sm sm:text-base text-white/90 font-light leading-relaxed italic">
+                  <div className="border-l border-white/40 pl-4 py-1 my-5 text-sm sm:text-base text-white/90 font-light leading-relaxed italic">
                     « {member.bio} »
                   </div>
 

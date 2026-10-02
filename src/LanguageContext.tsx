@@ -99,6 +99,8 @@ const translations: Record<Language, Record<string, string>> = {
     'team.alann.skill2.desc': 'designing and sizing the mechanical and physical structure of devices.',
     'team.alann.skill3.title': 'Design Integration',
     'team.alann.skill3.desc': 'integrating mechanical engineering into overall design coherence.',
+    'team.alann.skill4.title': 'Fundraising & Partnerships',
+    'team.alann.skill4.desc': 'gathering funding and building strategic alliances that bring projects to life.',
 
     // Joschka
     'team.joschka.role': 'CTO / Co-founder',
@@ -109,8 +111,8 @@ const translations: Record<Language, Record<string, string>> = {
     'team.joschka.skill2.desc': 'programming resource-constrained hardware (microcontrollers, real-time).',
     'team.joschka.skill3.title': 'Computer Vision',
     'team.joschka.skill3.desc': 'enabling machines to perceive and interpret their surroundings.',
-    'team.joschka.skill4.title': 'Hardware & Software Development',
-    'team.joschka.skill4.desc': 'bridging the physical and digital domains, end-to-end.',
+    'team.joschka.skill4.title': 'ROS Architecture',
+    'team.joschka.skill4.desc': 'structuring robotic software so sensors, computation, and motion communicate seamlessly from end to end.',
     'page.contact.title': 'Contact',
     'page.contact.subtitle': 'Network',
     'form.name': 'Full name',
@@ -216,6 +218,8 @@ const translations: Record<Language, Record<string, string>> = {
     'team.alann.skill2.desc': 'concevoir et dimensionner la partie mécanique et physique des objets.',
     'team.alann.skill3.title': 'Design Integration',
     'team.alann.skill3.desc': 'intégrer la mécanique dans la cohérence globale de conception.',
+    'team.alann.skill4.title': 'Fundraising & Partnerships',
+    'team.alann.skill4.desc': "réunir les financements et nouer les alliances qui permettent aux projets d'exister.",
 
     // Joschka
     'team.joschka.role': 'CTO / Co-founder',
@@ -226,8 +230,8 @@ const translations: Record<Language, Record<string, string>> = {
     'team.joschka.skill2.desc': 'programmer le matériel contraint (microcontrôleurs, temps réel).',
     'team.joschka.skill3.title': 'Computer Vision',
     'team.joschka.skill3.desc': 'permettre à la machine de percevoir et interpréter son environnement.',
-    'team.joschka.skill4.title': 'Hardware & Software Development',
-    'team.joschka.skill4.desc': 'faire dialoguer le physique et le logiciel, de bout en bout.',
+    'team.joschka.skill4.title': 'ROS Architecture',
+    'team.joschka.skill4.desc': 'structurer le logiciel robotique pour que capteurs, calcul et mouvement communiquent de bout en bout.',
     'page.contact.title': 'Contact',
     'page.contact.subtitle': 'Réseau',
     'form.name': 'Nom complet',
