@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ExpandableActionBar } from './ui/expandable-action-bar';
-import { BookOpen, Cpu, Fingerprint, Mail, Home as HomeIcon, Globe } from 'lucide-react';
+import { BookOpen, Cpu, Fingerprint, Mail, Home as HomeIcon, Globe, Layers } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 export function CyberGrid() {
@@ -31,7 +31,9 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
   const navigate = useNavigate();
   const location = useLocation();
   const { t, lang, setLang } = useLanguage();
-  const activeId = location.pathname.substring(1) || 'home';
+  const rawPath = location.pathname || '';
+  const cleanPath = rawPath.replace(/^\/+/, '');
+  const activeId = cleanPath || 'home';
 
   const handleNavigate = (path: string) => {
     if (location.pathname === path) {
@@ -51,11 +53,12 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
   };
 
   const NAV_ITEMS = [
-    { id: "home", label: t('nav.home'), icon: <HomeIcon className="w-4 h-4" />, onClick: () => handleNavigate('/') },
-    { id: "manifest", label: t('nav.manifest'), icon: <BookOpen className="w-4 h-4" />, onClick: () => handleNavigate('/manifest') },
-    { id: "team", label: t('nav.team'), icon: <Cpu className="w-4 h-4" />, onClick: () => handleNavigate('/team') },
-    { id: "contact", label: t('nav.contact'), icon: <Mail className="w-4 h-4" />, onClick: () => handleNavigate('/contact') },
-    { id: "lang", label: lang === 'EN' ? 'Français' : 'English', icon: <Globe className="w-4 h-4" />, onClick: () => setLang(lang === 'EN' ? 'FR' : 'EN') }
+    { id: "home", label: t('nav.home'), icon: <HomeIcon className="w-4 h-4" />, onClick: () => handleNavigate('/'), active: activeId === 'home' },
+    { id: "manifest", label: t('nav.manifest'), icon: <BookOpen className="w-4 h-4" />, onClick: () => handleNavigate('/manifest'), active: activeId === 'manifest' },
+    { id: "team", label: t('nav.team'), icon: <Cpu className="w-4 h-4" />, onClick: () => handleNavigate('/team'), active: activeId === 'team' },
+    { id: "projects", label: t('nav.projects'), icon: <Layers className="w-4 h-4" />, onClick: () => handleNavigate('/projects'), active: activeId === 'projects' },
+    { id: "contact", label: t('nav.contact'), icon: <Mail className="w-4 h-4" />, onClick: () => handleNavigate('/contact'), active: activeId === 'contact' },
+    { id: "lang", label: lang === 'EN' ? 'Français' : 'English', icon: <Globe className="w-4 h-4" />, onClick: () => setLang(lang === 'EN' ? 'FR' : 'EN'), active: false }
   ];
 
   return (
@@ -115,6 +118,7 @@ export function MobileMenu({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
         {[
           { label: t('nav.manifest'), href: '/manifest' },
           { label: t('nav.team'), href: '/team' },
+          { label: t('nav.projects'), href: '/projects' },
           { label: t('nav.contact'), href: '/contact' },
         ].map((link, i) => (
           <Link 

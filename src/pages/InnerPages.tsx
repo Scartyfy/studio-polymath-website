@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Mail, CheckCircle2, AlertCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Mail, CheckCircle2, AlertCircle, ArrowUpRight } from 'lucide-react';
 import { Navigation, Footer } from '../components/Shared';
 import { useLanguage } from '../LanguageContext';
+import { LiquidButton } from '../components/ui/primitives-buttons-liquid';
 
 function PageLayout({ title, subtitle, children }: { title: string, subtitle?: string, children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -296,6 +298,139 @@ export function Contact() {
             </button>
           </form>
         )}
+      </div>
+    </PageLayout>
+  );
+}
+
+export function Projects() {
+  const { t } = useLanguage();
+  const navigate = useNavigate();
+
+  return (
+    <PageLayout title={t('page.projects.title')} subtitle={t('page.projects.subtitle')}>
+      <div className="w-full max-w-5xl mx-auto space-y-16 py-6 sm:py-10">
+        {/* Intro */}
+        <p className="text-xl sm:text-2xl text-[var(--text-dim)] font-light leading-relaxed max-w-3xl border-b border-[var(--line-strong)] pb-10">
+          {t('projects.intro')}
+        </p>
+
+        {/* Featured Project Showcase */}
+        <div className="border border-[var(--line-strong)] bg-black/80 backdrop-blur-sm p-6 sm:p-8 md:p-10 relative group overflow-hidden">
+          {/* Tech Corner Crosses */}
+          <div className="absolute top-2 left-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
+          <div className="absolute top-2 right-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
+          <div className="absolute bottom-2 left-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
+          <div className="absolute bottom-2 right-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
+
+          {/* Header */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-[var(--line-strong)]">
+            <div className="flex items-center gap-2.5 text-xs font-mono tracking-[0.2em] text-white uppercase">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>{t('projects.featured.badge')}</span>
+            </div>
+            <div className="text-[11px] font-mono text-[var(--text-dim)] tracking-widest uppercase">
+              ROBOTARIUM // UGV-DIV // DEV.LAB
+            </div>
+          </div>
+
+          {/* Grid with image and details */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
+            <div className="lg:col-span-7">
+              <div className="relative border border-[var(--line-strong)] overflow-hidden aspect-[16/10] bg-neutral-950 group/img">
+                <img 
+                  src={`${import.meta.env.BASE_URL}imagejo.jpg`} 
+                  alt="Polymath Studio - Robotarium" 
+                  className="w-full h-full object-cover grayscale contrast-[1.1] brightness-90 group-hover/img:grayscale-0 group-hover/img:scale-[1.02] transition-all duration-700 ease-out"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono tracking-widest uppercase text-white/80 bg-black/70 backdrop-blur-sm px-3 py-1.5 border border-white/10">
+                  <span>ROBOTARIUM // UGV DIV</span>
+                  <span className="text-emerald-400 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full inline-block"></span>
+                    {t('projects.featured.status')}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 flex flex-col justify-center">
+              <div className="text-[var(--text-dim)] uppercase tracking-[0.15em] text-xs font-mono mb-3">
+                {t('projects.featured.subtitle')}
+              </div>
+              <h3 className="text-2xl md:text-3xl font-light mb-4 lowercase leading-tight">
+                {t('projects.featured.title')}
+              </h3>
+              <p className="text-[var(--text-dim)] text-base md:text-lg leading-relaxed mb-6">
+                {t('projects.featured.desc')}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-8 text-[11px] font-mono uppercase text-white/70">
+                <span className="px-2.5 py-1 border border-[var(--line-strong)] bg-white/5">
+                  Lab: Robotarium
+                </span>
+                <span className="px-2.5 py-1 border border-[var(--line-strong)] bg-white/5">
+                  Suspension Testing
+                </span>
+                <span className="px-2.5 py-1 border border-[var(--line-strong)] bg-white/5">
+                  Dynamic Actuators
+                </span>
+              </div>
+
+              <div>
+                <LiquidButton 
+                  onClick={() => navigate('/contact')}
+                  className="inline-flex items-center gap-2 border border-[var(--line-strong)] px-6 py-3 uppercase tracking-[0.15em] text-xs hover:text-black cursor-pointer overflow-hidden [--liquid-button-color:white] [--liquid-button-background-color:transparent]"
+                >
+                  {t('home.project.link')} <ArrowUpRight className="w-4 h-4" />
+                </LiquidButton>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Pillars / Exploration cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+          {[
+            {
+              num: "01",
+              title: t('projects.card1.title'),
+              desc: t('projects.card1.desc'),
+              tag: t('projects.card1.tag')
+            },
+            {
+              num: "02",
+              title: t('projects.card2.title'),
+              desc: t('projects.card2.desc'),
+              tag: t('projects.card2.tag')
+            },
+            {
+              num: "03",
+              title: t('projects.card3.title'),
+              desc: t('projects.card3.desc'),
+              tag: t('projects.card3.tag')
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="border border-[var(--line-strong)] bg-white/[0.015] p-6 flex flex-col justify-between hover:border-white transition-colors duration-300">
+              <div>
+                <div className="flex items-center justify-between text-[11px] font-mono uppercase text-[var(--text-dimmer)] mb-4">
+                  <span>{item.num} //</span>
+                  <span>{item.tag}</span>
+                </div>
+                <h4 className="text-lg font-light text-white mb-3 lowercase">
+                  {item.title}
+                </h4>
+                <p className="text-sm text-[var(--text-dim)] font-light leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </PageLayout>
   );

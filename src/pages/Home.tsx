@@ -186,7 +186,16 @@ export function Home() {
                 title={t('home.timeline3.title')}
                 desc={t('home.timeline3.desc')}
                 linkText={t('home.timeline3.link')}
+                onClick={() => navigate('/projects')}
+              />
+              <TimelineRow 
+                number="04"
+                subtitle={t('home.timeline4.subtitle')}
+                title={t('home.timeline4.title')}
+                desc={t('home.timeline4.desc')}
+                linkText={t('home.timeline4.link')}
                 onClick={() => navigate('/contact')}
+                isRight
                 isLast
               />
               

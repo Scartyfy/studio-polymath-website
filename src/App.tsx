@@ -1,7 +1,7 @@
 import React, { Component, ErrorInfo, ReactNode, useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Home } from './pages/Home';
-import { Manifest, Team, Contact } from './pages/InnerPages';
+import { Manifest, Team, Contact, Projects } from './pages/InnerPages';
 import { LanguageProvider } from './LanguageContext';
 
 interface ErrorBoundaryProps {
@@ -99,6 +99,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/manifest" element={<Manifest />} />
             <Route path="/team" element={<Team />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<Home />} />
           </Routes>
