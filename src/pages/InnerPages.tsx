@@ -87,57 +87,130 @@ export function Team() {
   const { t } = useLanguage();
   
   const FOUNDERS = [
-    { name: "Arthur CHAUVIN", role: t('team.role1'), linkedin: "https://www.linkedin.com/in/arthur-chauvin-b798042bb/", img: `${import.meta.env.BASE_URL}arthurpp.jpeg` },
-    { name: "Alann SAMSON", role: t('team.role1'), linkedin: "https://www.linkedin.com/in/alann-samson-1735512a1/", img: `${import.meta.env.BASE_URL}alannpp.jpeg` },
-    { name: "Joschka MAYER", role: t('team.role1'), linkedin: "https://www.linkedin.com/in/joschkamayer/", img: `${import.meta.env.BASE_URL}jopp.jpeg` },
-    { name: "Alec MIGNOT", role: t('team.role1'), linkedin: "https://www.linkedin.com/in/alec-mignot-40bb9430b/", img: `${import.meta.env.BASE_URL}alecpp.jpeg` },
+    { 
+      name: "Alec MIGNOT", 
+      role: t('team.alec.role'), 
+      bio: t('team.alec.bio'),
+      skills: [
+        { title: t('team.alec.skill1.title'), desc: t('team.alec.skill1.desc') },
+        { title: t('team.alec.skill2.title'), desc: t('team.alec.skill2.desc') },
+        { title: t('team.alec.skill3.title'), desc: t('team.alec.skill3.desc') },
+        { title: t('team.alec.skill4.title'), desc: t('team.alec.skill4.desc') },
+      ],
+      linkedin: "https://www.linkedin.com/in/alec-mignot-40bb9430b/", 
+      img: `${import.meta.env.BASE_URL}alecpp.jpeg` 
+    },
+    { 
+      name: "Arthur CHAUVIN", 
+      role: t('team.arthur.role'), 
+      bio: t('team.arthur.bio'),
+      skills: [
+        { title: t('team.arthur.skill1.title'), desc: t('team.arthur.skill1.desc') },
+        { title: t('team.arthur.skill2.title'), desc: t('team.arthur.skill2.desc') },
+        { title: t('team.arthur.skill3.title'), desc: t('team.arthur.skill3.desc') },
+        { title: t('team.arthur.skill4.title'), desc: t('team.arthur.skill4.desc') },
+      ],
+      linkedin: "https://www.linkedin.com/in/arthur-chauvin-b798042bb/", 
+      img: `${import.meta.env.BASE_URL}arthurpp.jpeg` 
+    },
+    { 
+      name: "Alann SAMSON", 
+      role: t('team.alann.role'), 
+      bio: t('team.alann.bio'),
+      skills: [
+        { title: t('team.alann.skill1.title'), desc: t('team.alann.skill1.desc') },
+        { title: t('team.alann.skill2.title'), desc: t('team.alann.skill2.desc') },
+        { title: t('team.alann.skill3.title'), desc: t('team.alann.skill3.desc') },
+      ],
+      linkedin: "https://www.linkedin.com/in/alann-samson-1735512a1/", 
+      img: `${import.meta.env.BASE_URL}alannpp.jpeg` 
+    },
+    { 
+      name: "Joschka MAYER", 
+      role: t('team.joschka.role'), 
+      bio: t('team.joschka.bio'),
+      skills: [
+        { title: t('team.joschka.skill1.title'), desc: t('team.joschka.skill1.desc') },
+        { title: t('team.joschka.skill2.title'), desc: t('team.joschka.skill2.desc') },
+        { title: t('team.joschka.skill3.title'), desc: t('team.joschka.skill3.desc') },
+        { title: t('team.joschka.skill4.title'), desc: t('team.joschka.skill4.desc') },
+      ],
+      linkedin: "https://www.linkedin.com/in/joschkamayer/", 
+      img: `${import.meta.env.BASE_URL}jopp.jpeg` 
+    },
   ];
 
   return (
     <PageLayout title={t('page.team.title')}>
-      <div className="w-full flex flex-col justify-center items-center py-6 sm:py-12 md:py-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 lg:gap-14 w-full max-w-5xl justify-items-center items-start">
+      <div className="w-full flex flex-col justify-center items-center py-6 sm:py-10 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 w-full max-w-5xl">
           {FOUNDERS.map((member, idx) => {
             const initials = member.name.split(' ').map(n => n[0]).join('');
             return (
               <div 
                 key={idx} 
-                className="flex flex-col items-center text-center w-full group"
+                className="border border-[var(--line-strong)] bg-black/60 backdrop-blur-sm p-6 sm:p-8 flex flex-col justify-between relative group hover:border-white transition-colors duration-300"
               >
-                {/* Photo frame centered on the horizontal axis */}
-                <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full border border-[var(--line-strong)] bg-white/[0.02] overflow-hidden relative mb-6 flex items-center justify-center transition-all duration-500 group-hover:border-white">
-                  {member.img ? (
-                    <img 
-                      src={member.img} 
-                      alt={member.name} 
-                      className="w-full h-full object-cover grayscale contrast-[1.08] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
-                    />
-                  ) : (
-                    <span className="font-mono text-xs sm:text-sm md:text-base text-white/40 tracking-widest group-hover:text-white transition-colors">
-                      {initials}
-                    </span>
-                  )}
-                </div>
+                {/* Tech corner accents */}
+                <div className="absolute top-2 left-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
+                <div className="absolute top-2 right-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
+                <div className="absolute bottom-2 left-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
+                <div className="absolute bottom-2 right-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
 
-                {/* Name */}
-                <div className="text-base sm:text-lg md:text-xl font-light tracking-wide text-white mb-1.5 whitespace-nowrap">
-                  {member.name}
-                </div>
+                <div>
+                  {/* Top Header: Photo + Info */}
+                  <div className="flex items-center gap-5 sm:gap-6 mb-6">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-[var(--line-strong)] bg-white/[0.02] overflow-hidden shrink-0 relative transition-all duration-500 group-hover:border-white">
+                      {member.img ? (
+                        <img 
+                          src={member.img} 
+                          alt={member.name} 
+                          className="w-full h-full object-cover grayscale contrast-[1.08] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
+                        />
+                      ) : (
+                        <span className="font-mono text-sm text-white/40 tracking-widest flex items-center justify-center w-full h-full">
+                          {initials}
+                        </span>
+                      )}
+                    </div>
 
-                {/* Role */}
-                <div className="text-[var(--text-dim)] text-xs uppercase tracking-widest font-mono mb-3">
-                  {member.role}
-                </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg sm:text-xl font-light text-white tracking-wide mb-1 truncate">
+                        {member.name}
+                      </h3>
+                      <div className="text-[var(--text-dim)] text-xs uppercase tracking-wider font-mono mb-2">
+                        {member.role}
+                      </div>
+                      <a 
+                        href={member.linkedin} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-[0.18em] text-[var(--text-dimmer)] hover:text-white transition-colors pb-0.5 border-b border-transparent hover:border-white"
+                      >
+                        LinkedIn ↗
+                      </a>
+                    </div>
+                  </div>
 
-                {/* LinkedIn */}
-                <a 
-                  href={member.linkedin} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="inline-flex items-center gap-1 text-xs font-mono uppercase tracking-[0.18em] text-[var(--text-dimmer)] hover:text-white transition-colors pb-0.5 border-b border-transparent hover:border-white"
-                >
-                  LinkedIn ↗
-                </a>
+                  {/* Bio quote */}
+                  <div className="border-l-2 border-white/60 pl-4 py-1 mb-6 text-sm sm:text-base text-white/90 font-light leading-relaxed italic">
+                    « {member.bio} »
+                  </div>
+
+                  {/* Skills / Focus areas */}
+                  <div className="space-y-3 pt-5 border-t border-[var(--line-strong)]">
+                    {member.skills.map((skill, sIdx) => (
+                      <div key={sIdx} className="text-xs leading-relaxed">
+                        <span className="font-mono text-white uppercase tracking-wider font-medium block mb-0.5 sm:inline sm:mr-2">
+                          {skill.title} :
+                        </span>
+                        <span className="text-[var(--text-dim)] font-light">
+                          {skill.desc}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             );
           })}
