@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, Shield, Cpu, Footprints, Wrench, Eye } from 'lucide-react';
 import { Navigation, Footer } from '../components/Shared';
 import { useLanguage } from '../LanguageContext';
@@ -403,7 +403,28 @@ export function Projects() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm sm:text-base text-white/80 font-light leading-relaxed border-t border-[var(--line-strong)] pt-8">
             <p>{t('projects.intro.p1')}</p>
-            <p>{t('projects.intro.p2')}</p>
+            <p>
+              {(() => {
+                const text = t('projects.intro.p2') || '';
+                const targetFr = 'ingénieurs-designers';
+                const targetEn = 'engineer-designers';
+                const target = text.includes(targetFr) ? targetFr : text.includes(targetEn) ? targetEn : null;
+                if (!target) return text;
+                const parts = text.split(target);
+                return (
+                  <>
+                    {parts[0]}
+                    <Link 
+                      to="/team" 
+                      className="text-white underline underline-offset-4 decoration-white/40 hover:decoration-white hover:text-white transition-all cursor-pointer font-normal"
+                    >
+                      {target}
+                    </Link>
+                    {parts[1]}
+                  </>
+                );
+              })()}
+            </p>
           </div>
         </div>
 
