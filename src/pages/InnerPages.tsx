@@ -26,7 +26,7 @@ function PageLayout({ title, subtitle, children }: { title: string, subtitle?: s
 export function Manifest() {
   const { t } = useLanguage();
   return (
-    <PageLayout title={t('page.manifest.title')} subtitle={t('page.manifest.subtitle')}>
+    <PageLayout title={t('page.manifest.title')}>
       <article className="max-w-4xl">
         {/* Lead declaration */}
         <div className="text-xl sm:text-2xl md:text-3xl font-extralight text-white leading-relaxed tracking-tight border-b border-[var(--line-strong)] pb-10 mb-12">
@@ -389,7 +389,7 @@ export function Projects() {
   const navigate = useNavigate();
 
   return (
-    <PageLayout title={t('page.projects.title')} subtitle={t('page.projects.subtitle')}>
+    <PageLayout title={t('page.projects.title')}>
       <div className="w-full max-w-3xl mx-auto py-12 sm:py-20 flex flex-col items-center text-center">
         {/* Technical Frame */}
         <div className="border border-[var(--line-strong)] bg-black/80 backdrop-blur-sm p-8 sm:p-14 w-full relative group">
