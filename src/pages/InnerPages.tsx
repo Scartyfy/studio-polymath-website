@@ -511,9 +511,6 @@ export function Projects() {
         {/* Section: Joschka's Calgary Quadruped Research (Stage & R&D) */}
         <div className="space-y-6 border-t border-[var(--line-strong)] pt-12">
           <div>
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-dimmer)] block mb-2">
-              [ Fondations Scientifiques & Systèmes ]
-            </span>
             <h3 className="text-xl sm:text-2xl font-light text-white mb-3">
               {t('projects.jo.title')}
             </h3>
