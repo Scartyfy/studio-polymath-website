@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mail, CheckCircle2, AlertCircle, ArrowUpRight } from 'lucide-react';
+import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, Shield, Cpu, Footprints, Wrench, Eye } from 'lucide-react';
 import { Navigation, Footer } from '../components/Shared';
 import { useLanguage } from '../LanguageContext';
 import { LiquidButton } from '../components/ui/primitives-buttons-liquid';
@@ -390,40 +390,240 @@ export function Projects() {
 
   return (
     <PageLayout title={t('page.projects.title')}>
-      <div className="w-full max-w-3xl mx-auto py-12 sm:py-20 flex flex-col items-center text-center">
-        {/* Technical Frame */}
-        <div className="border border-[var(--line-strong)] bg-black/80 backdrop-blur-sm p-8 sm:p-14 w-full relative group">
-          {/* Tech Corner Crosses */}
-          <div className="absolute top-2 left-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
-          <div className="absolute top-2 right-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
-          <div className="absolute bottom-2 left-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
-          <div className="absolute bottom-2 right-2 text-[10px] font-mono text-white/30 tracking-widest pointer-events-none">[+]</div>
-
-          {/* Status Indicator */}
-          <div className="inline-flex items-center gap-2.5 text-xs font-mono tracking-[0.25em] text-white/80 uppercase px-4 py-2 border border-[var(--line)] bg-white/[0.03] mb-8">
+      <div className="w-full max-w-5xl mx-auto py-4 sm:py-8 space-y-16 sm:space-y-24">
+        {/* Project Header */}
+        <div>
+          <div className="inline-flex items-center gap-2.5 text-xs font-mono tracking-[0.25em] text-white/80 uppercase px-3.5 py-1.5 border border-[var(--line-strong)] bg-white/[0.02] mb-6">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span>{t('projects.status.badge')}</span>
+            <span>{t('projects.badge')}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-white mb-6 lowercase tracking-tight">
-            {t('projects.status.title')}
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-light text-white tracking-tight leading-tight mb-8">
+            {t('projects.main.title')}
           </h2>
 
-          <p className="text-[var(--text-dim)] text-base sm:text-lg max-w-xl mx-auto font-light leading-relaxed mb-10">
-            {t('projects.status.desc')}
-          </p>
-
-          <div className="pt-2">
-            <LiquidButton 
-              onClick={() => navigate('/contact')}
-              className="inline-flex items-center gap-2 border border-[var(--line-strong)] px-8 py-4 uppercase tracking-[0.15em] text-xs hover:text-black cursor-pointer overflow-hidden [--liquid-button-color:white] [--liquid-button-background-color:transparent]"
-            >
-              {t('projects.status.contact')} <ArrowUpRight className="w-4 h-4" />
-            </LiquidButton>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm sm:text-base text-white/80 font-light leading-relaxed border-t border-[var(--line-strong)] pt-8">
+            <p>{t('projects.intro.p1')}</p>
+            <p>{t('projects.intro.p2')}</p>
           </div>
+        </div>
+
+        {/* Primary Case Visual: Campus Night Patrol Slot with video/substitution */}
+        <div className="space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[var(--line-strong)] pb-3">
+            <div className="font-mono text-xs uppercase tracking-[0.2em] text-white flex items-center gap-2">
+              <Eye className="w-3.5 h-3.5 text-emerald-400" />
+              <span>{t('projects.night.badge')}</span>
+            </div>
+            <div className="font-mono text-[11px] text-[var(--text-dim)] uppercase tracking-wider">
+              Capteur Mobotix • Autonomie Périmétrique
+            </div>
+          </div>
+
+          {/* Media frame with replacement/placeholder indicators */}
+          <div className="relative border border-[var(--line-strong)] bg-black/90 overflow-hidden group">
+            {/* Visual substitution: video loop or atmospheric frame */}
+            <div className="relative aspect-video w-full max-h-[520px] bg-neutral-950 flex items-center justify-center overflow-hidden">
+              <video 
+                src={`${import.meta.env.BASE_URL}dogpostit.mp4`}
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
+
+              {/* Technical overlay HUD */}
+              <div className="absolute top-4 left-4 font-mono text-[10px] tracking-widest uppercase bg-black/80 px-2.5 py-1 border border-white/20 text-white/90">
+                [ CAM_01 // PATROUILLE ACTIVE ]
+              </div>
+              <div className="absolute top-4 right-4 font-mono text-[10px] tracking-widest uppercase bg-black/80 px-2.5 py-1 border border-white/20 text-white/70 hidden sm:block">
+                [ MOBOTIX VISION SYSTEM ]
+              </div>
+              <div className="absolute bottom-4 left-4 right-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2 text-white pointer-events-none">
+                <div className="font-mono text-xs text-white/90 bg-black/70 backdrop-blur-sm p-2 sm:p-3 border border-white/10 max-w-xl">
+                  {t('projects.night.caption')}
+                </div>
+                <div className="font-mono text-[10px] text-amber-300/80 uppercase tracking-widest bg-amber-950/40 border border-amber-500/30 px-2 py-1 shrink-0">
+                  📷 {t('projects.night.placeholder')}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 4 Technical Pillars */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+          <div className="p-5 border border-[var(--line-strong)] bg-white/[0.015]">
+            <Footprints className="w-5 h-5 text-white/70 mb-3 stroke-[1.5]" />
+            <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar1.title')}</h4>
+            <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar1.desc')}</p>
+          </div>
+          <div className="p-5 border border-[var(--line-strong)] bg-white/[0.015]">
+            <Shield className="w-5 h-5 text-white/70 mb-3 stroke-[1.5]" />
+            <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar2.title')}</h4>
+            <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar2.desc')}</p>
+          </div>
+          <div className="p-5 border border-[var(--line-strong)] bg-white/[0.015]">
+            <Cpu className="w-5 h-5 text-white/70 mb-3 stroke-[1.5]" />
+            <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar3.title')}</h4>
+            <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar3.desc')}</p>
+          </div>
+          <div className="p-5 border border-[var(--line-strong)] bg-white/[0.015]">
+            <Wrench className="w-5 h-5 text-white/70 mb-3 stroke-[1.5]" />
+            <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar4.title')}</h4>
+            <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar4.desc')}</p>
+          </div>
+        </div>
+
+        {/* Section: Scale & Dimensioning Diagram (0.50m vs 1.80m) */}
+        <div className="space-y-6 border-t border-[var(--line-strong)] pt-12">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-dimmer)] block mb-2">
+              [ Ergonomie & Échelle Humaine ]
+            </span>
+            <h3 className="text-xl sm:text-2xl font-light text-white mb-3">
+              {t('projects.scale.title')}
+            </h3>
+            <p className="text-sm sm:text-base text-white/70 font-light max-w-2xl leading-relaxed">
+              {t('projects.scale.desc')}
+            </p>
+          </div>
+
+          {/* SVG Technical Dimensioning Diagram */}
+          <div className="border border-[var(--line-strong)] bg-black/60 p-6 sm:p-10 relative">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="w-full md:w-3/5">
+                <svg viewBox="0 0 500 220" className="w-full h-auto text-white select-none">
+                  {/* Ground line */}
+                  <line x1="20" y1="190" x2="480" y2="190" stroke="rgba(255,255,255,0.3)" strokeWidth="1" strokeDasharray="3 3" />
+                  <text x="25" y="206" fill="rgba(255,255,255,0.4)" fontSize="9" fontFamily="monospace">SOL / GROUND REFERENCE</text>
+
+                  {/* Human silhouette (1.80m = 160 units) */}
+                  <g opacity="0.85">
+                    {/* Head */}
+                    <circle cx="110" cy="40" r="12" fill="none" stroke="currentColor" strokeWidth="1.2" />
+                    {/* Torso & legs */}
+                    <path d="M 110 52 L 110 120 M 110 120 L 95 190 M 110 120 L 125 190 M 88 75 L 132 75" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                    {/* Human Dimension line */}
+                    <line x1="65" y1="28" x2="65" y2="190" stroke="rgba(255,255,255,0.5)" strokeWidth="1" />
+                    <line x1="60" y1="28" x2="70" y2="28" stroke="rgba(255,255,255,0.5)" strokeWidth="1" />
+                    <line x1="60" y1="190" x2="70" y2="190" stroke="rgba(255,255,255,0.5)" strokeWidth="1" />
+                    <text x="55" y="112" fill="#fff" fontSize="10" fontFamily="monospace" textAnchor="end">1,80 m</text>
+                    <text x="110" y="16" fill="rgba(255,255,255,0.7)" fontSize="10" fontFamily="monospace" textAnchor="middle">{t('projects.scale.human')}</text>
+                  </g>
+
+                  {/* Quadruped robot silhouette (0.50m = 44 units) */}
+                  <g opacity="0.95">
+                    {/* Chassis body */}
+                    <rect x="270" y="146" width="110" height="24" rx="4" fill="rgba(255,255,255,0.06)" stroke="currentColor" strokeWidth="1.5" />
+                    {/* Sensor head / camera mount */}
+                    <polygon points="380,150 405,153 400,165 380,165" fill="rgba(16,185,129,0.2)" stroke="#10b981" strokeWidth="1.2" />
+                    <circle cx="400" cy="158" r="3" fill="#10b981" />
+                    {/* Legs */}
+                    <polyline points="280,170 270,182 275,190" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <polyline points="295,170 302,180 300,190" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+                    <polyline points="360,170 352,182 355,190" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <polyline points="375,170 382,180 380,190" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+
+                    {/* Robot Dimension line */}
+                    <line x1="435" y1="146" x2="435" y2="190" stroke="#10b981" strokeWidth="1" />
+                    <line x1="430" y1="146" x2="440" y2="146" stroke="#10b981" strokeWidth="1" />
+                    <line x1="430" y1="190" x2="440" y2="190" stroke="#10b981" strokeWidth="1" />
+                    <text x="448" y="172" fill="#10b981" fontSize="10" fontFamily="monospace" textAnchor="start">0,50 m</text>
+                    <text x="335" y="136" fill="rgba(255,255,255,0.9)" fontSize="10" fontFamily="monospace" textAnchor="middle">{t('projects.scale.robot')}</text>
+                  </g>
+
+                  {/* Horizontal visual alignment bar */}
+                  <line x1="110" y1="146" x2="270" y2="146" stroke="rgba(255,255,255,0.2)" strokeWidth="0.8" strokeDasharray="2 2" />
+                  <text x="190" y="142" fill="rgba(255,255,255,0.4)" fontSize="8" fontFamily="monospace" textAnchor="middle">HAUTEUR GARROT &lt; GENOU HUMAIN</text>
+                </svg>
+              </div>
+
+              <div className="w-full md:w-2/5 font-mono text-xs text-white/70 space-y-3 border-t md:border-t-0 md:border-l border-[var(--line-strong)] pt-4 md:pt-0 md:pl-6">
+                <div className="text-emerald-400 uppercase tracking-widest font-medium">
+                  {t('projects.scale.ratio')}
+                </div>
+                <p className="font-sans text-xs text-[var(--text-dim)] font-light leading-relaxed">
+                  Hauteur réduite en dessous de la ligne d'horizon visuelle humaine : les usagers du campus perçoivent immédiatement un équipement utilitaire au sol, sans domination visuelle ni caractère intimidant.
+                </p>
+                <div className="text-[10px] text-amber-300/80 bg-amber-950/20 border border-amber-500/20 p-2">
+                  ℹ️ {t('projects.scale.placeholder')}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Section: Joschka's Calgary Quadruped Research (Stage & R&D) */}
+        <div className="space-y-6 border-t border-[var(--line-strong)] pt-12">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-dimmer)] block mb-2">
+              [ Fondations Scientifiques & Systèmes ]
+            </span>
+            <h3 className="text-xl sm:text-2xl font-light text-white mb-3">
+              {t('projects.jo.title')}
+            </h3>
+            <p className="text-sm sm:text-base text-white/70 font-light max-w-3xl leading-relaxed">
+              {t('projects.jo.desc')}
+            </p>
+          </div>
+
+          {/* Research image & documentation frame */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+            <div className="md:col-span-2 border border-[var(--line-strong)] bg-black overflow-hidden group">
+              <div className="aspect-video w-full overflow-hidden bg-neutral-900 relative">
+                <img 
+                  src={`${import.meta.env.BASE_URL}imagejo.jpg`}
+                  alt="Travaux de recherche sur robot quadrupède menés à Calgary par Joschka Mayer"
+                  className="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-700"
+                />
+                <div className="absolute top-3 left-3 font-mono text-[9px] uppercase tracking-widest bg-black/80 px-2 py-0.5 border border-white/20 text-white/80">
+                  CALGARY QUADRUPED LAB // R&D
+                </div>
+              </div>
+              <div className="p-4 border-t border-[var(--line-strong)] bg-white/[0.015] font-mono text-xs text-[var(--text-dim)]">
+                {t('projects.jo.caption')}
+              </div>
+            </div>
+
+            {/* Additional documentation card / slot */}
+            <div className="border border-[var(--line-strong)] bg-white/[0.02] p-6 space-y-4 font-mono text-xs">
+              <div className="text-white uppercase tracking-wider font-medium border-b border-[var(--line-strong)] pb-2">
+                Compétences Embarquées
+              </div>
+              <ul className="space-y-2 text-[var(--text-dim)] font-light text-[11px] leading-relaxed">
+                <li>• Architecture logicielle ROS / ROS 2</li>
+                <li>• Contrôle cinématique et dynamique en boucle fermée</li>
+                <li>• Algorithmes de marche et franchissement d'obstacles</li>
+                <li>• Fusion de capteurs LiDAR, IMU et caméras embarquées</li>
+                <li>• Traitement bord-machine faible latence</li>
+              </ul>
+              <div className="pt-2 text-[10px] text-white/40 uppercase tracking-widest border-t border-[var(--line-strong)]">
+                {t('projects.jo.extra')}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="border-t border-[var(--line-strong)] pt-12 pb-8 flex flex-col items-center text-center">
+          <h3 className="text-xl sm:text-2xl font-light text-white mb-3">
+            {t('projects.cta.title')}
+          </h3>
+          <p className="text-sm text-[var(--text-dim)] font-light max-w-lg mb-8 leading-relaxed">
+            {t('projects.cta.desc')}
+          </p>
+          <LiquidButton 
+            onClick={() => navigate('/contact')}
+            className="inline-flex items-center gap-2 border border-[var(--line-strong)] px-8 py-4 uppercase tracking-[0.15em] text-xs hover:text-black cursor-pointer overflow-hidden [--liquid-button-color:white] [--liquid-button-background-color:transparent]"
+          >
+            {t('projects.cta.button')} <ArrowUpRight className="w-4 h-4" />
+          </LiquidButton>
         </div>
       </div>
     </PageLayout>
