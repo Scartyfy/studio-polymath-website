@@ -27,14 +27,14 @@ export function Manifest() {
   const { t } = useLanguage();
   return (
     <PageLayout title={t('page.manifest.title')}>
-      <article className="max-w-4xl">
+      <article className="max-w-3xl">
         {/* Lead declaration */}
-        <div className="text-xl sm:text-2xl md:text-3xl font-extralight text-white leading-relaxed tracking-tight border-b border-[var(--line-strong)] pb-10 mb-12">
+        <div className="text-base sm:text-lg md:text-xl font-light text-white leading-relaxed border-b border-[var(--line-strong)] pb-8 mb-8">
           {t('manifest.p1')}
         </div>
 
         {/* Narrative blocks */}
-        <div className="space-y-10 text-base sm:text-lg md:text-xl text-[var(--text-dim)] font-light leading-relaxed">
+        <div className="space-y-6 text-sm sm:text-base text-[var(--text-dim)] font-light leading-relaxed">
           <p>
             {(() => {
               const text = t('manifest.p2') || '';
@@ -52,8 +52,8 @@ export function Manifest() {
           </p>
 
           {/* Highlight / Core Nature Thesis */}
-          <div className="relative border-l-2 border-white pl-6 md:pl-8 py-3 my-12 bg-white/[0.02]">
-            <p className="text-lg sm:text-xl md:text-2xl text-white font-normal leading-relaxed">
+          <div className="relative border-l-2 border-white pl-5 md:pl-6 py-2 my-8 bg-white/[0.02]">
+            <p className="text-base sm:text-lg text-white font-normal leading-relaxed">
               {t('manifest.p3')}
             </p>
           </div>
@@ -72,7 +72,7 @@ export function Manifest() {
         </div>
 
         {/* Footer sign-off */}
-        <div className="mt-20 pt-12 border-t border-[var(--line-strong)] flex justify-between items-center">
+        <div className="mt-16 pt-8 border-t border-[var(--line-strong)] flex justify-between items-center">
           <div className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--text-dimmer)]">
             Polymath Studio — Design & Ingénierie
           </div>
