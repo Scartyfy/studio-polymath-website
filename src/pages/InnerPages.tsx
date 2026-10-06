@@ -53,7 +53,6 @@ export function Manifest() {
 
           {/* Highlight / Core Nature Thesis */}
           <div className="relative border-l-2 border-white pl-6 md:pl-8 py-3 my-12 bg-white/[0.02]">
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-dimmer)] block mb-2">[ Ligne de mire / Purpose ]</span>
             <p className="text-lg sm:text-xl md:text-2xl text-white font-normal leading-relaxed">
               {t('manifest.p3')}
             </p>
