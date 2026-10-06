@@ -393,11 +393,7 @@ export function Projects() {
       <div className="w-full max-w-5xl mx-auto py-4 sm:py-8 space-y-16 sm:space-y-24">
         {/* Project Header */}
         <div>
-          <div className="inline-flex items-center gap-2.5 text-xs font-mono tracking-[0.25em] text-white/80 uppercase px-3.5 py-1.5 border border-[var(--line-strong)] bg-white/[0.02] mb-6">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
+          <div className="inline-flex items-center text-xs font-mono tracking-[0.25em] text-white/80 uppercase px-3.5 py-1.5 border border-[var(--line-strong)] bg-white/[0.02] mb-6">
             <span>{t('projects.badge')}</span>
           </div>
 
@@ -415,7 +411,7 @@ export function Projects() {
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[var(--line-strong)] pb-3">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-white flex items-center gap-2">
-              <Eye className="w-3.5 h-3.5 text-emerald-400" />
+              <Eye className="w-3.5 h-3.5 text-white/70" />
               <span>{t('projects.night.badge')}</span>
             </div>
             <div className="font-mono text-[11px] text-[var(--text-dim)] uppercase tracking-wider">
@@ -522,8 +518,8 @@ export function Projects() {
                     {/* Chassis body */}
                     <rect x="270" y="146" width="110" height="24" rx="4" fill="rgba(255,255,255,0.06)" stroke="currentColor" strokeWidth="1.5" />
                     {/* Sensor head / camera mount */}
-                    <polygon points="380,150 405,153 400,165 380,165" fill="rgba(16,185,129,0.2)" stroke="#10b981" strokeWidth="1.2" />
-                    <circle cx="400" cy="158" r="3" fill="#10b981" />
+                    <polygon points="380,150 405,153 400,165 380,165" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.7)" strokeWidth="1.2" />
+                    <circle cx="400" cy="158" r="3" fill="#ffffff" />
                     {/* Legs */}
                     <polyline points="280,170 270,182 275,190" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     <polyline points="295,170 302,180 300,190" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
@@ -531,10 +527,10 @@ export function Projects() {
                     <polyline points="375,170 382,180 380,190" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
 
                     {/* Robot Dimension line */}
-                    <line x1="435" y1="146" x2="435" y2="190" stroke="#10b981" strokeWidth="1" />
-                    <line x1="430" y1="146" x2="440" y2="146" stroke="#10b981" strokeWidth="1" />
-                    <line x1="430" y1="190" x2="440" y2="190" stroke="#10b981" strokeWidth="1" />
-                    <text x="448" y="172" fill="#10b981" fontSize="10" fontFamily="monospace" textAnchor="start">0,50 m</text>
+                    <line x1="435" y1="146" x2="435" y2="190" stroke="rgba(255,255,255,0.8)" strokeWidth="1" />
+                    <line x1="430" y1="146" x2="440" y2="146" stroke="rgba(255,255,255,0.8)" strokeWidth="1" />
+                    <line x1="430" y1="190" x2="440" y2="190" stroke="rgba(255,255,255,0.8)" strokeWidth="1" />
+                    <text x="448" y="172" fill="#ffffff" fontSize="10" fontFamily="monospace" textAnchor="start">0,50 m</text>
                     <text x="335" y="136" fill="rgba(255,255,255,0.9)" fontSize="10" fontFamily="monospace" textAnchor="middle">{t('projects.scale.robot')}</text>
                   </g>
 
@@ -545,7 +541,7 @@ export function Projects() {
               </div>
 
               <div className="w-full md:w-2/5 font-mono text-xs text-white/70 space-y-3 border-t md:border-t-0 md:border-l border-[var(--line-strong)] pt-4 md:pt-0 md:pl-6">
-                <div className="text-emerald-400 uppercase tracking-widest font-medium">
+                <div className="text-white uppercase tracking-widest font-medium">
                   {t('projects.scale.ratio')}
                 </div>
                 <p className="font-sans text-xs text-[var(--text-dim)] font-light leading-relaxed">
