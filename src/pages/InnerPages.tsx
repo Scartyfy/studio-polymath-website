@@ -407,47 +407,97 @@ export function Projects() {
           </div>
         </div>
 
-        {/* Primary Case Visual: Campus Night Patrol Slot with video/substitution */}
-        <div className="space-y-4">
+        {/* Robot Presentation Showcase - In Order */}
+        <div className="space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[var(--line-strong)] pb-3">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-white flex items-center gap-2">
               <Eye className="w-3.5 h-3.5 text-white/70" />
               <span>{t('projects.night.badge')}</span>
             </div>
             <div className="font-mono text-[11px] text-[var(--text-dim)] uppercase tracking-wider">
-              Capteur Mobotix • Autonomie Périmétrique
+              Capteurs Mobotix • Autonomie Tout-Terrain
             </div>
           </div>
 
-          {/* Media frame with replacement/placeholder indicators */}
-          <div className="relative border border-[var(--line-strong)] bg-black/90 overflow-hidden group">
-            {/* Visual substitution: video loop or atmospheric frame */}
-            <div className="relative aspect-video w-full max-h-[520px] bg-neutral-950 flex items-center justify-center overflow-hidden">
+          {/* 1st Image in Order: Gemini_Generated_Image_9y27vu9y27vu9y27.jpeg */}
+          <div className="border border-[var(--line-strong)] bg-black overflow-hidden group">
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full max-h-[580px] overflow-hidden bg-neutral-950">
+              <img 
+                src={`${import.meta.env.BASE_URL}robot/patrol-01.jpeg`}
+                alt="Robot quadrupède autonome de patrouille Polymath"
+                className="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 pointer-events-none" />
+
+              <div className="absolute top-4 left-4 font-mono text-[10px] tracking-widest uppercase bg-black/80 px-2.5 py-1 border border-white/20 text-white/90">
+                [ 01 // VUE PRINCIPALE CAMPUS ]
+              </div>
+              <div className="absolute top-4 right-4 font-mono text-[10px] tracking-widest uppercase bg-black/80 px-2.5 py-1 border border-white/20 text-white/70 hidden sm:block">
+                [ MOBOTIX VISION SYSTEM ]
+              </div>
+              <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none">
+                <div className="font-mono text-xs text-white/90 bg-black/80 backdrop-blur-sm p-3 border border-white/10 max-w-2xl">
+                  {t('projects.gallery.img1')}
+                  <div className="text-[11px] text-[var(--text-dim)] font-light mt-1">
+                    {t('projects.night.caption')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 2nd & 3rd Images in Order: Gemini_Generated_Image_r8ap09r8ap09r8ap.jpeg & Gemini_Generated_Image_m6ybzim6ybzim6yb.jpeg */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* 2nd Image */}
+            <div className="border border-[var(--line-strong)] bg-black overflow-hidden group flex flex-col justify-between">
+              <div className="aspect-[4/3] w-full overflow-hidden bg-neutral-950 relative">
+                <img 
+                  src={`${import.meta.env.BASE_URL}robot/patrol-02.jpeg`}
+                  alt="Patrouille tout-terrain de nuit - Robot quadrupède"
+                  className="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-700"
+                />
+                <div className="absolute top-3 left-3 font-mono text-[9px] uppercase tracking-widest bg-black/80 px-2 py-0.5 border border-white/20 text-white/80">
+                  02 // RONDE NOCTURNE
+                </div>
+              </div>
+              <div className="p-4 border-t border-[var(--line-strong)] bg-white/[0.015] font-mono text-xs text-white/80">
+                {t('projects.gallery.img2')}
+              </div>
+            </div>
+
+            {/* 3rd Image */}
+            <div className="border border-[var(--line-strong)] bg-black overflow-hidden group flex flex-col justify-between">
+              <div className="aspect-[4/3] w-full overflow-hidden bg-neutral-950 relative">
+                <img 
+                  src={`${import.meta.env.BASE_URL}robot/patrol-03.jpeg`}
+                  alt="Insertion campus et design non anxiogène - Robot quadrupède"
+                  className="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-700"
+                />
+                <div className="absolute top-3 left-3 font-mono text-[9px] uppercase tracking-widest bg-black/80 px-2 py-0.5 border border-white/20 text-white/80">
+                  03 // PRÉSENCE SÉCURISANTE
+                </div>
+              </div>
+              <div className="p-4 border-t border-[var(--line-strong)] bg-white/[0.015] font-mono text-xs text-white/80">
+                {t('projects.gallery.img3')}
+              </div>
+            </div>
+          </div>
+
+          {/* Dynamic locomotion video preview */}
+          <div className="border border-[var(--line-strong)] bg-black overflow-hidden group">
+            <div className="flex items-center justify-between px-4 py-2.5 border-b border-[var(--line-strong)] bg-white/[0.015] font-mono text-[11px] text-[var(--text-dim)] uppercase tracking-wider">
+              <span>{t('projects.gallery.video')}</span>
+              <span className="text-white/60">[ TÉLÉMÉTRIE EN DIRECT ]</span>
+            </div>
+            <div className="relative aspect-video w-full max-h-[380px] bg-neutral-950 flex items-center justify-center overflow-hidden">
               <video 
                 src={`${import.meta.env.BASE_URL}dogpostit.mp4`}
                 autoPlay 
                 loop 
                 muted 
                 playsInline
-                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                className="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
-
-              {/* Technical overlay HUD */}
-              <div className="absolute top-4 left-4 font-mono text-[10px] tracking-widest uppercase bg-black/80 px-2.5 py-1 border border-white/20 text-white/90">
-                [ CAM_01 // PATROUILLE ACTIVE ]
-              </div>
-              <div className="absolute top-4 right-4 font-mono text-[10px] tracking-widest uppercase bg-black/80 px-2.5 py-1 border border-white/20 text-white/70 hidden sm:block">
-                [ MOBOTIX VISION SYSTEM ]
-              </div>
-              <div className="absolute bottom-4 left-4 right-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2 text-white pointer-events-none">
-                <div className="font-mono text-xs text-white/90 bg-black/70 backdrop-blur-sm p-2 sm:p-3 border border-white/10 max-w-xl">
-                  {t('projects.night.caption')}
-                </div>
-                <div className="font-mono text-[10px] text-amber-300/80 uppercase tracking-widest bg-amber-950/40 border border-amber-500/30 px-2 py-1 shrink-0">
-                  📷 {t('projects.night.placeholder')}
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -547,7 +597,7 @@ export function Projects() {
                 <p className="font-sans text-xs text-[var(--text-dim)] font-light leading-relaxed">
                   Hauteur réduite en dessous de la ligne d'horizon visuelle humaine : les usagers du campus perçoivent immédiatement un équipement utilitaire au sol, sans domination visuelle ni caractère intimidant.
                 </p>
-                <div className="text-[10px] text-amber-300/80 bg-amber-950/20 border border-amber-500/20 p-2">
+                <div className="text-[10px] text-white/60 bg-white/[0.02] border border-white/10 p-2">
                   ℹ️ {t('projects.scale.placeholder')}
                 </div>
               </div>
@@ -569,38 +619,59 @@ export function Projects() {
             </p>
           </div>
 
-          {/* Research image & documentation frame */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-            <div className="md:col-span-2 border border-[var(--line-strong)] bg-black overflow-hidden group">
-              <div className="aspect-video w-full overflow-hidden bg-neutral-900 relative">
-                <img 
-                  src={`${import.meta.env.BASE_URL}imagejo.jpg`}
-                  alt="Travaux de recherche sur robot quadrupède menés à Calgary par Joschka Mayer"
-                  className="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-700"
-                />
-                <div className="absolute top-3 left-3 font-mono text-[9px] uppercase tracking-widest bg-black/80 px-2 py-0.5 border border-white/20 text-white/80">
-                  CALGARY QUADRUPED LAB // R&D
+          {/* Research images & documentation frame */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            <div className="lg:col-span-2 space-y-6">
+              {/* Primary image requested: IMG_20260813_094509_866.jpg */}
+              <div className="border border-[var(--line-strong)] bg-black overflow-hidden group">
+                <div className="aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-neutral-950 relative">
+                  <img 
+                    src={`${import.meta.env.BASE_URL}robot/jo-expertise.jpg`}
+                    alt="Joschka Mayer - Travaux et expertise robotique quadrupède"
+                    className="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-700"
+                  />
+                  <div className="absolute top-3 left-3 font-mono text-[9px] uppercase tracking-widest bg-black/80 px-2 py-0.5 border border-white/20 text-white/90">
+                    JOSCHKA MAYER // CTO & EXPERTISE LOCOMOTION
+                  </div>
+                </div>
+                <div className="p-4 border-t border-[var(--line-strong)] bg-white/[0.015] font-mono text-xs text-white/80">
+                  Développement matériel et logiciel embarqué sur le robot quadrupède — Expertise issue des recherches menées à Calgary.
                 </div>
               </div>
-              <div className="p-4 border-t border-[var(--line-strong)] bg-white/[0.015] font-mono text-xs text-[var(--text-dim)]">
-                {t('projects.jo.caption')}
+
+              {/* Secondary laboratory platform visual: imagejo.jpg */}
+              <div className="border border-[var(--line-strong)] bg-black overflow-hidden group">
+                <div className="aspect-[16/9] w-full overflow-hidden bg-neutral-950 relative">
+                  <img 
+                    src={`${import.meta.env.BASE_URL}imagejo.jpg`}
+                    alt="Plateforme expérimentale quadrupède à Calgary"
+                    className="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-700"
+                  />
+                  <div className="absolute top-3 left-3 font-mono text-[9px] uppercase tracking-widest bg-black/80 px-2 py-0.5 border border-white/20 text-white/80">
+                    CALGARY LAB // BANCS DE TEST & DYNAMIQUE
+                  </div>
+                </div>
+                <div className="p-4 border-t border-[var(--line-strong)] bg-white/[0.015] font-mono text-xs text-[var(--text-dim)]">
+                  {t('projects.jo.caption')}
+                </div>
               </div>
             </div>
 
-            {/* Additional documentation card / slot */}
+            {/* Technical skills card */}
             <div className="border border-[var(--line-strong)] bg-white/[0.02] p-6 space-y-4 font-mono text-xs">
               <div className="text-white uppercase tracking-wider font-medium border-b border-[var(--line-strong)] pb-2">
                 Compétences Embarquées
               </div>
-              <ul className="space-y-2 text-[var(--text-dim)] font-light text-[11px] leading-relaxed">
+              <ul className="space-y-3 text-[var(--text-dim)] font-light text-[11px] leading-relaxed">
                 <li>• Architecture logicielle ROS / ROS 2</li>
                 <li>• Contrôle cinématique et dynamique en boucle fermée</li>
                 <li>• Algorithmes de marche et franchissement d'obstacles</li>
                 <li>• Fusion de capteurs LiDAR, IMU et caméras embarquées</li>
                 <li>• Traitement bord-machine faible latence</li>
+                <li>• Conception de bancs d'essais et de transmission</li>
               </ul>
-              <div className="pt-2 text-[10px] text-white/40 uppercase tracking-widest border-t border-[var(--line-strong)]">
-                {t('projects.jo.extra')}
+              <div className="pt-3 text-[10px] text-white/40 uppercase tracking-widest border-t border-[var(--line-strong)]">
+                Laboratoire de recherche de Calgary (Canada)
               </div>
             </div>
           </div>
