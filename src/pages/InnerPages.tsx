@@ -425,7 +425,7 @@ export function Projects() {
               <img 
                 src={`${import.meta.env.BASE_URL}robot/patrol-01.jpeg`}
                 alt="Robot quadrupède autonome de patrouille Polymath"
-                className="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 pointer-events-none" />
 
@@ -454,7 +454,7 @@ export function Projects() {
                 <img 
                   src={`${import.meta.env.BASE_URL}robot/patrol-02.jpeg`}
                   alt="Patrouille tout-terrain de nuit - Robot quadrupède"
-                  className="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
                 <div className="absolute top-3 left-3 font-mono text-[9px] uppercase tracking-widest bg-black/80 px-2 py-0.5 border border-white/20 text-white/80">
                   02 // RONDE NOCTURNE
@@ -471,7 +471,7 @@ export function Projects() {
                 <img 
                   src={`${import.meta.env.BASE_URL}robot/patrol-03.jpeg`}
                   alt="Insertion campus et design non anxiogène - Robot quadrupède"
-                  className="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
                 <div className="absolute top-3 left-3 font-mono text-[9px] uppercase tracking-widest bg-black/80 px-2 py-0.5 border border-white/20 text-white/80">
                   03 // PRÉSENCE SÉCURISANTE
@@ -595,7 +595,7 @@ export function Projects() {
                 <img 
                   src={`${import.meta.env.BASE_URL}robot/jo-expertise.jpg`}
                   alt="Joschka Mayer - Travaux et expertise robotique quadrupède"
-                  className="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
                 <div className="absolute top-3 left-3 font-mono text-[9px] uppercase tracking-widest bg-black/80 px-2 py-0.5 border border-white/20 text-white/90">
                   JOSCHKA MAYER // CTO & EXPERTISE LOCOMOTION
