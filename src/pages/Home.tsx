@@ -52,7 +52,7 @@ const TimelineRow = ({ number, title, subtitle, desc, linkText, onClick, isRight
 
       <div className={isRight ? "md:col-start-2 md:pl-24" : "md:pr-24"}>
         <div className="text-[var(--text-dim)] uppercase tracking-[0.1em] text-sm mb-4">{number} / {subtitle}</div>
-        <h2 className="text-3xl md:text-5xl font-light mb-8 lowercase">
+        <h2 className="text-3xl md:text-5xl font-light mb-8">
           <ScrambleIn text={title} />
         </h2>
         <p className="text-[var(--text-dim)] text-lg leading-relaxed mb-8">
@@ -216,7 +216,7 @@ export function Home() {
               <p className="text-sm md:text-base font-light leading-relaxed text-white/80 text-justify uppercase group-hover:text-white transition-colors duration-300">
                 {t('quote.text')}
                 <br /><br />
-                <span className="text-xs md:text-sm text-white/50 tracking-widest lowercase">{t('quote.author')}</span>
+                <span className="text-xs md:text-sm text-white/50 tracking-widest">{t('quote.author')}</span>
               </p>
             </div>
           </div>
