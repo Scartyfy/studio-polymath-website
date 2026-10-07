@@ -480,30 +480,14 @@ export function Projects() {
             </div>
           </div>
 
-          {/* 1st Image in Order: Gemini_Generated_Image_9y27vu9y27vu9y27.jpeg */}
-          <div className="border border-[var(--line-strong)] bg-black overflow-hidden group">
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full max-h-[580px] overflow-hidden bg-neutral-950">
+          {/* 1st Image: misealechelle.jpeg - sans aucune annotation et en plus gros */}
+          <div className="border border-[var(--line-strong)] bg-black overflow-hidden group -mx-2 sm:-mx-6 md:-mx-10 lg:-mx-14 shadow-2xl">
+            <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-950">
               <img 
-                src={`${import.meta.env.BASE_URL}robot/patrol-01.jpeg`}
-                alt="Robot quadrupède autonome de patrouille Polymath"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                src={`${import.meta.env.BASE_URL}robot/misealechelle.jpeg`}
+                alt="Robot quadrupède autonome Polymath - mise à l'échelle"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.01]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 pointer-events-none" />
-
-              <div className="absolute top-4 left-4 font-mono text-[10px] tracking-widest uppercase bg-black/80 px-2.5 py-1 border border-white/20 text-white/90">
-                [ 01 // VUE PRINCIPALE CAMPUS ]
-              </div>
-              <div className="absolute top-4 right-4 font-mono text-[10px] tracking-widest uppercase bg-black/80 px-2.5 py-1 border border-white/20 text-white/70 hidden sm:block">
-                [ MOBOTIX VISION SYSTEM ]
-              </div>
-              <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none">
-                <div className="font-mono text-xs text-white/90 bg-black/80 backdrop-blur-sm p-3 border border-white/10 max-w-2xl">
-                  {t('projects.gallery.img1')}
-                  <div className="text-[11px] text-[var(--text-dim)] font-light mt-1">
-                    {t('projects.night.caption')}
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
