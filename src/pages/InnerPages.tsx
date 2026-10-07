@@ -410,25 +410,17 @@ export function Projects() {
         loop 
         muted 
         playsInline 
-        className="w-full h-full object-cover opacity-60 sm:opacity-75"
+        className="w-full h-full object-cover opacity-85 sm:opacity-90"
       >
         <source src={`${import.meta.env.BASE_URL}robot/video-robot.mp4`} type="video/mp4" />
         <source src={`${import.meta.env.BASE_URL}PICS%20PROJET%20ROBOT/VIDEO%20ROBOT.mp4`} type="video/mp4" />
       </video>
 
-      {/* Dégradé noir qui remonte du bas de l'image légèrement vers le haut */}
+      {/* Dégradé noir adouci : subtil et discret uniquement vers le bas */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(to top, #000000 0%, rgba(0,0,0,0.95) 16%, rgba(0,0,0,0.45) 38%, transparent 65%)'
-        }}
-      />
-
-      {/* Dégradé supérieur pour maintenir la clarté de la navigation */}
-      <div 
-        className="absolute inset-x-0 top-0 h-32 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%)'
+          background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 8%, rgba(0,0,0,0.15) 18%, transparent 32%)'
         }}
       />
     </div>
@@ -448,8 +440,8 @@ export function Projects() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm sm:text-base text-white/90 font-light leading-relaxed border-t border-white/20 pt-8">
-            <p className="bg-black/30 backdrop-blur-[1px] p-2 -m-2 rounded-none">{t('projects.intro.p1')}</p>
-            <p className="bg-black/30 backdrop-blur-[1px] p-2 -m-2 rounded-none">
+            <p className="drop-shadow-sm">{t('projects.intro.p1')}</p>
+            <p className="drop-shadow-sm">
               {(() => {
                 const text = t('projects.intro.p2') || '';
                 const targetFr = 'ingénieurs-designers';
@@ -471,13 +463,6 @@ export function Projects() {
                 );
               })()}
             </p>
-          </div>
-
-          {/* Prompt indicating content below on scroll */}
-          <div className="mt-12 sm:mt-16 flex items-center gap-3 text-white/40 font-mono text-xs uppercase tracking-[0.2em]">
-            <span className="w-8 h-[1px] bg-white/20" />
-            <span>{t('projects.scroll.discover')}</span>
-            <span className="inline-block animate-bounce text-sm text-white/50">↓</span>
           </div>
         </div>
 
