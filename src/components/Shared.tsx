@@ -35,6 +35,36 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
   const cleanPath = rawPath.replace(/^\/+/, '');
   const activeId = cleanPath || 'home';
 
+  // Desktop initial arrival: starts open on PC, closes on first scroll, then functions normally
+  const [controlledExpanded, setControlledExpanded] = useState<boolean | undefined>(() => {
+    if (typeof window === 'undefined') return undefined;
+    const isDesktop = window.innerWidth >= 768;
+    const isAtTop = (window.scrollY || document.documentElement.scrollTop || 0) < 15;
+    return isDesktop && isAtTop ? true : undefined;
+  });
+
+  useEffect(() => {
+    if (controlledExpanded !== true) return;
+
+    let timer: number | null = null;
+    const handleScroll = () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      if (scrollY > 15) {
+        setControlledExpanded(false);
+        // After spring transition completes (450ms), release control back to normal hover mode
+        timer = window.setTimeout(() => {
+          setControlledExpanded(undefined);
+        }, 500);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (timer) window.clearTimeout(timer);
+    };
+  }, [controlledExpanded]);
+
   const handleNavigate = (path: string) => {
     if (location.pathname === path) {
       try {
@@ -64,7 +94,12 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
   return (
     <header className="nav flex justify-center w-full relative">
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
-        <ExpandableActionBar items={NAV_ITEMS} activeId={activeId} size={window.innerWidth < 768 ? "sm" : "md"} />
+        <ExpandableActionBar 
+          items={NAV_ITEMS} 
+          activeId={activeId} 
+          expanded={controlledExpanded}
+          size={typeof window !== 'undefined' && window.innerWidth < 768 ? "sm" : "md"} 
+        />
       </div>
     </header>
   );

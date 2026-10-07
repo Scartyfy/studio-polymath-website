@@ -41,59 +41,188 @@ function PageLayout({
 }
 
 export function Manifest() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   return (
     <PageLayout title={t('page.manifest.title')}>
-      <article className="max-w-3xl">
-        {/* Lead declaration */}
-        <div className="text-base sm:text-lg md:text-xl font-light text-white leading-relaxed border-b border-[var(--line-strong)] pb-8 mb-8">
-          {t('manifest.p1')}
-        </div>
+      <article className="max-w-4xl mx-auto border border-white/15 bg-neutral-950/40 backdrop-blur-sm p-6 sm:p-10 md:p-14 text-white relative">
+        {/* Document Header Bar */}
+        <header className="border-b border-white/15 pb-8 mb-10 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-white/50 tracking-[0.2em] uppercase">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-white inline-block"></span>
+              <span>DOC. REF // PMS-MNF-2026.01</span>
+            </div>
+            <div className="flex items-center gap-3 text-[11px]">
+              <span>PARIS • FR</span>
+              <span className="text-white/20">/</span>
+              <span className="text-white/90 border border-white/20 px-2.5 py-0.5 bg-white/[0.04]">
+                {lang === 'FR' ? 'PUBLICATION OFFICIELLE' : 'OFFICIAL RECORD'}
+              </span>
+            </div>
+          </div>
 
-        {/* Narrative blocks */}
-        <div className="space-y-6 text-sm sm:text-base text-[var(--text-dim)] font-light leading-relaxed">
-          <p>
-            {(() => {
-              const text = t('manifest.p2') || '';
-              const dotIndex = text.indexOf('.');
-              if (dotIndex !== -1) {
-                return (
-                  <>
-                    <strong className="font-medium text-white tracking-wide">{text.slice(0, dotIndex + 1)}</strong>
-                    {text.slice(dotIndex + 1)}
-                  </>
-                );
-              }
-              return text;
-            })()}
-          </p>
+          <div className="pt-2">
+            <div className="font-mono text-[11px] text-white/50 tracking-[0.25em] uppercase mb-2">
+              POLYMATH STUDIO // DÉPARTEMENT R&D & DESIGN GLOBAL
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-white tracking-tight leading-tight">
+              {lang === 'FR' ? 'Traité pour une Robotique Cognitive & Durable' : 'Treatise on Cognitive & Sustainable Robotics'}
+            </h2>
+          </div>
 
-          {/* Highlight / Core Nature Thesis */}
-          <div className="relative border-l-2 border-white pl-5 md:pl-6 py-2 my-8 bg-white/[0.02]">
-            <p className="text-base sm:text-lg text-white font-normal leading-relaxed">
-              {t('manifest.p3')}
+          {/* Institutional metadata table */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/10 font-mono text-[11px]">
+            <div>
+              <span className="text-white/40 block uppercase tracking-wider text-[9px] mb-1">
+                {lang === 'FR' ? 'Enregistrement' : 'Registry ID'}
+              </span>
+              <span className="text-white/90">REG-2026 / Q1</span>
+            </div>
+            <div>
+              <span className="text-white/40 block uppercase tracking-wider text-[9px] mb-1">
+                {lang === 'FR' ? 'Classification' : 'Classification'}
+              </span>
+              <span className="text-white/90">
+                {lang === 'FR' ? 'Charte Fondatrice' : 'Founding Charter'}
+              </span>
+            </div>
+            <div>
+              <span className="text-white/40 block uppercase tracking-wider text-[9px] mb-1">
+                {lang === 'FR' ? 'Collège' : 'Signatories'}
+              </span>
+              <span className="text-white/90">
+                {lang === 'FR' ? 'Ingénieurs-Designers' : 'Engineer-Designers'}
+              </span>
+            </div>
+            <div>
+              <span className="text-white/40 block uppercase tracking-wider text-[9px] mb-1">
+                {lang === 'FR' ? 'Diffusion' : 'Distribution'}
+              </span>
+              <span className="text-white/90">
+                {lang === 'FR' ? 'Libre • Publique' : 'Open • Public'}
+              </span>
+            </div>
+          </div>
+        </header>
+
+        {/* Structured Articles */}
+        <div className="space-y-12 text-sm sm:text-base text-white/80 font-light leading-relaxed">
+          {/* Article 01 */}
+          <section className="space-y-3">
+            <div className="font-mono text-xs text-white/40 tracking-[0.2em] uppercase">
+              {lang === 'FR' ? 'ARTICLE 01 // DU PIVOT TECHNOLOGIQUE' : 'ARTICLE 01 // THE TECHNOLOGICAL PIVOT'}
+            </div>
+            <div className="text-base sm:text-lg md:text-xl font-light text-white leading-relaxed pt-1">
+              {t('manifest.p1')}
+            </div>
+          </section>
+
+          {/* Article 02 */}
+          <section className="space-y-3 pt-6 border-t border-white/10">
+            <div className="font-mono text-xs text-white/40 tracking-[0.2em] uppercase">
+              {lang === 'FR' ? 'ARTICLE 02 // MISSION & COLLECTIF INGÉNIEUR-DESIGNER' : 'ARTICLE 02 // MISSION & THE ENGINEER-DESIGNER COLLECTIVE'}
+            </div>
+            <p className="pt-1">
+              {(() => {
+                const text = t('manifest.p2') || '';
+                const dotIndex = text.indexOf('.');
+                if (dotIndex !== -1) {
+                  return (
+                    <>
+                      <strong className="font-medium text-white tracking-wide">{text.slice(0, dotIndex + 1)}</strong>
+                      {text.slice(dotIndex + 1)}
+                    </>
+                  );
+                }
+                return text;
+              })()}
             </p>
-          </div>
+          </section>
 
-          <p>
-            {t('manifest.p4')}
-          </p>
+          {/* Article 03 (Central Thesis box) */}
+          <section className="space-y-3 pt-6 border-t border-white/10">
+            <div className="font-mono text-xs text-white/40 tracking-[0.2em] uppercase">
+              {lang === 'FR' ? 'ARTICLE 03 // DE LA NATURE COMME AXE CENTRAL' : 'ARTICLE 03 // NATURE AS THE FOCAL POINT'}
+            </div>
+            <div className="border border-white/20 bg-white/[0.02] p-5 sm:p-7 relative my-4">
+              <span className="absolute top-2 right-3 font-mono text-[9px] uppercase tracking-widest text-white/30">
+                THESIS // 03.A
+              </span>
+              <p className="text-base sm:text-lg text-white font-normal leading-relaxed">
+                {t('manifest.p3')}
+              </p>
+            </div>
+          </section>
 
-          <p>
-            {t('manifest.p5')}
-          </p>
+          {/* Article 04 */}
+          <section className="space-y-3 pt-6 border-t border-white/10">
+            <div className="font-mono text-xs text-white/40 tracking-[0.2em] uppercase">
+              {lang === 'FR' ? 'ARTICLE 04 // FINALITÉ CONTRE LE CONSUMÉRISME' : 'ARTICLE 04 // PURPOSE VS CONSUMERISM'}
+            </div>
+            <p className="pt-1">
+              {t('manifest.p4')}
+            </p>
+          </section>
 
-          <p>
-            {t('manifest.p6')}
-          </p>
+          {/* Article 05 */}
+          <section className="space-y-3 pt-6 border-t border-white/10">
+            <div className="font-mono text-xs text-white/40 tracking-[0.2em] uppercase">
+              {lang === 'FR' ? 'ARTICLE 05 // MATÉRIALITÉ & MODULARITÉ MATÉRIELLE' : 'ARTICLE 05 // SUSTAINABLE HARDWARE & MODULARITY'}
+            </div>
+            <p className="pt-1">
+              {t('manifest.p5')}
+            </p>
+          </section>
+
+          {/* Article 06 */}
+          <section className="space-y-3 pt-6 border-t border-white/10">
+            <div className="font-mono text-xs text-white/40 tracking-[0.2em] uppercase">
+              {lang === 'FR' ? 'ARTICLE 06 // FENÊTRE D\'OPPORTUNITÉ HISTORIQUE' : 'ARTICLE 06 // WINDOW OF OPPORTUNITY IN ROBOTICS'}
+            </div>
+            <p className="pt-1">
+              {t('manifest.p6')}
+            </p>
+          </section>
         </div>
 
-        {/* Footer sign-off */}
-        <div className="mt-16 pt-8 border-t border-[var(--line-strong)] flex justify-between items-center">
-          <div className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--text-dimmer)]">
-            Polymath Studio — Design & Ingénierie
+        {/* Signatures & Certification Block */}
+        <footer className="mt-16 pt-10 border-t border-white/20 space-y-8">
+          <div className="font-mono text-xs text-white/50 uppercase tracking-[0.2em]">
+            {lang === 'FR' ? 'COLLÈGE DES SIGNATAIRES // FONDATEURS DU STUDIO' : 'SIGNATORY BOARD // STUDIO FOUNDERS'}
           </div>
-        </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="border border-white/10 p-3.5 bg-white/[0.01]">
+              <div className="font-mono text-[10px] text-white/40 uppercase tracking-widest">Signataire 01</div>
+              <div className="text-sm font-medium text-white mt-1">Alec MIGNOT</div>
+              <div className="font-mono text-[10px] text-white/50 tracking-wider">Chief Architect</div>
+            </div>
+            <div className="border border-white/10 p-3.5 bg-white/[0.01]">
+              <div className="font-mono text-[10px] text-white/40 uppercase tracking-widest">Signataire 02</div>
+              <div className="text-sm font-medium text-white mt-1">Arthur CHAUVIN</div>
+              <div className="font-mono text-[10px] text-white/50 tracking-wider">Chief Design Officer</div>
+            </div>
+            <div className="border border-white/10 p-3.5 bg-white/[0.01]">
+              <div className="font-mono text-[10px] text-white/40 uppercase tracking-widest">Signataire 03</div>
+              <div className="text-sm font-medium text-white mt-1">Alann SAMSON</div>
+              <div className="font-mono text-[10px] text-white/50 tracking-wider">Lead Mechanical Eng.</div>
+            </div>
+            <div className="border border-white/10 p-3.5 bg-white/[0.01]">
+              <div className="font-mono text-[10px] text-white/40 uppercase tracking-widest">Signataire 04</div>
+              <div className="text-sm font-medium text-white mt-1">Joschka MAYER</div>
+              <div className="font-mono text-[10px] text-white/50 tracking-wider">Chief Technology Officer</div>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-6 border-t border-white/10 font-mono text-[11px] text-white/40">
+            <div>
+              <span>ENREGISTRÉ AU REGISTRE DU STUDIO // PARIS</span>
+            </div>
+            <div className="tracking-widest uppercase text-white/60">
+              CERTIFIÉ CONFORME • 2026
+            </div>
+          </div>
+        </footer>
       </article>
     </PageLayout>
   );
