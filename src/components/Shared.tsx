@@ -54,9 +54,9 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
 
   const NAV_ITEMS = [
     { id: "home", label: t('nav.home'), icon: <HomeIcon className="w-4 h-4" />, onClick: () => handleNavigate('/'), active: activeId === 'home' },
+    { id: "projects", label: t('nav.projects'), icon: <Layers className="w-4 h-4" />, onClick: () => handleNavigate('/projects'), active: activeId === 'projects' },
     { id: "manifest", label: t('nav.manifest'), icon: <BookOpen className="w-4 h-4" />, onClick: () => handleNavigate('/manifest'), active: activeId === 'manifest' },
     { id: "team", label: t('nav.team'), icon: <Cpu className="w-4 h-4" />, onClick: () => handleNavigate('/team'), active: activeId === 'team' },
-    { id: "projects", label: t('nav.projects'), icon: <Layers className="w-4 h-4" />, onClick: () => handleNavigate('/projects'), active: activeId === 'projects' },
     { id: "contact", label: t('nav.contact'), icon: <Mail className="w-4 h-4" />, onClick: () => handleNavigate('/contact'), active: activeId === 'contact' },
     { id: "lang", label: lang === 'EN' ? 'Français' : 'English', icon: <Globe className="w-4 h-4" />, onClick: () => setLang(lang === 'EN' ? 'FR' : 'EN'), active: false }
   ];
@@ -116,9 +116,9 @@ export function MobileMenu({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
     >
       <nav className="mobile-menu__nav" aria-label="Main Mobile" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {[
+          { label: t('nav.projects'), href: '/projects' },
           { label: t('nav.manifest'), href: '/manifest' },
           { label: t('nav.team'), href: '/team' },
-          { label: t('nav.projects'), href: '/projects' },
           { label: t('nav.contact'), href: '/contact' },
         ].map((link, i) => (
           <Link 

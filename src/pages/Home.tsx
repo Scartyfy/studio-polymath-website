@@ -165,11 +165,11 @@ export function Home() {
               
               <TimelineRow 
                 number="01"
-                subtitle={t('home.timeline1.subtitle')}
-                title={t('home.timeline1.title')}
-                desc={t('home.timeline1.desc')}
-                linkText={t('home.timeline1.link')}
-                onClick={() => navigate('/team')}
+                subtitle={t('home.timeline3.subtitle')}
+                title={t('home.timeline3.title')}
+                desc={t('home.timeline3.desc')}
+                linkText={t('home.timeline3.link')}
+                onClick={() => navigate('/projects')}
               />
               <TimelineRow 
                 number="02"
@@ -182,11 +182,11 @@ export function Home() {
               />
               <TimelineRow 
                 number="03"
-                subtitle={t('home.timeline3.subtitle')}
-                title={t('home.timeline3.title')}
-                desc={t('home.timeline3.desc')}
-                linkText={t('home.timeline3.link')}
-                onClick={() => navigate('/projects')}
+                subtitle={t('home.timeline1.subtitle')}
+                title={t('home.timeline1.title')}
+                desc={t('home.timeline1.desc')}
+                linkText={t('home.timeline1.link')}
+                onClick={() => navigate('/team')}
               />
               <TimelineRow 
                 number="04"
@@ -232,6 +232,7 @@ export function Home() {
               <div className="flex flex-row space-x-12 sm:space-x-16 md:space-x-24 text-sm sm:text-lg md:text-xl text-white relative z-10">
                 <ul className="flex flex-col gap-2 items-end">
                   <FooterLink onClick={() => navigate('/')}>{t('footer.home')}</FooterLink>
+                  <FooterLink onClick={() => navigate('/projects')}>{t('footer.projects')}</FooterLink>
                   <FooterLink onClick={() => navigate('/manifest')}>{t('footer.manifest')}</FooterLink>
                   <FooterLink onClick={() => navigate('/team')}>{t('footer.team')}</FooterLink>
                 </ul>
