@@ -404,13 +404,13 @@ export function Projects() {
   const navigate = useNavigate();
 
   const videoBackground = (
-    <div className="absolute top-0 left-0 right-0 h-[640px] sm:h-[760px] md:h-[880px] overflow-hidden pointer-events-none z-0">
+    <div className="absolute top-0 left-0 right-0 h-screen min-h-[720px] max-h-[1100px] overflow-hidden pointer-events-none z-0">
       <video 
         autoPlay 
         loop 
         muted 
         playsInline 
-        className="w-full h-full object-cover opacity-60 sm:opacity-70"
+        className="w-full h-full object-cover opacity-60 sm:opacity-75"
       >
         <source src={`${import.meta.env.BASE_URL}robot/video-robot.mp4`} type="video/mp4" />
         <source src={`${import.meta.env.BASE_URL}PICS%20PROJET%20ROBOT/VIDEO%20ROBOT.mp4`} type="video/mp4" />
@@ -420,7 +420,7 @@ export function Projects() {
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(to top, #000000 0%, rgba(0,0,0,0.92) 18%, rgba(0,0,0,0.45) 40%, transparent 65%)'
+          background: 'linear-gradient(to top, #000000 0%, rgba(0,0,0,0.95) 16%, rgba(0,0,0,0.45) 38%, transparent 65%)'
         }}
       />
 
@@ -436,14 +436,14 @@ export function Projects() {
 
   return (
     <PageLayout title={t('page.projects.title')} bgElement={videoBackground}>
-      <div className="w-full max-w-5xl mx-auto py-4 sm:py-8 space-y-16 sm:space-y-24">
-        {/* Project Header */}
-        <div>
-          <div className="inline-flex items-center text-xs font-mono tracking-[0.25em] text-white/90 uppercase px-3.5 py-1.5 border border-white/20 bg-black/60 backdrop-blur-sm mb-6">
+      <div className="w-full max-w-5xl mx-auto py-2 sm:py-4 space-y-16 sm:space-y-24">
+        {/* Project Header - Full viewport height so photo 1 only appears on scroll */}
+        <div className="min-h-[80vh] sm:min-h-[86vh] flex flex-col justify-center pb-8 sm:pb-12">
+          <div className="inline-flex items-center text-xs font-mono tracking-[0.25em] text-white/90 uppercase px-3.5 py-1.5 border border-white/20 bg-black/60 backdrop-blur-sm mb-6 w-fit">
             <span>{t('projects.badge')}</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-light text-white tracking-tight leading-tight mb-8 drop-shadow-sm">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight mb-8 drop-shadow-sm max-w-4xl">
             {t('projects.main.title')}
           </h2>
 
@@ -472,10 +472,17 @@ export function Projects() {
               })()}
             </p>
           </div>
+
+          {/* Prompt indicating content below on scroll */}
+          <div className="mt-12 sm:mt-16 flex items-center gap-3 text-white/40 font-mono text-xs uppercase tracking-[0.2em]">
+            <span className="w-8 h-[1px] bg-white/20" />
+            <span>{t('projects.scroll.discover')}</span>
+            <span className="inline-block animate-bounce text-sm text-white/50">↓</span>
+          </div>
         </div>
 
-        {/* Robot Presentation Showcase - In Order */}
-        <div className="space-y-8">
+        {/* Robot Presentation Showcase - In Order, visible upon scroll */}
+        <div className="space-y-8 pt-8 sm:pt-16 border-t border-white/10">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[var(--line-strong)] pb-3">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-white flex items-center gap-2">
               <Eye className="w-3.5 h-3.5 text-white/70" />
