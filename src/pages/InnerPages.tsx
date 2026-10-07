@@ -5,14 +5,25 @@ import { Navigation, Footer } from '../components/Shared';
 import { useLanguage } from '../LanguageContext';
 import { LiquidButton } from '../components/ui/primitives-buttons-liquid';
 
-function PageLayout({ title, subtitle, children }: { title: string, subtitle?: string, children: React.ReactNode }) {
+function PageLayout({ 
+  title, 
+  subtitle, 
+  bgElement, 
+  children 
+}: { 
+  title: string, 
+  subtitle?: string, 
+  bgElement?: React.ReactNode, 
+  children: React.ReactNode 
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   return (
-    <div className="page-layout">
+    <div className="page-layout relative overflow-hidden">
+      {bgElement}
       <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       
-      <main className="page-body">
+      <main className="page-body relative z-10">
         {subtitle && <div className="page-subtitle">{subtitle}</div>}
         <h1 className="page-title">{title}</h1>
         {children}
@@ -388,22 +399,53 @@ export function Projects() {
   const { t } = useLanguage();
   const navigate = useNavigate();
 
+  const videoBackground = (
+    <div className="absolute top-0 left-0 right-0 h-[640px] sm:h-[760px] md:h-[880px] overflow-hidden pointer-events-none z-0">
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        className="w-full h-full object-cover opacity-60 sm:opacity-70"
+      >
+        <source src={`${import.meta.env.BASE_URL}robot/video-robot.mp4`} type="video/mp4" />
+        <source src={`${import.meta.env.BASE_URL}PICS%20PROJET%20ROBOT/VIDEO%20ROBOT.mp4`} type="video/mp4" />
+      </video>
+
+      {/* Dégradé noir qui remonte du bas de l'image légèrement vers le haut */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to top, #000000 0%, rgba(0,0,0,0.92) 18%, rgba(0,0,0,0.45) 40%, transparent 65%)'
+        }}
+      />
+
+      {/* Dégradé supérieur pour maintenir la clarté de la navigation */}
+      <div 
+        className="absolute inset-x-0 top-0 h-32 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%)'
+        }}
+      />
+    </div>
+  );
+
   return (
-    <PageLayout title={t('page.projects.title')}>
+    <PageLayout title={t('page.projects.title')} bgElement={videoBackground}>
       <div className="w-full max-w-5xl mx-auto py-4 sm:py-8 space-y-16 sm:space-y-24">
         {/* Project Header */}
         <div>
-          <div className="inline-flex items-center text-xs font-mono tracking-[0.25em] text-white/80 uppercase px-3.5 py-1.5 border border-[var(--line-strong)] bg-white/[0.02] mb-6">
+          <div className="inline-flex items-center text-xs font-mono tracking-[0.25em] text-white/90 uppercase px-3.5 py-1.5 border border-white/20 bg-black/60 backdrop-blur-sm mb-6">
             <span>{t('projects.badge')}</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-light text-white tracking-tight leading-tight mb-8">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-light text-white tracking-tight leading-tight mb-8 drop-shadow-sm">
             {t('projects.main.title')}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm sm:text-base text-white/80 font-light leading-relaxed border-t border-[var(--line-strong)] pt-8">
-            <p>{t('projects.intro.p1')}</p>
-            <p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm sm:text-base text-white/90 font-light leading-relaxed border-t border-white/20 pt-8">
+            <p className="bg-black/30 backdrop-blur-[1px] p-2 -m-2 rounded-none">{t('projects.intro.p1')}</p>
+            <p className="bg-black/30 backdrop-blur-[1px] p-2 -m-2 rounded-none">
               {(() => {
                 const text = t('projects.intro.p2') || '';
                 const targetFr = 'ingénieurs-designers';
