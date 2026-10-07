@@ -182,12 +182,21 @@ export function ExpandableActionBar({
     behavior: "consume",
   });
 
+  const handleOpenOnHover = () => {
+    if (expandOnHover) open();
+  };
+
+  const handleCloseOnHover = () => {
+    setHoveredId(null);
+    if (expandOnHover) close();
+  };
+
   const onRootPointerEnter = (event: PointerEvent<HTMLDivElement>) => {
-    if (hover.enter(event) && expandOnHover) open();
+    if (event.pointerType !== "touch" && expandOnHover) open();
   };
 
   const onRootPointerLeave = (event: PointerEvent<HTMLDivElement>) => {
-    if (!hover.leave(event)) return;
+    if (event.pointerType === "touch") return;
     setHoveredId(null);
     if (expandOnHover) close();
   };
@@ -214,6 +223,8 @@ export function ExpandableActionBar({
         layout="size"
         onPointerEnter={onRootPointerEnter}
         onPointerLeave={onRootPointerLeave}
+        onMouseEnter={handleOpenOnHover}
+        onMouseLeave={handleCloseOnHover}
         onFocus={onRootFocus}
         onBlur={onRootBlur}
         transition={ITEM_TRANSITION}
@@ -241,7 +252,14 @@ export function ExpandableActionBar({
                 disabled={item.disabled}
                 title={typeof item.label === "string" ? item.label : undefined}
                 onPointerEnter={(event: PointerEvent<HTMLButtonElement>) => {
-                  if (!hover.enter(event)) return;
+                  if (event.pointerType !== "touch") {
+                    if (expandOnHover) open();
+                    clearCollapseTimer();
+                    setHoveredId(item.id);
+                  }
+                }}
+                onMouseEnter={() => {
+                  if (expandOnHover) open();
                   clearCollapseTimer();
                   setHoveredId(item.id);
                 }}
