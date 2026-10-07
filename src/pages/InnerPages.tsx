@@ -731,11 +731,14 @@ export function Projects() {
         </div>
 
         {/* CTA Section */}
-        <div className="border-t border-[var(--line-strong)] pt-12 pb-8 flex flex-col items-center text-center">
+        <div className="border-t border-[var(--line-strong)] pt-14 pb-8 flex flex-col items-center text-center">
+          <div className="inline-flex items-center text-xs font-mono tracking-[0.25em] text-white/90 uppercase px-3.5 py-1.5 border border-white/20 bg-white/[0.03] mb-4">
+            <span>{t('projects.cta.badge')}</span>
+          </div>
           <h3 className="text-xl sm:text-2xl font-light text-white mb-3">
             {t('projects.cta.title')}
           </h3>
-          <p className="text-sm text-[var(--text-dim)] font-light max-w-lg mb-8 leading-relaxed">
+          <p className="text-sm sm:text-base text-[var(--text-dim)] font-light max-w-xl mb-8 leading-relaxed">
             {t('projects.cta.desc')}
           </p>
           <LiquidButton 
