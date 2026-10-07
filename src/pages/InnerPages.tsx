@@ -24,8 +24,10 @@ function PageLayout({
       <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       
       <main className="page-body relative z-10">
-        {subtitle && <div className="page-subtitle">{subtitle}</div>}
-        <h1 className="page-title">{title}</h1>
+        <div className="flex flex-col items-end w-full mb-8 sm:mb-12">
+          {subtitle && <div className="page-subtitle text-right mb-1">{subtitle}</div>}
+          <h1 className="page-title">{title}</h1>
+        </div>
         {children}
       </main>
       

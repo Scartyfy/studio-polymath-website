@@ -481,14 +481,15 @@ body.menu-open {
 
 .page-title {
   font-family: var(--font-display);
-  font-weight: 200;
-  font-size: clamp(32px, 6vw, 84px);
-  letter-spacing: 0.03em;
-  line-height: 1;
+  font-weight: 300;
+  font-size: clamp(22px, 2.8vw, 38px);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
   color: white;
   margin-top: 0;
-  margin-bottom: clamp(40px, 6vw, 80px);
-  text-transform: lowercase;
+  margin-bottom: 0;
+  text-align: right;
+  text-transform: none;
 }
 
 .page-subtitle {
