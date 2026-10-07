@@ -442,8 +442,8 @@ export function Projects() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm sm:text-base text-white/90 font-light leading-relaxed border-t border-white/20 pt-8">
-            <p className="drop-shadow-sm">{t('projects.intro.p1')}</p>
-            <p className="drop-shadow-sm">
+            <p className="bg-black/35 backdrop-blur-sm p-4 border border-white/10">{t('projects.intro.p1')}</p>
+            <p className="bg-black/35 backdrop-blur-sm p-4 border border-white/10">
               {(() => {
                 const text = t('projects.intro.p2') || '';
                 const targetFr = 'ingénieurs-designers';
