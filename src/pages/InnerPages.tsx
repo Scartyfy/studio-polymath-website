@@ -605,7 +605,7 @@ export function Projects() {
               <span>{t('projects.night.badge')}</span>
             </div>
             <div className="font-mono text-[11px] text-[var(--text-dim)] uppercase tracking-wider">
-              Capteurs Mobotix • Autonomie Tout-Terrain
+              Compatibilité VMS • Autonomie Tout-Terrain
             </div>
           </div>
 
@@ -652,7 +652,24 @@ export function Projects() {
               {t('projects.jo.title')}
             </h3>
             <p className="text-sm sm:text-base text-white/70 font-light max-w-3xl leading-relaxed">
-              {t('projects.jo.desc')}
+              {(() => {
+                const text = t('projects.jo.desc') || '';
+                const target = 'Joschka Mayer';
+                if (!text.includes(target)) return text;
+                const parts = text.split(target);
+                return (
+                  <>
+                    {parts[0]}
+                    <Link 
+                      to="/team" 
+                      className="text-white underline underline-offset-4 decoration-white/40 hover:decoration-white hover:text-white transition-all cursor-pointer font-normal"
+                    >
+                      {target}
+                    </Link>
+                    {parts[1]}
+                  </>
+                );
+              })()}
             </p>
           </div>
 
