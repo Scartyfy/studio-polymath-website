@@ -531,7 +531,7 @@ export function Contact() {
 }
 
 export function Projects() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const navigate = useNavigate();
 
   const videoBackground = (
@@ -673,42 +673,58 @@ export function Projects() {
             </p>
           </div>
 
-          {/* Research images & documentation frame */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-            {/* Primary image requested: IMG_20260813_094509_866.jpg */}
-            <div className="lg:col-span-2 border border-[var(--line-strong)] bg-black overflow-hidden group flex flex-col justify-between">
-              <div className="aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-neutral-950 relative">
+          {/* Research images & documentation frame - Mise en avant du tableau des compétences */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            {/* Primary image */}
+            <div className="border border-[var(--line-strong)] bg-black overflow-hidden group h-full">
+              <div className="aspect-[16/10] sm:aspect-[4/3] lg:aspect-auto lg:h-full w-full overflow-hidden bg-neutral-950 relative min-h-[300px]">
                 <img 
                   src={`${import.meta.env.BASE_URL}robot/jo-expertise.jpg`}
-                  alt="Joschka Mayer - Travaux et expertise robotique quadrupède"
+                  alt="Travaux et expertise robotique quadrupède"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
-                <div className="absolute top-3 left-3 font-mono text-[9px] uppercase tracking-widest bg-black/80 px-2 py-0.5 border border-white/20 text-white/90">
-                  JOSCHKA MAYER // CTO & EXPERTISE LOCOMOTION
-                </div>
-              </div>
-              <div className="p-4 border-t border-[var(--line-strong)] bg-white/[0.015] font-mono text-xs text-white/80">
-                Développement matériel et logiciel embarqué sur le robot quadrupède — Expertise issue des recherches menées à Calgary.
               </div>
             </div>
 
-            {/* Technical skills card */}
-            <div className="border border-[var(--line-strong)] bg-white/[0.02] p-6 space-y-4 font-mono text-xs flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="text-white uppercase tracking-wider font-medium border-b border-[var(--line-strong)] pb-2">
-                  Compétences Embarquées
+            {/* Technical skills card - Mis en avant */}
+            <div className="border border-white/20 bg-white/[0.02] p-6 sm:p-8 space-y-6 font-mono text-xs flex flex-col justify-between shadow-xl">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between border-b border-white/20 pb-3">
+                  <div className="text-white uppercase tracking-wider font-medium text-sm flex items-center gap-2">
+                    <Cpu className="w-4 h-4 text-white/80" />
+                    <span>{lang === 'FR' ? 'Tableau des Compétences' : 'Competencies Matrix'}</span>
+                  </div>
+                  <span className="text-[10px] tracking-widest text-white/50 uppercase border border-white/20 px-2 py-0.5">
+                    R&D
+                  </span>
                 </div>
-                <ul className="space-y-3 text-[var(--text-dim)] font-light text-[11px] leading-relaxed">
-                  <li>• Architecture logicielle ROS / ROS 2</li>
-                  <li>• Contrôle cinématique et dynamique en boucle fermée</li>
-                  <li>• Algorithmes de marche et franchissement d'obstacles</li>
-                  <li>• Fusion de capteurs LiDAR, IMU et caméras embarquées</li>
-                  <li>• Traitement bord-machine faible latence</li>
-                  <li>• Conception de bancs d'essais et de transmission</li>
-                </ul>
-              </div>
-              <div className="pt-3 text-[10px] text-white/40 uppercase tracking-widest border-t border-[var(--line-strong)]">
-                Laboratoire de recherche de Calgary (Canada)
+
+                <div className="space-y-2.5">
+                  <div className="p-3 border border-white/20 bg-white/[0.04] flex items-center gap-3">
+                    <span className="w-2 h-2 rounded-full bg-white shrink-0 shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
+                    <span className="text-white text-xs font-medium tracking-wide">Reinforcement Learning</span>
+                  </div>
+
+                  <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
+                    <span className="text-white/90 text-xs font-light">Architecture logicielle ROS / ROS 2</span>
+                  </div>
+
+                  <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
+                    <span className="text-white/90 text-xs font-light">Fusion de capteurs LiDAR, IMU & caméras embarquées</span>
+                  </div>
+
+                  <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
+                    <span className="text-white/90 text-xs font-light">Traitement bord-machine temps réel faible latence</span>
+                  </div>
+
+                  <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
+                    <span className="text-white/90 text-xs font-light">Conception de bancs d'essais et de transmission</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
