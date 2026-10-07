@@ -23,11 +23,13 @@ function PageLayout({
       {bgElement}
       <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       
-      <main className="page-body relative z-10">
-        <div className="flex flex-col items-end w-full mb-8 sm:mb-12">
-          {subtitle && <div className="page-subtitle text-right mb-1">{subtitle}</div>}
-          <h1 className="page-title">{title}</h1>
-        </div>
+      {/* Corner Section Name Header - high in top-right corner */}
+      <div className="absolute top-4 sm:top-6 md:top-8 right-4 sm:right-6 md:right-8 lg:right-12 z-40 pointer-events-none select-none text-right">
+        {subtitle && <div className="page-subtitle text-right mb-0.5">{subtitle}</div>}
+        <h1 className="page-title text-right">{title}</h1>
+      </div>
+
+      <main className="page-body relative z-10 pt-20 sm:pt-24 md:pt-28">
         {children}
       </main>
       
