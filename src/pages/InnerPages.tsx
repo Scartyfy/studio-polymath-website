@@ -11,7 +11,7 @@ function PageLayout({
   bgElement, 
   children 
 }: { 
-  title: string, 
+  title?: string, 
   subtitle?: string, 
   bgElement?: React.ReactNode, 
   children: React.ReactNode 
@@ -24,10 +24,12 @@ function PageLayout({
       <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       
       {/* Corner Section Name Header - high in top-right corner */}
-      <div className="absolute top-4 sm:top-6 md:top-8 right-4 sm:right-6 md:right-8 lg:right-12 z-40 pointer-events-none select-none text-right">
-        {subtitle && <div className="page-subtitle text-right mb-0.5">{subtitle}</div>}
-        <h1 className="page-title text-right">{title}</h1>
-      </div>
+      {title && (
+        <div className="absolute top-4 sm:top-6 md:top-8 right-4 sm:right-6 md:right-8 lg:right-12 z-40 pointer-events-none select-none text-right">
+          {subtitle && <div className="page-subtitle text-right mb-0.5">{subtitle}</div>}
+          <h1 className="page-title text-right">{title}</h1>
+        </div>
+      )}
 
       <main className="page-body relative z-10 pt-20 sm:pt-24 md:pt-28">
         {children}
@@ -427,7 +429,7 @@ export function Projects() {
   );
 
   return (
-    <PageLayout title={t('page.projects.title')} bgElement={videoBackground}>
+    <PageLayout bgElement={videoBackground}>
       <div className="w-full max-w-5xl mx-auto py-2 sm:py-4 space-y-16 sm:space-y-24">
         {/* Project Header - Full viewport height so photo 1 only appears on scroll */}
         <div className="min-h-[80vh] sm:min-h-[86vh] flex flex-col justify-center pb-8 sm:pb-12">
