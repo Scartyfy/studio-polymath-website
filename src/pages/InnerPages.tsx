@@ -490,43 +490,6 @@ export function Projects() {
               />
             </div>
           </div>
-
-          {/* 2nd & 3rd Images in Order: Gemini_Generated_Image_r8ap09r8ap09r8ap.jpeg & Gemini_Generated_Image_m6ybzim6ybzim6yb.jpeg */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* 2nd Image */}
-            <div className="border border-[var(--line-strong)] bg-black overflow-hidden group flex flex-col justify-between">
-              <div className="aspect-[4/3] w-full overflow-hidden bg-neutral-950 relative">
-                <img 
-                  src={`${import.meta.env.BASE_URL}robot/patrol-02.jpeg`}
-                  alt="Patrouille tout-terrain de nuit - Robot quadrupède"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                />
-                <div className="absolute top-3 left-3 font-mono text-[9px] uppercase tracking-widest bg-black/80 px-2 py-0.5 border border-white/20 text-white/80">
-                  02 // RONDE NOCTURNE
-                </div>
-              </div>
-              <div className="p-4 border-t border-[var(--line-strong)] bg-white/[0.015] font-mono text-xs text-white/80">
-                {t('projects.gallery.img2')}
-              </div>
-            </div>
-
-            {/* 3rd Image */}
-            <div className="border border-[var(--line-strong)] bg-black overflow-hidden group flex flex-col justify-between">
-              <div className="aspect-[4/3] w-full overflow-hidden bg-neutral-950 relative">
-                <img 
-                  src={`${import.meta.env.BASE_URL}robot/patrol-03.jpeg`}
-                  alt="Insertion campus et design non anxiogène - Robot quadrupède"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                />
-                <div className="absolute top-3 left-3 font-mono text-[9px] uppercase tracking-widest bg-black/80 px-2 py-0.5 border border-white/20 text-white/80">
-                  03 // PRÉSENCE SÉCURISANTE
-                </div>
-              </div>
-              <div className="p-4 border-t border-[var(--line-strong)] bg-white/[0.015] font-mono text-xs text-white/80">
-                {t('projects.gallery.img3')}
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* 4 Technical Pillars */}
