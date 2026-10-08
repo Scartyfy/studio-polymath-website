@@ -62,12 +62,12 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
   ];
 
   return (
-    <header className="nav flex justify-center w-full relative">
-      {/* Top Left Logo */}
+    <>
+      {/* Top Left Logo - Fixed to viewport */}
       <Link 
         to="/" 
         onClick={() => handleNavigate('/')}
-        className="absolute left-4 sm:left-6 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 z-50 flex items-center group cursor-pointer transition-opacity"
+        className="fixed left-4 sm:left-6 md:left-8 lg:left-12 top-6 md:top-7 z-50 flex items-center group cursor-pointer transition-opacity pointer-events-auto"
         aria-label="Polymath Studio"
       >
         <img 
@@ -78,7 +78,8 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
         />
       </Link>
 
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+      {/* Centered Navigation Bar - Fixed to viewport */}
+      <header className="fixed top-6 md:top-7 left-1/2 -translate-x-1/2 z-50 flex justify-center pointer-events-auto">
         <ExpandableActionBar 
           items={NAV_ITEMS} 
           activeId={activeId} 
@@ -86,8 +87,8 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
           collapseDelay={200}
           size={typeof window !== 'undefined' && window.innerWidth < 768 ? "sm" : "md"} 
         />
-      </div>
-    </header>
+      </header>
+    </>
   );
 }
 

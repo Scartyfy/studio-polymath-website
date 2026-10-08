@@ -290,8 +290,8 @@ export function Contact() {
 
   return (
     <PageLayout title={t('page.contact.title')}>
-      <div className="pt-6 sm:pt-10 md:pt-14 max-w-5xl w-full flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-20">
-        <div style={{ maxWidth: 620, width: '100%' }}>
+      <div className="pt-6 sm:pt-10 md:pt-14 w-full max-w-7xl flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-24">
+        <div style={{ maxWidth: 580, width: '100%' }}>
           {/* Direct email display */}
           <div className="mb-8 p-4 border border-[var(--line-strong)] bg-white/[0.02] flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
             <div className="flex items-center gap-2.5 text-white/80">
@@ -391,12 +391,12 @@ export function Contact() {
           )}
         </div>
 
-        {/* Right Emblem Logo */}
-        <div className="hidden lg:flex flex-col items-center justify-center select-none pointer-events-none shrink-0 pr-4 xl:pr-10">
+        {/* Right Emblem Logo - pushed far right */}
+        <div className="hidden lg:flex flex-1 justify-end items-center select-none pointer-events-none shrink-0 pr-4 xl:pr-12">
           <img 
             src={`${import.meta.env.BASE_URL}logosimple.png`} 
             alt="Polymath Studio" 
-            className="w-56 md:w-64 lg:w-72 xl:w-80 h-auto object-contain opacity-60" 
+            className="w-64 md:w-80 lg:w-96 xl:w-[420px] h-auto object-contain opacity-60" 
           />
         </div>
       </div>
