@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ExpandableActionBar } from './ui/expandable-action-bar';
-import { BookOpen, Cpu, Fingerprint, Mail, Home as HomeIcon, Globe, Layers } from 'lucide-react';
+import { BookOpen, Cpu, Fingerprint, Mail, Home as HomeIcon, Globe, Layers, X } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 export function CyberGrid() {
@@ -31,11 +31,24 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
   const navigate = useNavigate();
   const location = useLocation();
   const { t, lang, setLang } = useLanguage();
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const rawPath = location.pathname || '';
   const cleanPath = rawPath.replace(/^\/+/, '');
   const activeId = cleanPath || 'home';
 
+  // Close mobile menu on Escape key or navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMobileOpen) {
+        setIsMobileOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMobileOpen]);
+
   const handleNavigate = (path: string) => {
+    setIsMobileOpen(false);
     if (location.pathname === path) {
       try {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -58,36 +71,114 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
     { id: "manifest", label: t('nav.manifest'), icon: <BookOpen className="w-4 h-4" />, onClick: () => handleNavigate('/manifest'), active: activeId === 'manifest' },
     { id: "team", label: t('nav.team'), icon: <Cpu className="w-4 h-4" />, onClick: () => handleNavigate('/team'), active: activeId === 'team' },
     { id: "contact", label: t('nav.contact'), icon: <Mail className="w-4 h-4" />, onClick: () => handleNavigate('/contact'), active: activeId === 'contact' },
-    { id: "lang", label: lang === 'EN' ? 'Français' : 'English', icon: <Globe className="w-4 h-4" />, onClick: () => setLang(lang === 'EN' ? 'FR' : 'EN'), active: false }
+    { id: "lang", label: lang === 'EN' ? 'Français' : 'English', icon: <Globe className="w-4 h-4" />, onClick: () => { setLang(lang === 'EN' ? 'FR' : 'EN'); setIsMobileOpen(false); }, active: false }
   ];
 
   return (
     <>
-      {/* Top Left Logo - Anchored to page top (disappears on scroll) */}
+      {/* Top Left Logo - Fixed to viewport (logo_simple.png on mobile, LOGO.png on desktop) */}
       <Link 
         to="/" 
         onClick={() => handleNavigate('/')}
-        className="absolute left-4 sm:left-6 md:left-8 lg:left-12 top-6 md:top-7 z-40 flex items-center group cursor-pointer transition-opacity pointer-events-auto"
+        className="fixed left-4 sm:left-6 md:left-8 lg:left-12 top-5 sm:top-6 md:top-7 z-50 flex items-center group cursor-pointer transition-opacity pointer-events-auto"
         aria-label="Polymath Studio"
       >
+        {/* Mobile: logo_simple.png (Square emblem) */}
+        <img 
+          src={`${import.meta.env.BASE_URL}logo_simple.png`} 
+          alt="Polymath Studio" 
+          className="block md:hidden h-7 w-7 object-contain opacity-90 group-hover:opacity-100 transition-opacity" 
+        />
+        {/* Desktop / Tablet: full LOGO.png */}
         <img 
           src={`${import.meta.env.BASE_URL}LOGO.png`} 
           alt="Polymath Studio Logo" 
           style={{ filter: 'invert(1)' }}
-          className="h-5 sm:h-6 md:h-7 w-auto object-contain invert opacity-90 group-hover:opacity-100 transition-opacity" 
+          className="hidden md:block h-6 md:h-7 w-auto object-contain invert opacity-90 group-hover:opacity-100 transition-opacity" 
         />
       </Link>
 
-      {/* Centered Navigation Bar - Fixed to viewport */}
-      <header className="fixed top-6 md:top-7 left-1/2 -translate-x-1/2 z-50 flex justify-center pointer-events-auto">
+      {/* Desktop Navigation Bar (md+) */}
+      <header className="hidden md:flex fixed top-6 md:top-7 left-1/2 -translate-x-1/2 z-50 justify-center pointer-events-auto">
         <ExpandableActionBar 
           items={NAV_ITEMS} 
           activeId={activeId} 
           expandOnHover={true}
           collapseDelay={200}
-          size={typeof window !== 'undefined' && window.innerWidth < 768 ? "sm" : "md"} 
+          size="md" 
         />
       </header>
+
+      {/* Mobile Navigation Bar (< md) - Designed to never overflow */}
+      <div className="flex md:hidden fixed top-5 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
+        {!isMobileOpen ? (
+          /* Collapsed Mobile Pill */
+          <button
+            type="button"
+            onClick={() => setIsMobileOpen(true)}
+            className="flex items-center gap-1 px-2.5 py-1.5 border border-white/20 bg-neutral-950/90 shadow-2xl backdrop-blur-xl transition-transform active:scale-95"
+            aria-label="Ouvrir le menu"
+          >
+            {NAV_ITEMS.map((item) => (
+              <div 
+                key={item.id} 
+                className={`relative p-1 transition-colors ${
+                  item.active ? 'text-white' : 'text-white/40'
+                }`}
+              >
+                <span className="w-3.5 h-3.5 block">{item.icon}</span>
+                {item.active && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white"></span>
+                )}
+              </div>
+            ))}
+          </button>
+        ) : (
+          <>
+            {/* Backdrop Dismiss */}
+            <div 
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm -z-10" 
+              onClick={() => setIsMobileOpen(false)} 
+            />
+
+            {/* Expanded Mobile Card - Constrained so it never overflows */}
+            <div className="w-[calc(100vw-32px)] max-w-[310px] border border-white/20 bg-neutral-950/95 backdrop-blur-2xl shadow-2xl p-2.5 flex flex-col gap-1">
+              {/* Header with Close */}
+              <div className="flex items-center justify-between px-2 py-1.5 border-b border-white/10 text-[10px] font-mono tracking-widest text-white/50 uppercase mb-1">
+                <span>Navigation</span>
+                <button 
+                  type="button" 
+                  onClick={() => setIsMobileOpen(false)}
+                  className="p-1 text-white/60 hover:text-white"
+                  aria-label="Fermer le menu"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              {/* Items List */}
+              {NAV_ITEMS.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={item.onClick}
+                  className={`flex items-center gap-3 w-full px-3 py-2 text-xs font-mono tracking-wider uppercase transition-colors text-left ${
+                    item.active 
+                      ? 'text-white bg-white/10 font-medium' 
+                      : 'text-white/70 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <span className="w-4 h-4 shrink-0 text-white/80">{item.icon}</span>
+                  <span className="truncate flex-1">{item.label}</span>
+                  {item.active && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0"></span>
+                  )}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 }
