@@ -87,13 +87,13 @@ export function Home() {
             <img src={`${import.meta.env.BASE_URL}mur10.jpeg`} alt="Background" className="w-full h-full object-cover opacity-80" />
           </div>
 
-          <div className="absolute inset-0 flex items-center justify-center p-8 md:p-16 lg:p-32 -translate-y-9 md:-translate-y-[72px]">
+          <div className="absolute inset-0 flex items-center justify-center p-6 md:p-12 lg:p-20 -translate-y-9 md:-translate-y-[72px]">
             <video 
-              className="w-full max-w-2xl h-auto aspect-video saturate-[1.25] contrast-[1.05]"
+              className="w-full max-w-3xl h-auto aspect-video saturate-[1.25] contrast-[1.05]"
               style={{
-                /* Balanced horizontal radius (42%) and vertical height (50%) */
-                maskImage: 'radial-gradient(ellipse 42% 50% at 50% 50%, black 60%, transparent 96%)',
-                WebkitMaskImage: 'radial-gradient(ellipse 42% 50% at 50% 50%, black 60%, transparent 96%)'
+                /* Balanced horizontal radius and vertical height */
+                maskImage: 'radial-gradient(ellipse 44% 50% at 50% 50%, black 64%, transparent 98%)',
+                WebkitMaskImage: 'radial-gradient(ellipse 44% 50% at 50% 50%, black 64%, transparent 98%)'
               }}
               src={`${import.meta.env.BASE_URL}animpostit.mp4`}
               autoPlay
