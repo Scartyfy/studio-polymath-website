@@ -63,6 +63,20 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
 
   return (
     <header className="nav flex justify-center w-full relative">
+      {/* Top Left Logo */}
+      <Link 
+        to="/" 
+        onClick={() => handleNavigate('/')}
+        className="absolute left-4 sm:left-6 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 z-50 flex items-center group cursor-pointer transition-opacity"
+        aria-label="Polymath Studio"
+      >
+        <img 
+          src={`${import.meta.env.BASE_URL}LOGO.POLYMATH.png`} 
+          alt="Polymath Studio Logo" 
+          className="h-5 sm:h-6 md:h-7 w-auto object-contain invert opacity-90 group-hover:opacity-100 transition-opacity" 
+        />
+      </Link>
+
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
         <ExpandableActionBar 
           items={NAV_ITEMS} 
