@@ -95,7 +95,7 @@ export function Home() {
                 maskImage: 'radial-gradient(ellipse 42% 50% at 50% 50%, black 60%, transparent 96%)',
                 WebkitMaskImage: 'radial-gradient(ellipse 42% 50% at 50% 50%, black 60%, transparent 96%)'
               }}
-              src={`${import.meta.env.BASE_URL}dogpostit.mp4`}
+              src={`${import.meta.env.BASE_URL}animpostit.mp4`}
               autoPlay
               muted
               loop
