@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, Shield, Cpu, Footprints, Wrench, Eye } from 'lucide-react';
+import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, Cpu, Eye } from 'lucide-react';
 import { Navigation, Footer } from '../components/Shared';
 import { useLanguage } from '../LanguageContext';
 import { LiquidButton } from '../components/ui/primitives-buttons-liquid';
@@ -624,22 +624,18 @@ export function Projects() {
         {/* 4 Technical Pillars */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
           <div className="p-5 border border-[var(--line-strong)] bg-white/[0.015]">
-            <Footprints className="w-5 h-5 text-white/70 mb-3 stroke-[1.5]" />
             <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar1.title')}</h4>
             <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar1.desc')}</p>
           </div>
           <div className="p-5 border border-[var(--line-strong)] bg-white/[0.015]">
-            <Shield className="w-5 h-5 text-white/70 mb-3 stroke-[1.5]" />
             <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar2.title')}</h4>
             <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar2.desc')}</p>
           </div>
           <div className="p-5 border border-[var(--line-strong)] bg-white/[0.015]">
-            <Cpu className="w-5 h-5 text-white/70 mb-3 stroke-[1.5]" />
             <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar3.title')}</h4>
             <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar3.desc')}</p>
           </div>
           <div className="p-5 border border-[var(--line-strong)] bg-white/[0.015]">
-            <Wrench className="w-5 h-5 text-white/70 mb-3 stroke-[1.5]" />
             <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar4.title')}</h4>
             <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar4.desc')}</p>
           </div>
