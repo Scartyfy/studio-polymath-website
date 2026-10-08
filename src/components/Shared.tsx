@@ -63,11 +63,11 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
 
   return (
     <>
-      {/* Top Left Logo - Fixed to viewport */}
+      {/* Top Left Logo - Anchored to page top (disappears on scroll) */}
       <Link 
         to="/" 
         onClick={() => handleNavigate('/')}
-        className="fixed left-4 sm:left-6 md:left-8 lg:left-12 top-6 md:top-7 z-50 flex items-center group cursor-pointer transition-opacity pointer-events-auto"
+        className="absolute left-4 sm:left-6 md:left-8 lg:left-12 top-6 md:top-7 z-40 flex items-center group cursor-pointer transition-opacity pointer-events-auto"
         aria-label="Polymath Studio"
       >
         <img 
