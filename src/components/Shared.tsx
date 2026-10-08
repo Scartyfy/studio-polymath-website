@@ -87,13 +87,14 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
         <img 
           src={`${import.meta.env.BASE_URL}logo_simple.png`} 
           alt="Polymath Studio" 
+          style={{ opacity: 0.9 }}
           className="block md:hidden h-7 w-7 object-contain opacity-90 group-hover:opacity-100 transition-opacity" 
         />
         {/* Desktop / Tablet: full LOGO.png */}
         <img 
           src={`${import.meta.env.BASE_URL}LOGO.png`} 
           alt="Polymath Studio Logo" 
-          style={{ filter: 'invert(1)' }}
+          style={{ filter: 'invert(1)', opacity: 0.9 }}
           className="hidden md:block h-6 md:h-7 w-auto object-contain invert opacity-90 group-hover:opacity-100 transition-opacity" 
         />
       </Link>
