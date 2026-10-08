@@ -22,14 +22,6 @@ function PageLayout({
     <div className="page-layout relative overflow-hidden">
       {bgElement}
       <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      
-      {/* Corner Section Name Header - high in top-right corner */}
-      {title && (
-        <div className="absolute top-4 sm:top-6 md:top-8 right-4 sm:right-6 md:right-8 lg:right-12 z-40 pointer-events-none select-none text-right">
-          {subtitle && <div className="page-subtitle text-right mb-0.5">{subtitle}</div>}
-          <h1 className="page-title text-right">{title}</h1>
-        </div>
-      )}
 
       <main className="page-body relative z-10 pt-20 sm:pt-24 md:pt-28">
         {children}
@@ -298,7 +290,7 @@ export function Contact() {
 
   return (
     <PageLayout title={t('page.contact.title')}>
-      <div style={{ maxWidth: 620, width: '100%' }}>
+      <div className="pt-6 sm:pt-10 md:pt-14" style={{ maxWidth: 620, width: '100%' }}>
         {/* Direct email display */}
         <div className="mb-8 p-4 border border-[var(--line-strong)] bg-white/[0.02] flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
           <div className="flex items-center gap-2.5 text-white/80">
