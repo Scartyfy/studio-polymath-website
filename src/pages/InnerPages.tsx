@@ -290,104 +290,115 @@ export function Contact() {
 
   return (
     <PageLayout title={t('page.contact.title')}>
-      <div className="pt-6 sm:pt-10 md:pt-14" style={{ maxWidth: 620, width: '100%' }}>
-        {/* Direct email display */}
-        <div className="mb-8 p-4 border border-[var(--line-strong)] bg-white/[0.02] flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
-          <div className="flex items-center gap-2.5 text-white/80">
-            <Mail className="w-4 h-4 text-white/60 shrink-0" />
-            <span className="uppercase tracking-widest text-[var(--text-dim)]">{t('contact.direct')} :</span>
+      <div className="pt-6 sm:pt-10 md:pt-14 max-w-5xl w-full flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-20">
+        <div style={{ maxWidth: 620, width: '100%' }}>
+          {/* Direct email display */}
+          <div className="mb-8 p-4 border border-[var(--line-strong)] bg-white/[0.02] flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+            <div className="flex items-center gap-2.5 text-white/80">
+              <Mail className="w-4 h-4 text-white/60 shrink-0" />
+              <span className="uppercase tracking-widest text-[var(--text-dim)]">{t('contact.direct')} :</span>
+            </div>
+            <a 
+              href="mailto:studiopolymath.contact@gmail.com" 
+              className="text-white hover:text-white/70 transition-colors uppercase tracking-wider underline underline-offset-4 decoration-white/30 truncate"
+            >
+              studiopolymath.contact@gmail.com
+            </a>
           </div>
-          <a 
-            href="mailto:studiopolymath.contact@gmail.com" 
-            className="text-white hover:text-white/70 transition-colors uppercase tracking-wider underline underline-offset-4 decoration-white/30 truncate"
-          >
-            studiopolymath.contact@gmail.com
-          </a>
+
+          {status === 'success' ? (
+            <div className="p-8 border border-white/20 bg-white/[0.03] backdrop-blur-sm flex flex-col items-center text-center">
+              <CheckCircle2 className="w-10 h-10 text-white mb-4 stroke-[1.5px]" />
+              <h2 className="text-xl font-light text-white uppercase tracking-wider mb-2 font-mono">
+                {t('form.success.title')}
+              </h2>
+              <p className="text-sm text-white/70 font-light leading-relaxed mb-4 max-w-md">
+                {t('form.success.desc')}
+              </p>
+              {isActivationSent && (
+                <div className="mb-6 p-3 border border-amber-400/30 bg-amber-950/20 text-amber-200 text-xs font-mono text-left max-w-md">
+                  ℹ️ <strong>Première configuration :</strong> FormSubmit a envoyé un e-mail à <code>studiopolymath.contact@gmail.com</code> (vérifiez spams/promotions) contenant un bouton <em>"Activate Form"</em>. Cliquez dessus une fois pour autoriser la réception directe de tous vos messages !
+                </div>
+              )}
+              <button 
+                type="button" 
+                onClick={() => setStatus('idle')}
+                className="btn btn--ghost text-xs tracking-widest uppercase font-mono px-6 py-3 border border-white/20 hover:border-white transition-all"
+              >
+                {t('form.success.again')}
+              </button>
+            </div>
+          ) : (
+            <form className="form" style={{ marginTop: 0 }} onSubmit={handleSubmit}>
+              {status === 'error' && (
+                <div className="p-4 border border-red-500/30 bg-red-950/20 text-white/90 text-xs font-mono flex items-start gap-3 mb-2">
+                  <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                  <div className="flex-1 leading-relaxed">
+                    <div>{errorMessage || t('form.error.desc')}</div>
+                    <a 
+                      href={`mailto:studiopolymath.contact@gmail.com?subject=${encodeURIComponent(subject || 'Polymath Studio Contact')}&body=${encodeURIComponent(message)}`}
+                      className="underline hover:text-white mt-1.5 inline-block text-red-300"
+                    >
+                      studiopolymath.contact@gmail.com ↗
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              <label htmlFor="name" className="visually-hidden">{t('form.name')}</label>
+              <input 
+                type="text" 
+                id="name" 
+                className="form__input" 
+                placeholder={t('form.name')} 
+                value={name}
+                onChange={e => setName(e.target.value)}
+                disabled={status === 'submitting'}
+              />
+              
+              <label htmlFor="subject" className="visually-hidden">{t('form.subject')}</label>
+              <input 
+                type="text" 
+                id="subject" 
+                className="form__input" 
+                placeholder={t('form.subject')} 
+                value={subject}
+                onChange={e => setSubject(e.target.value)}
+                disabled={status === 'submitting'}
+              />
+              
+              <label htmlFor="message" className="visually-hidden">{t('form.message')}</label>
+              <textarea 
+                id="message" 
+                required
+                rows={4}
+                className="form__input resize-none" 
+                placeholder={`${t('form.message')} *`} 
+                value={message}
+                onChange={e => setMessage(e.target.value)}
+                disabled={status === 'submitting'}
+              ></textarea>
+              
+              <button 
+                type="submit" 
+                className="btn btn--ghost" 
+                style={{ marginTop: 16 }}
+                disabled={status === 'submitting'}
+              >
+                {status === 'submitting' ? t('form.sending') : t('form.submit')}
+              </button>
+            </form>
+          )}
         </div>
 
-        {status === 'success' ? (
-          <div className="p-8 border border-white/20 bg-white/[0.03] backdrop-blur-sm flex flex-col items-center text-center">
-            <CheckCircle2 className="w-10 h-10 text-white mb-4 stroke-[1.5px]" />
-            <h2 className="text-xl font-light text-white uppercase tracking-wider mb-2 font-mono">
-              {t('form.success.title')}
-            </h2>
-            <p className="text-sm text-white/70 font-light leading-relaxed mb-4 max-w-md">
-              {t('form.success.desc')}
-            </p>
-            {isActivationSent && (
-              <div className="mb-6 p-3 border border-amber-400/30 bg-amber-950/20 text-amber-200 text-xs font-mono text-left max-w-md">
-                ℹ️ <strong>Première configuration :</strong> FormSubmit a envoyé un e-mail à <code>studiopolymath.contact@gmail.com</code> (vérifiez spams/promotions) contenant un bouton <em>"Activate Form"</em>. Cliquez dessus une fois pour autoriser la réception directe de tous vos messages !
-              </div>
-            )}
-            <button 
-              type="button" 
-              onClick={() => setStatus('idle')}
-              className="btn btn--ghost text-xs tracking-widest uppercase font-mono px-6 py-3 border border-white/20 hover:border-white transition-all"
-            >
-              {t('form.success.again')}
-            </button>
-          </div>
-        ) : (
-          <form className="form" style={{ marginTop: 0 }} onSubmit={handleSubmit}>
-            {status === 'error' && (
-              <div className="p-4 border border-red-500/30 bg-red-950/20 text-white/90 text-xs font-mono flex items-start gap-3 mb-2">
-                <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-                <div className="flex-1 leading-relaxed">
-                  <div>{errorMessage || t('form.error.desc')}</div>
-                  <a 
-                    href={`mailto:studiopolymath.contact@gmail.com?subject=${encodeURIComponent(subject || 'Polymath Studio Contact')}&body=${encodeURIComponent(message)}`}
-                    className="underline hover:text-white mt-1.5 inline-block text-red-300"
-                  >
-                    studiopolymath.contact@gmail.com ↗
-                  </a>
-                </div>
-              </div>
-            )}
-
-            <label htmlFor="name" className="visually-hidden">{t('form.name')}</label>
-            <input 
-              type="text" 
-              id="name" 
-              className="form__input" 
-              placeholder={t('form.name')} 
-              value={name}
-              onChange={e => setName(e.target.value)}
-              disabled={status === 'submitting'}
-            />
-            
-            <label htmlFor="subject" className="visually-hidden">{t('form.subject')}</label>
-            <input 
-              type="text" 
-              id="subject" 
-              className="form__input" 
-              placeholder={t('form.subject')} 
-              value={subject}
-              onChange={e => setSubject(e.target.value)}
-              disabled={status === 'submitting'}
-            />
-            
-            <label htmlFor="message" className="visually-hidden">{t('form.message')}</label>
-            <textarea 
-              id="message" 
-              required
-              rows={4}
-              className="form__input resize-none" 
-              placeholder={`${t('form.message')} *`} 
-              value={message}
-              onChange={e => setMessage(e.target.value)}
-              disabled={status === 'submitting'}
-            ></textarea>
-            
-            <button 
-              type="submit" 
-              className="btn btn--ghost" 
-              style={{ marginTop: 16 }}
-              disabled={status === 'submitting'}
-            >
-              {status === 'submitting' ? t('form.sending') : t('form.submit')}
-            </button>
-          </form>
-        )}
+        {/* Right Emblem Logo */}
+        <div className="hidden lg:flex flex-col items-center justify-center select-none pointer-events-none shrink-0 pr-4 xl:pr-10">
+          <img 
+            src={`${import.meta.env.BASE_URL}logosimple.png`} 
+            alt="Polymath Studio" 
+            className="w-56 md:w-64 lg:w-72 xl:w-80 h-auto object-contain opacity-60" 
+          />
+        </div>
       </div>
     </PageLayout>
   );

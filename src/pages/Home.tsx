@@ -252,10 +252,14 @@ export function Home() {
                 </ul>
               </div>
 
-              <h2 className="absolute bottom-0 left-[-1vw] translate-y-[2%] text-[80px] sm:text-[100px] md:text-[140px] lg:text-[180px] text-white/30 font-bold lowercase tracking-tighter leading-[0.85] pointer-events-none flex flex-col" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                <span>polymath</span>
-                <span>studio</span>
-              </h2>
+              {/* Emblem Logo replacing polymath studio text */}
+              <div className="absolute bottom-6 sm:bottom-8 md:bottom-12 left-4 sm:left-8 md:left-12 pointer-events-none z-10 select-none">
+                <img 
+                  src={`${import.meta.env.BASE_URL}logosimple.png`} 
+                  alt="Polymath Studio" 
+                  className="w-28 sm:w-36 md:w-48 lg:w-56 h-auto object-contain opacity-60" 
+                />
+              </div>
 
               {/* Copyrights and Legal Mentions (Bottom Right of Footer) */}
               <div className="absolute bottom-4 right-4 text-right text-white/50 text-[10px] md:text-xs font-mono uppercase tracking-widest leading-relaxed pointer-events-auto">
