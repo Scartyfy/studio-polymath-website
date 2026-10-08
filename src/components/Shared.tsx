@@ -71,9 +71,9 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
         aria-label="Polymath Studio"
       >
         <img 
-          src={`${import.meta.env.BASE_URL}LOGO.POLYMATH.png`} 
+          src={`${import.meta.env.BASE_URL}LOGO.png`} 
           alt="Polymath Studio Logo" 
-          className="h-5 sm:h-6 md:h-7 w-auto object-contain invert opacity-90 group-hover:opacity-100 transition-opacity" 
+          className="h-5 sm:h-6 md:h-7 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" 
         />
       </Link>
 
