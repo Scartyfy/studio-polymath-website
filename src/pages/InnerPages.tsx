@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, Cpu, Eye } from 'lucide-react';
+import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, Cpu } from 'lucide-react';
 import { Navigation, Footer } from '../components/Shared';
 import { useLanguage } from '../LanguageContext';
 import { LiquidButton } from '../components/ui/primitives-buttons-liquid';
@@ -473,45 +473,31 @@ export function Projects() {
 
         {/* Robot Presentation Showcase - In Order, visible upon scroll */}
         <div className="space-y-8 pt-8 sm:pt-16 border-t border-white/10">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[var(--line-strong)] pb-3">
-            <div className="font-mono text-xs uppercase tracking-[0.2em] text-white flex items-center gap-2">
-              <Eye className="w-3.5 h-3.5 text-white/70" />
-              <span>{t('projects.night.badge')}</span>
-            </div>
-            <div className="font-mono text-[11px] text-[var(--text-dim)] uppercase tracking-wider">
-              Compatibilité VMS • Autonomie Tout-Terrain
-            </div>
-          </div>
-
-          {/* 1st Image: misealechelle.jpeg - sans aucune annotation et en plus gros */}
+          {/* Image misealechelle.jpeg - sans aucune annotation et en grand format */}
           <div className="border border-[var(--line-strong)] bg-black overflow-hidden group -mx-2 sm:-mx-6 md:-mx-10 lg:-mx-14 shadow-2xl">
             <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-950">
               <img 
                 src={`${import.meta.env.BASE_URL}robot/misealechelle.jpeg`}
-                alt="Robot quadrupède autonome Polymath - mise à l'échelle"
+                alt="Robot quadrupède autonome Polymath"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.01]"
               />
             </div>
           </div>
         </div>
 
-        {/* 4 Technical Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
-          <div className="p-5 border border-[var(--line-strong)] bg-white/[0.015]">
+        {/* 3 Technical Pillars */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+          <div className="p-6 border border-[var(--line-strong)] bg-white/[0.015]">
             <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar1.title')}</h4>
             <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar1.desc')}</p>
           </div>
-          <div className="p-5 border border-[var(--line-strong)] bg-white/[0.015]">
+          <div className="p-6 border border-[var(--line-strong)] bg-white/[0.015]">
             <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar2.title')}</h4>
             <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar2.desc')}</p>
           </div>
-          <div className="p-5 border border-[var(--line-strong)] bg-white/[0.015]">
+          <div className="p-6 border border-[var(--line-strong)] bg-white/[0.015]">
             <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar3.title')}</h4>
             <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar3.desc')}</p>
-          </div>
-          <div className="p-5 border border-[var(--line-strong)] bg-white/[0.015]">
-            <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar4.title')}</h4>
-            <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar4.desc')}</p>
           </div>
         </div>
 
@@ -560,8 +546,7 @@ export function Projects() {
             <div className="border border-white/20 bg-white/[0.02] p-6 sm:p-8 space-y-6 font-mono text-xs flex flex-col justify-between shadow-xl">
               <div className="space-y-5">
                 <div className="flex items-center justify-between border-b border-white/20 pb-3">
-                  <div className="text-white uppercase tracking-wider font-medium text-sm flex items-center gap-2">
-                    <Cpu className="w-4 h-4 text-white/80" />
+                  <div className="text-white uppercase tracking-wider font-medium text-sm">
                     <span>{lang === 'FR' ? 'Tableau des Compétences' : 'Competencies Matrix'}</span>
                   </div>
                   <span className="text-[10px] tracking-widest text-white/50 uppercase border border-white/20 px-2 py-0.5">
