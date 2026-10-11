@@ -499,8 +499,8 @@ export function Projects() {
               transition={{ duration: 0.6 }}
               className="absolute z-20 pointer-events-none"
               style={{
-                left: '57%',
-                top: '60%'
+                left: '61%',
+                top: '66%'
               }}
             >
               <div className="relative">
@@ -509,11 +509,11 @@ export function Projects() {
                   <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,1)]" />
                 </div>
 
-                {/* 2. Ligne technique SVG ultra-fine (Desktop) */}
-                <div className="hidden sm:block absolute overflow-visible pointer-events-none" style={{ top: '-40px', left: '0px', width: '120px', height: '40px' }}>
-                  <svg width="120" height="40" viewBox="0 0 120 40" className="overflow-visible">
+                {/* 2. Ligne technique SVG ultra-fine vers la droite et le bas (Desktop) */}
+                <div className="hidden sm:block absolute overflow-visible pointer-events-none" style={{ top: '0px', left: '0px', width: '130px', height: '35px' }}>
+                  <svg width="130" height="35" viewBox="0 0 130 35" className="overflow-visible">
                     <motion.path 
-                      d="M 0,40 L 40,5 L 110,5"
+                      d="M 0,0 L 45,20 L 120,20"
                       fill="none"
                       stroke="rgba(255, 255, 255, 0.75)"
                       strokeWidth="1"
@@ -525,11 +525,11 @@ export function Projects() {
                   </svg>
                 </div>
 
-                {/* 2bis. Ligne technique SVG (Mobile) */}
-                <div className="sm:hidden absolute overflow-visible pointer-events-none" style={{ top: '-30px', left: '0px', width: '60px', height: '30px' }}>
-                  <svg width="60" height="30" viewBox="0 0 60 30" className="overflow-visible">
+                {/* 2bis. Ligne technique SVG vers la droite et le bas (Mobile) */}
+                <div className="sm:hidden absolute overflow-visible pointer-events-none" style={{ top: '0px', left: '0px', width: '70px', height: '30px' }}>
+                  <svg width="70" height="30" viewBox="0 0 70 30" className="overflow-visible">
                     <motion.path 
-                      d="M 0,30 L 25,5 L 50,5"
+                      d="M 0,0 L 25,15 L 55,15"
                       fill="none"
                       stroke="rgba(255, 255, 255, 0.75)"
                       strokeWidth="1"
@@ -549,8 +549,8 @@ export function Projects() {
                   transition={{ duration: 0.5, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute -translate-y-1/2 pointer-events-auto"
                   style={{
-                    top: '-35px',
-                    left: '116px'
+                    top: '20px',
+                    left: '126px'
                   }}
                 >
                   <div className="hidden sm:inline-flex items-center text-xs md:text-sm tracking-wide text-white drop-shadow-md whitespace-nowrap pl-1">
@@ -569,8 +569,8 @@ export function Projects() {
                   transition={{ duration: 0.5, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
                   className="sm:hidden absolute -translate-y-1/2 pointer-events-auto"
                   style={{
-                    top: '-25px',
-                    left: '56px'
+                    top: '15px',
+                    left: '60px'
                   }}
                 >
                   <div className="inline-flex items-center text-[11px] tracking-wide text-white drop-shadow-md whitespace-nowrap pl-1">
