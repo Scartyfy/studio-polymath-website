@@ -480,12 +480,12 @@ export function Projects() {
               className="w-full h-full object-cover object-center scale-[1.02]"
             />
             
-            {/* Grand effet vignette cinématique */}
-            {/* 1. Vignette radiale intense du centre vers les bords */}
+            {/* Grand effet vignette cinématique adouci */}
+            {/* 1. Vignette radiale douce du centre vers les bords */}
             <div 
               className="absolute inset-0 pointer-events-none z-10"
               style={{
-                background: 'radial-gradient(ellipse at center, transparent 15%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.88) 72%, #000000 100%)'
+                background: 'radial-gradient(ellipse at center, transparent 28%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.7) 78%, rgba(0,0,0,0.95) 100%)'
               }}
             />
 
@@ -493,7 +493,7 @@ export function Projects() {
             <div 
               className="absolute inset-0 pointer-events-none z-10"
               style={{
-                background: 'linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.75) 8%, transparent 22%, transparent 78%, rgba(0,0,0,0.85) 92%, #000000 100%)'
+                background: 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 6%, transparent 18%, transparent 82%, rgba(0,0,0,0.6) 94%, #000000 100%)'
               }}
             />
 
@@ -501,7 +501,7 @@ export function Projects() {
             <div 
               className="absolute inset-0 pointer-events-none z-10"
               style={{
-                background: 'linear-gradient(to right, rgba(0,0,0,0.85) 0%, transparent 12%, transparent 88%, rgba(0,0,0,0.85) 100%)'
+                background: 'linear-gradient(to right, rgba(0,0,0,0.65) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.65) 100%)'
               }}
             />
           </div>
