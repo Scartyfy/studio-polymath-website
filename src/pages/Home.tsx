@@ -143,7 +143,7 @@ const TimelineRow = ({
       {/* Colonne de texte */}
       <div className={`relative z-10 ${isRight ? "md:col-start-2 md:pl-24" : "md:pr-12 lg:pr-24"}`}>
         <div className="text-[var(--text-dim)] uppercase tracking-[0.1em] text-sm mb-4">{number} / {subtitle}</div>
-        <h2 className="text-3xl md:text-5xl font-light mb-8 drop-shadow-md">
+        <h2 className="text-2xl sm:text-3xl md:text-5xl font-light mb-8 drop-shadow-md whitespace-nowrap">
           <ScrambleIn text={title} />
         </h2>
         <p className="text-[var(--text-dim)] text-lg leading-relaxed mb-8 drop-shadow-sm max-w-xl">

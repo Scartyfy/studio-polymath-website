@@ -166,7 +166,7 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.tag3': 'Design Global',
     'manifest.scroll': 'REPENSER LA TECHNOLOGIE POUR UN MONDE DURABLE. PAR DES INGÉNIEURS-DESIGNERS FRANÇAIS.',
     'home.timeline1.subtitle': 'Notre équipe',
-    'home.timeline1.title': 'Qui sommes-nous!',
+    'home.timeline1.title': 'Qui sommes-nous\u00A0?',
     'home.timeline1.desc': 'Tous ingénieurs-designers de formation, nous partageons une vision commune enrichie de spécialités complémentaires : certains plus dans le reinforcement learning et la robotique, d\'autres plus dans le design et l\'éthique. Ce qui fait de Polymath une équipe hautement polyvalente.',
     'home.timeline1.link': 'En savoir plus',
     'home.timeline2.subtitle': 'Notre vision',
