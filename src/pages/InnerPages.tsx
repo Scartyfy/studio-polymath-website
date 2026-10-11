@@ -605,7 +605,7 @@ export function Projects() {
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-white/10 font-mono text-[11px] text-white/40 uppercase tracking-wider">
-                Extérieurs & Bâtiments
+                {lang === 'FR' ? 'Périmètres Extérieurs & Espaces Ouverts' : 'Outdoor Perimeters & Open Facilities'}
               </div>
             </div>
           </div>
