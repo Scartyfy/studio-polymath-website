@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navigation, Footer, CyberGrid } from '../components/Shared';
 import { useNavigate } from 'react-router-dom';
 import { LiquidButton } from '../components/ui/primitives-buttons-liquid';
+import MotionButton from '../components/ui/motion-button';
 import { ArrowUpRight, ArrowDownLeft } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
@@ -234,9 +235,9 @@ export function Home() {
               }
             }}
           >
-            {/* Background Image Rotated */}
+            {/* Background Image Rotated - no hover lighting effect */}
             <div className="absolute top-1/2 left-1/2 w-[100vh] h-[100vw] -translate-x-1/2 -translate-y-1/2 -rotate-90 z-0">
-              <img src={`${import.meta.env.BASE_URL}metal.jpg`} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" alt="Scroll Background" />
+              <img src={`${import.meta.env.BASE_URL}metal.jpg`} className="w-full h-full object-cover opacity-60" alt="Scroll Background" />
             </div>
             
             {/* Scrim/Overlay to ensure readability */}
@@ -249,9 +250,13 @@ export function Home() {
               </p>
             </div>
             
-            {/* Arrow Down-Left */}
-            <div className="relative z-20 hidden md:flex items-center justify-center p-4 border border-white/20 rounded-full group-hover:bg-white group-hover:text-black transition-all duration-300 ml-4">
-              <ArrowDownLeft className="w-6 h-6 md:w-8 md:h-8 stroke-[1px]" />
+            {/* Motion Button "Explore" with Arrow Down-Left */}
+            <div className="relative z-20 flex items-center shrink-0 ml-4">
+              <MotionButton 
+                label="Explore" 
+                icon={<ArrowDownLeft className="text-black w-6 h-6 stroke-[1.5px]" />}
+                classes="border border-white/20 bg-black/60 backdrop-blur-sm w-44 sm:w-48"
+              />
             </div>
           </div>
         </section>
@@ -306,7 +311,7 @@ export function Home() {
           <div className="relative z-40 bg-black border-t border-[var(--line-strong)] h-[25vh] md:h-[35vh] py-12 px-4 md:px-8 flex items-center justify-between pointer-events-auto group overflow-hidden">
             {/* Background Image Rotated */}
             <div className="absolute top-1/2 left-1/2 w-[100vh] h-[100vw] -translate-x-1/2 -translate-y-1/2 -rotate-90 z-0">
-              <img src={`${import.meta.env.BASE_URL}metal.jpg`} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" alt="Scroll Background Bottom" />
+              <img src={`${import.meta.env.BASE_URL}metal.jpg`} className="w-full h-full object-cover opacity-60" alt="Scroll Background Bottom" />
             </div>
             {/* Scrim/Overlay */}
             <div className="absolute inset-0 bg-black/40 z-10" />
