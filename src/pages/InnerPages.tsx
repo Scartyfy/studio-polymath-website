@@ -521,6 +521,138 @@ export function Projects() {
                 background: 'linear-gradient(to right, rgba(0,0,0,0.65) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.65) 100%)'
               }}
             />
+
+            {/* Annotation animée au scroll : Ligne technique pointant le robot Louis */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6 }}
+              className="absolute z-20 pointer-events-none"
+              style={{
+                left: '57%',
+                top: '60%'
+              }}
+            >
+              <div className="relative">
+                {/* 1. Point d'ancrage sur le robot avec pulsation radar */}
+                <div className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+                  <span className="absolute w-8 h-8 rounded-full border border-white/40 animate-ping pointer-events-none" />
+                  <span className="absolute w-5 h-5 rounded-full border border-white/60 bg-white/10 backdrop-blur-sm" />
+                  <span className="relative block w-2 h-2 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,1)]" />
+                </div>
+
+                {/* 2. Ligne technique SVG orientée vers le haut et la droite (Desktop) */}
+                <div className="hidden sm:block absolute overflow-visible pointer-events-none" style={{ top: '-45px', left: '0px', width: '140px', height: '50px' }}>
+                  <svg width="140" height="50" viewBox="0 0 140 50" className="overflow-visible">
+                    <motion.path 
+                      d="M 0,45 L 55,5 L 130,5"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.9)"
+                      strokeWidth="1.5"
+                      strokeDasharray="4 2"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
+                    />
+                    <motion.circle 
+                      cx="130" 
+                      cy="5" 
+                      r="2.5" 
+                      fill="white"
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: 0.85 }}
+                    />
+                  </svg>
+                </div>
+
+                {/* 2bis. Ligne technique SVG (Mobile) */}
+                <div className="sm:hidden absolute overflow-visible pointer-events-none" style={{ top: '-35px', left: '0px', width: '70px', height: '40px' }}>
+                  <svg width="70" height="40" viewBox="0 0 70 40" className="overflow-visible">
+                    <motion.path 
+                      d="M 0,35 L 25,5 L 60,5"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.9)"
+                      strokeWidth="1.5"
+                      strokeDasharray="3 2"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
+                    />
+                    <motion.circle 
+                      cx="60" 
+                      cy="5" 
+                      r="2" 
+                      fill="white"
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: 0.8 }}
+                    />
+                  </svg>
+                </div>
+
+                {/* 3. Badge au bout de la ligne : "Louis" avec animation */}
+                <motion.div
+                  initial={{ opacity: 0, x: -14, scale: 0.95 }}
+                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.55, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute -translate-y-1/2 pointer-events-auto"
+                  style={{
+                    top: '-40px',
+                    left: '136px'
+                  }}
+                >
+                  <div className="hidden sm:block bg-black/85 backdrop-blur-md border border-white/25 px-3.5 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] space-y-0.5 min-w-[130px] select-none hover:border-white/50 transition-colors">
+                    <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-1">
+                      <span className="font-mono text-[9px] text-white/50 uppercase tracking-[0.2em]">
+                        ROBOT // 01
+                      </span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)] animate-pulse" />
+                    </div>
+                    
+                    <div className="text-xl font-light text-white tracking-wide leading-tight pt-0.5">
+                      Louis
+                    </div>
+
+                    <div className="font-mono text-[9px] text-white/60 tracking-wider uppercase pt-0.5">
+                      {lang === 'FR' ? 'Robot quadrupède' : 'Quadruped robot'}
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* 3bis. Badge mobile */}
+                <motion.div
+                  initial={{ opacity: 0, x: -10, scale: 0.95 }}
+                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="sm:hidden absolute -translate-y-1/2 pointer-events-auto"
+                  style={{
+                    top: '-30px',
+                    left: '66px'
+                  }}
+                >
+                  <div className="bg-black/90 backdrop-blur-md border border-white/25 px-2.5 py-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] space-y-0.5 min-w-[95px] select-none">
+                    <div className="flex items-center justify-between gap-1 border-b border-white/10 pb-0.5">
+                      <span className="font-mono text-[8px] text-white/50 uppercase tracking-[0.2em]">
+                        ROBOT
+                      </span>
+                      <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
+                    </div>
+                    
+                    <div className="text-base font-light text-white tracking-wide leading-tight pt-0.5">
+                      Louis
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
         </div>
 
