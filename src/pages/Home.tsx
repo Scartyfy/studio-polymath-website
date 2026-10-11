@@ -50,25 +50,31 @@ const TimelineRow = ({
       ref={ref} 
       className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative ${
         bgVideo 
-          ? 'p-6 sm:p-10 md:p-14 border border-white/15 bg-black/60 backdrop-blur-sm overflow-hidden' 
+          ? 'min-h-[85vh] md:min-h-screen py-20 sm:py-28' 
           : ''
       } ${number !== '01' ? 'mt-16 md:mt-0' : ''}`}
     >
-      {/* Background Video pour la section projet - en boucle et tamisé */}
+      {/* Background Video plein écran avec dégradé noir partant du bas */}
       {bgVideo && (
-        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-full min-h-[85vh] md:min-h-screen overflow-hidden pointer-events-none z-0">
           <video 
             autoPlay 
             loop 
             muted 
             playsInline 
-            className="w-full h-full object-cover opacity-35 md:opacity-45 transition-opacity duration-700"
+            className="w-full h-full object-cover opacity-80 md:opacity-85"
           >
             <source src={bgVideo} type="video/mp4" />
           </video>
-          {/* Dégradé tamisé pour la lisibilité des textes */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/35 pointer-events-none" />
-          <div className="absolute inset-0 bg-black/35 pointer-events-none" />
+          {/* Dégradé noir qui part du bas */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'linear-gradient(to top, #000000 0%, rgba(0,0,0,0.95) 15%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.2) 65%, transparent 100%)'
+            }}
+          />
+          {/* Voile sombre gauche pour assurer un contraste net et élégant sur le texte */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent pointer-events-none" />
         </div>
       )}
 
@@ -76,7 +82,7 @@ const TimelineRow = ({
       <div 
         className="absolute left-[calc(50%+0.5px)] w-[1px] bg-[var(--line-strong)] -translate-x-1/2 hidden md:block z-10"
         style={{
-          top: bgVideo ? '76px' : '62px',
+          top: '62px',
           bottom: isLast ? '-128px' : '-176px'
         }}
       >
@@ -85,8 +91,7 @@ const TimelineRow = ({
 
       {/* Point Square */}
       <div 
-        className="absolute left-[calc(50%+0.5px)] -translate-x-1/2 hidden md:flex flex-col items-center z-20 w-[14px] h-[14px]"
-        style={{ top: bgVideo ? '62px' : '48px' }}
+        className="absolute left-[calc(50%+0.5px)] top-12 -translate-x-1/2 hidden md:flex flex-col items-center z-20 w-[14px] h-[14px]"
       >
         {/* Background Square */}
         <div className="w-full h-full bg-black border border-[var(--line-strong)] absolute top-0" />
@@ -98,12 +103,12 @@ const TimelineRow = ({
         </svg>
       </div>
 
-      <div className={`relative z-10 ${isRight ? "md:col-start-2 md:pl-24" : "md:pr-12 lg:md:pr-24"}`}>
+      <div className={`relative z-10 ${isRight ? "md:col-start-2 md:pl-24" : "md:pr-12 lg:pr-24"}`}>
         <div className="text-[var(--text-dim)] uppercase tracking-[0.1em] text-sm mb-4">{number} / {subtitle}</div>
-        <h2 className="text-3xl md:text-5xl font-light mb-8">
+        <h2 className="text-3xl md:text-5xl font-light mb-8 drop-shadow-md">
           <ScrambleIn text={title} />
         </h2>
-        <p className="text-[var(--text-dim)] text-lg leading-relaxed mb-8">
+        <p className="text-[var(--text-dim)] text-lg leading-relaxed mb-8 drop-shadow-sm max-w-xl">
           {desc}
         </p>
         <LiquidButton 
@@ -208,7 +213,7 @@ export function Home() {
 
         {/* Scrollable Content */}
         <div className="relative z-40">
-          <section className="relative z-10 bg-black text-white">
+          <section className="relative z-10 bg-black text-white overflow-hidden">
             <div className="relative max-w-6xl mx-auto px-[var(--gutter)] pb-32 pt-12 flex flex-col gap-32">
               
               <TimelineRow 
