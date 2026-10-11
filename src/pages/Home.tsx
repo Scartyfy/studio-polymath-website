@@ -14,7 +14,27 @@ const FooterLink = ({ children, onClick }: { children: React.ReactNode, onClick?
   </li>
 );
 
-const TimelineRow = ({ number, title, subtitle, desc, linkText, onClick, isRight, isLast }: { number: string, title: string, subtitle: string, desc: string, linkText: string, onClick: () => void, isRight?: boolean, isLast?: boolean }) => {
+const TimelineRow = ({ 
+  number, 
+  title, 
+  subtitle, 
+  desc, 
+  linkText, 
+  onClick, 
+  isRight, 
+  isLast,
+  bgVideo
+}: { 
+  number: string, 
+  title: string, 
+  subtitle: string, 
+  desc: string, 
+  linkText: string, 
+  onClick: () => void, 
+  isRight?: boolean, 
+  isLast?: boolean,
+  bgVideo?: string
+}) => {
   const ref = React.useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -26,20 +46,48 @@ const TimelineRow = ({ number, title, subtitle, desc, linkText, onClick, isRight
   const lineProgress = useTransform(scrollYProgress, [0.3, 1], [0, 1]);
 
   return (
-    <div ref={ref} className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative ${number !== '01' ? 'mt-16 md:mt-0' : ''}`}>
+    <div 
+      ref={ref} 
+      className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative ${
+        bgVideo 
+          ? 'p-6 sm:p-10 md:p-14 border border-white/15 bg-black/60 backdrop-blur-sm overflow-hidden' 
+          : ''
+      } ${number !== '01' ? 'mt-16 md:mt-0' : ''}`}
+    >
+      {/* Background Video pour la section projet - en boucle et tamisé */}
+      {bgVideo && (
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="w-full h-full object-cover opacity-35 md:opacity-45 transition-opacity duration-700"
+          >
+            <source src={bgVideo} type="video/mp4" />
+          </video>
+          {/* Dégradé tamisé pour la lisibilité des textes */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/35 pointer-events-none" />
+          <div className="absolute inset-0 bg-black/35 pointer-events-none" />
+        </div>
+      )}
+
       {/* Connecting Line (Moved to row level so it correctly measures height) */}
       <div 
-        className="absolute left-[calc(50%+0.5px)] w-[1px] bg-[var(--line-strong)] -translate-x-1/2 hidden md:block z-0"
+        className="absolute left-[calc(50%+0.5px)] w-[1px] bg-[var(--line-strong)] -translate-x-1/2 hidden md:block z-10"
         style={{
-          top: '62px', /* 48px (top-12) + 14px (square) */
-          bottom: isLast ? '-128px' : '-176px' /* 128px gap + 48px top offset of next square */
+          top: bgVideo ? '76px' : '62px',
+          bottom: isLast ? '-128px' : '-176px'
         }}
       >
         <motion.div className="w-full bg-white origin-top" style={{ scaleY: lineProgress, height: '100%' }} />
       </div>
 
       {/* Point Square */}
-      <div className="absolute left-[calc(50%+0.5px)] top-12 -translate-x-1/2 hidden md:flex flex-col items-center z-10 w-[14px] h-[14px]">
+      <div 
+        className="absolute left-[calc(50%+0.5px)] -translate-x-1/2 hidden md:flex flex-col items-center z-20 w-[14px] h-[14px]"
+        style={{ top: bgVideo ? '62px' : '48px' }}
+      >
         {/* Background Square */}
         <div className="w-full h-full bg-black border border-[var(--line-strong)] absolute top-0" />
         
@@ -50,7 +98,7 @@ const TimelineRow = ({ number, title, subtitle, desc, linkText, onClick, isRight
         </svg>
       </div>
 
-      <div className={isRight ? "md:col-start-2 md:pl-24" : "md:pr-24"}>
+      <div className={`relative z-10 ${isRight ? "md:col-start-2 md:pl-24" : "md:pr-12 lg:md:pr-24"}`}>
         <div className="text-[var(--text-dim)] uppercase tracking-[0.1em] text-sm mb-4">{number} / {subtitle}</div>
         <h2 className="text-3xl md:text-5xl font-light mb-8">
           <ScrambleIn text={title} />
@@ -170,6 +218,7 @@ export function Home() {
                 desc={t('home.timeline3.desc')}
                 linkText={t('home.timeline3.link')}
                 onClick={() => navigate('/projects')}
+                bgVideo={`${import.meta.env.BASE_URL}presrobot.mp4`}
               />
               <TimelineRow 
                 number="02"
