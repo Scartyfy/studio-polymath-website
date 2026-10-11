@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, Cpu } from 'lucide-react';
+import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, Cpu, ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Navigation, Footer } from '../components/Shared';
 import { useLanguage } from '../LanguageContext';
 import { LiquidButton } from '../components/ui/primitives-buttons-liquid';
@@ -407,6 +408,22 @@ export function Contact() {
 export function Projects() {
   const { t, lang } = useLanguage();
   const navigate = useNavigate();
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const capabilities = [
+    { title: t('projects.sheet.cap1.title'), desc: t('projects.sheet.cap1.desc') },
+    { title: t('projects.sheet.cap2.title'), desc: t('projects.sheet.cap2.desc') },
+    { title: t('projects.sheet.cap3.title'), desc: t('projects.sheet.cap3.desc') },
+    { title: t('projects.sheet.cap4.title'), desc: t('projects.sheet.cap4.desc') },
+    { title: t('projects.sheet.cap5.title'), desc: t('projects.sheet.cap5.desc') },
+    { title: t('projects.sheet.cap6.title'), desc: t('projects.sheet.cap6.desc') },
+  ];
+
+  const faqs = [
+    { q: t('projects.sheet.faq1.q'), a: t('projects.sheet.faq1.a') },
+    { q: t('projects.sheet.faq2.q'), a: t('projects.sheet.faq2.a') },
+    { q: t('projects.sheet.faq3.q'), a: t('projects.sheet.faq3.a') },
+  ];
 
   const videoBackground = (
     <div className="absolute top-0 left-0 right-0 h-screen min-h-[720px] max-h-[1100px] overflow-hidden pointer-events-none z-0">
@@ -507,21 +524,143 @@ export function Projects() {
           </div>
         </div>
 
-        {/* 3 Technical Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-          <div className="p-6 border border-[var(--line-strong)] bg-white/[0.015]">
-            <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar1.title')}</h4>
-            <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar1.desc')}</p>
+        {/* Fiche Solution Détaillée // Pourquoi Louis pour votre campus ? */}
+        <section className="space-y-16 pt-2 sm:pt-6">
+          {/* En-tête de la fiche & Problématique */}
+          <div className="space-y-6">
+            <div className="inline-flex items-center text-[10px] sm:text-xs font-mono tracking-[0.25em] text-white/70 uppercase px-3.5 py-1.5 border border-white/20 bg-white/[0.02]">
+              {t('projects.sheet.badge')}
+            </div>
+
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-white tracking-tight leading-snug max-w-4xl">
+              {t('projects.sheet.title')}
+            </h3>
+
+            <div className="p-6 sm:p-8 border border-white/15 bg-white/[0.015] backdrop-blur-sm">
+              <p className="text-sm sm:text-base text-white/85 font-light leading-relaxed">
+                {t('projects.sheet.intro')}
+              </p>
+            </div>
           </div>
-          <div className="p-6 border border-[var(--line-strong)] bg-white/[0.015]">
-            <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar2.title')}</h4>
-            <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar2.desc')}</p>
+
+          {/* Ce que sait faire Louis (L'approche Polymath Studio) */}
+          <div className="space-y-6">
+            <div className="border-b border-white/15 pb-4">
+              <span className="font-mono text-[11px] text-white/40 uppercase tracking-[0.2em] block mb-1">
+                {t('projects.sheet.approach.subtitle')}
+              </span>
+              <h4 className="text-xl sm:text-2xl font-light text-white tracking-tight">
+                {t('projects.sheet.approach.title')}
+              </h4>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {capabilities.map((cap, idx) => (
+                <div 
+                  key={idx}
+                  className="p-6 border border-white/10 bg-white/[0.015] hover:border-white/30 hover:bg-white/[0.03] transition-all duration-300 flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest mb-3">
+                      {`0${idx + 1} // SPÉCIFICATION`}
+                    </div>
+                    <h5 className="text-base font-medium text-white mb-2.5">
+                      {cap.title}
+                    </h5>
+                    <p className="text-xs sm:text-sm text-white/70 font-light leading-relaxed">
+                      {cap.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="p-6 border border-[var(--line-strong)] bg-white/[0.015]">
-            <h4 className="font-mono text-xs uppercase tracking-wider text-white mb-2">{t('projects.pillar3.title')}</h4>
-            <p className="text-xs text-[var(--text-dim)] font-light leading-relaxed">{t('projects.pillar3.desc')}</p>
+
+          {/* Supervision Centralisée & Typologie des sites */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2 p-6 sm:p-8 border border-white/15 bg-white/[0.015] flex flex-col justify-between">
+              <div>
+                <div className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest mb-3">
+                  Architecture // VMS & SOC
+                </div>
+                <h4 className="text-lg sm:text-xl font-light text-white mb-3">
+                  {t('projects.sheet.supervision.title')}
+                </h4>
+                <p className="text-xs sm:text-sm text-white/75 font-light leading-relaxed">
+                  {t('projects.sheet.supervision.desc')}
+                </p>
+              </div>
+            </div>
+
+            <div className="p-6 sm:p-8 border border-white/15 bg-white/[0.015] flex flex-col justify-between">
+              <div>
+                <div className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest mb-3">
+                  Typologie Cible
+                </div>
+                <h4 className="text-lg sm:text-xl font-light text-white mb-3">
+                  {t('projects.sheet.sites.title')}
+                </h4>
+                <p className="text-xs sm:text-sm text-white/75 font-light leading-relaxed">
+                  {t('projects.sheet.sites.desc')}
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-white/10 font-mono text-[11px] text-white/40 uppercase tracking-wider">
+                Extérieurs & Bâtiments
+              </div>
+            </div>
           </div>
-        </div>
+
+          {/* Questions fréquentes (FAQ) - Accordéon interactif épuré */}
+          <div className="space-y-4 pt-4 border-t border-white/15">
+            <div className="mb-4">
+              <span className="font-mono text-[11px] text-white/40 uppercase tracking-[0.2em] block mb-1">
+                FAQ // Clarifications
+              </span>
+              <h4 className="text-xl sm:text-2xl font-light text-white tracking-tight">
+                {t('projects.sheet.faq.title')}
+              </h4>
+            </div>
+
+            <div className="space-y-3">
+              {faqs.map((faq, idx) => {
+                const isOpen = openFaq === idx;
+                return (
+                  <div 
+                    key={idx}
+                    className="border border-white/10 bg-white/[0.015] hover:border-white/25 transition-colors overflow-hidden"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(isOpen ? null : idx)}
+                      className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                    >
+                      <span className="text-sm sm:text-base font-normal text-white">
+                        {faq.q}
+                      </span>
+                      <ChevronDown 
+                        className={`w-4 h-4 text-white/50 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 text-white' : ''}`}
+                      />
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                          <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-white/5 text-xs sm:text-sm text-white/75 font-light leading-relaxed">
+                            {faq.a}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
 
         {/* Section: Joschka's Calgary Quadruped Research (Stage & R&D) */}
         <div className="space-y-6 border-t border-[var(--line-strong)] pt-12">
