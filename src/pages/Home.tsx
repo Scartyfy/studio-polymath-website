@@ -16,56 +16,32 @@ const FooterLink = ({ children, onClick }: { children: React.ReactNode, onClick?
 
 const TeamHeadsPreview = ({ onClick }: { onClick: () => void }) => {
   const members = [
-    { 
-      name: "Alec MIGNOT", 
-      role: "Chief Architect", 
-      img: `${import.meta.env.BASE_URL}alecpp.jpeg` 
-    },
-    { 
-      name: "Arthur CHAUVIN", 
-      role: "Design Lead", 
-      img: `${import.meta.env.BASE_URL}arthurpp.jpeg` 
-    },
-    { 
-      name: "Alann SAMSON", 
-      role: "Lead Engineer", 
-      img: `${import.meta.env.BASE_URL}alannpp.jpeg` 
-    },
-    { 
-      name: "Joschka MAYER", 
-      role: "CTO", 
-      img: `${import.meta.env.BASE_URL}jopp.jpeg` 
-    },
+    { name: "Alec MIGNOT", img: `${import.meta.env.BASE_URL}alecpp.jpeg` },
+    { name: "Arthur CHAUVIN", img: `${import.meta.env.BASE_URL}arthurpp.jpeg` },
+    { name: "Alann SAMSON", img: `${import.meta.env.BASE_URL}alannpp.jpeg` },
+    { name: "Joschka MAYER", img: `${import.meta.env.BASE_URL}jopp.jpeg` },
   ];
 
   return (
     <div 
       onClick={onClick}
-      className="w-full max-w-sm sm:max-w-md grid grid-cols-2 gap-3 sm:gap-4 p-4 sm:p-5 border border-white/15 bg-white/[0.02] backdrop-blur-sm group/team cursor-pointer hover:border-white/35 transition-all duration-500 shadow-2xl"
+      className="grid grid-cols-2 gap-4 sm:gap-6 cursor-pointer"
     >
       {members.map((member, i) => (
         <motion.div
           key={member.name}
-          initial={{ opacity: 0, scale: 0.85, y: 25 }}
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-30px" }}
-          transition={{ duration: 0.55, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-          whileHover={{ y: -4 }}
-          className="flex flex-col items-center text-center p-3 sm:p-3.5 border border-white/10 bg-black/60 hover:border-white/40 hover:bg-white/[0.04] transition-all duration-300"
+          transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ scale: 1.05 }}
+          className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden shadow-2xl"
         >
-          <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full border border-white/20 overflow-hidden mb-2.5 group-hover/team:border-white/60 transition-colors duration-300 shadow-md">
-            <img 
-              src={member.img} 
-              alt={member.name} 
-              className="w-full h-full object-cover grayscale contrast-[1.08] group-hover/team:grayscale-0 transition-all duration-500 hover:scale-105" 
-            />
-          </div>
-          <span className="text-white text-xs sm:text-sm font-medium tracking-wide">
-            {member.name}
-          </span>
-          <span className="text-[10px] sm:text-[11px] text-white/50 font-mono tracking-wider uppercase mt-0.5">
-            {member.role}
-          </span>
+          <img 
+            src={member.img} 
+            alt={member.name} 
+            className="w-full h-full object-cover grayscale contrast-[1.08] hover:grayscale-0 transition-all duration-500" 
+          />
         </motion.div>
       ))}
     </div>
