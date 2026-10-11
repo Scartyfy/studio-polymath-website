@@ -14,6 +14,64 @@ const FooterLink = ({ children, onClick }: { children: React.ReactNode, onClick?
   </li>
 );
 
+const TeamHeadsPreview = ({ onClick }: { onClick: () => void }) => {
+  const members = [
+    { 
+      name: "Alec MIGNOT", 
+      role: "Chief Architect", 
+      img: `${import.meta.env.BASE_URL}alecpp.jpeg` 
+    },
+    { 
+      name: "Arthur CHAUVIN", 
+      role: "Design Lead", 
+      img: `${import.meta.env.BASE_URL}arthurpp.jpeg` 
+    },
+    { 
+      name: "Alann SAMSON", 
+      role: "Lead Engineer", 
+      img: `${import.meta.env.BASE_URL}alannpp.jpeg` 
+    },
+    { 
+      name: "Joschka MAYER", 
+      role: "CTO", 
+      img: `${import.meta.env.BASE_URL}jopp.jpeg` 
+    },
+  ];
+
+  return (
+    <div 
+      onClick={onClick}
+      className="w-full max-w-sm sm:max-w-md grid grid-cols-2 gap-3 sm:gap-4 p-4 sm:p-5 border border-white/15 bg-white/[0.02] backdrop-blur-sm group/team cursor-pointer hover:border-white/35 transition-all duration-500 shadow-2xl"
+    >
+      {members.map((member, i) => (
+        <motion.div
+          key={member.name}
+          initial={{ opacity: 0, scale: 0.85, y: 25 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 0.55, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ y: -4 }}
+          className="flex flex-col items-center text-center p-3 sm:p-3.5 border border-white/10 bg-black/60 hover:border-white/40 hover:bg-white/[0.04] transition-all duration-300"
+        >
+          <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full border border-white/20 overflow-hidden mb-2.5 group-hover/team:border-white/60 transition-colors duration-300 shadow-md">
+            <img 
+              src={member.img} 
+              alt={member.name} 
+              className="w-full h-full object-cover grayscale contrast-[1.08] group-hover/team:grayscale-0 transition-all duration-500 hover:scale-105" 
+            />
+          </div>
+          <span className="text-white text-xs sm:text-sm font-medium tracking-wide">
+            {member.name}
+          </span>
+          <span className="text-[10px] sm:text-[11px] text-white/50 font-mono tracking-wider uppercase mt-0.5">
+            {member.role}
+          </span>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
+
 const TimelineRow = ({ 
   number, 
   title, 
@@ -23,7 +81,8 @@ const TimelineRow = ({
   onClick, 
   isRight, 
   isLast,
-  bgVideo
+  bgVideo,
+  rightContent
 }: { 
   number: string, 
   title: string, 
@@ -33,7 +92,8 @@ const TimelineRow = ({
   onClick: () => void, 
   isRight?: boolean, 
   isLast?: boolean,
-  bgVideo?: string
+  bgVideo?: string,
+  rightContent?: React.ReactNode
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   
@@ -50,13 +110,13 @@ const TimelineRow = ({
       ref={ref} 
       className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative ${
         bgVideo 
-          ? 'min-h-[85vh] md:min-h-screen py-20 sm:py-28' 
+          ? 'min-h-[85vh] md:min-h-screen pt-20 sm:pt-28 md:pt-36 pb-20 sm:pb-28' 
           : ''
       } ${number !== '01' ? 'mt-16 md:mt-0' : ''}`}
     >
-      {/* Background Video plein écran avec dégradé noir partant du bas */}
+      {/* Background Video plein écran collé à l'image du dessus avec dégradé noir partant du bas */}
       {bgVideo && (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-full min-h-[85vh] md:min-h-screen overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-screen h-full min-h-[85vh] md:min-h-screen overflow-hidden pointer-events-none z-0">
           <video 
             autoPlay 
             loop 
@@ -82,7 +142,7 @@ const TimelineRow = ({
       <div 
         className="absolute left-[calc(50%+0.5px)] w-[1px] bg-[var(--line-strong)] -translate-x-1/2 hidden md:block z-10"
         style={{
-          top: '62px',
+          top: bgVideo ? '112px' : '62px',
           bottom: isLast ? '-128px' : '-176px'
         }}
       >
@@ -91,7 +151,8 @@ const TimelineRow = ({
 
       {/* Point Square */}
       <div 
-        className="absolute left-[calc(50%+0.5px)] top-12 -translate-x-1/2 hidden md:flex flex-col items-center z-20 w-[14px] h-[14px]"
+        className="absolute left-[calc(50%+0.5px)] -translate-x-1/2 hidden md:flex flex-col items-center z-20 w-[14px] h-[14px]"
+        style={{ top: bgVideo ? '98px' : '48px' }}
       >
         {/* Background Square */}
         <div className="w-full h-full bg-black border border-[var(--line-strong)] absolute top-0" />
@@ -103,6 +164,7 @@ const TimelineRow = ({
         </svg>
       </div>
 
+      {/* Colonne de texte */}
       <div className={`relative z-10 ${isRight ? "md:col-start-2 md:pl-24" : "md:pr-12 lg:pr-24"}`}>
         <div className="text-[var(--text-dim)] uppercase tracking-[0.1em] text-sm mb-4">{number} / {subtitle}</div>
         <h2 className="text-3xl md:text-5xl font-light mb-8 drop-shadow-md">
@@ -118,6 +180,13 @@ const TimelineRow = ({
           {linkText} <ArrowUpRight className="w-4 h-4" />
         </LiquidButton>
       </div>
+
+      {/* Contenu à droite (ex: 4 têtes animées dans "Qui sommes-nous ?") */}
+      {!isRight && rightContent && (
+        <div className="relative z-10 md:col-start-2 md:pl-6 lg:pl-12 flex justify-center items-center">
+          {rightContent}
+        </div>
+      )}
     </div>
   );
 };
@@ -214,7 +283,7 @@ export function Home() {
         {/* Scrollable Content */}
         <div className="relative z-40">
           <section className="relative z-10 bg-black text-white overflow-hidden">
-            <div className="relative max-w-6xl mx-auto px-[var(--gutter)] pb-32 pt-12 flex flex-col gap-32">
+            <div className="relative max-w-6xl mx-auto px-[var(--gutter)] pb-32 pt-0 flex flex-col gap-32">
               
               <TimelineRow 
                 number="01"
@@ -241,6 +310,7 @@ export function Home() {
                 desc={t('home.timeline1.desc')}
                 linkText={t('home.timeline1.link')}
                 onClick={() => navigate('/team')}
+                rightContent={<TeamHeadsPreview onClick={() => navigate('/team')} />}
               />
               <TimelineRow 
                 number="04"
