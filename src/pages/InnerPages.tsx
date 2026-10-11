@@ -471,17 +471,39 @@ export function Projects() {
           </div>
         </div>
 
-        {/* Robot Presentation Showcase - In Order, visible upon scroll */}
-        <div className="space-y-8 pt-8 sm:pt-16 border-t border-white/10">
-          {/* Image misealechelle.jpeg - sans aucune annotation et en grand format */}
-          <div className="border border-[var(--line-strong)] bg-black overflow-hidden group -mx-2 sm:-mx-6 md:-mx-10 lg:-mx-14 shadow-2xl">
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-950">
-              <img 
-                src={`${import.meta.env.BASE_URL}robot/misealechelle.jpeg`}
-                alt="Robot quadrupède autonome Polymath"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.01]"
-              />
-            </div>
+        {/* Robot Presentation Showcase - Première image plein écran avec un grand effet vignette cinématique */}
+        <div className="relative left-1/2 -translate-x-1/2 w-screen h-screen min-h-[650px] md:min-h-screen overflow-hidden bg-black my-8 sm:my-16">
+          <div className="relative w-full h-full overflow-hidden">
+            <img 
+              src={`${import.meta.env.BASE_URL}robot/misealechelle.jpeg`}
+              alt="Robot quadrupède autonome Polymath"
+              className="w-full h-full object-cover object-center scale-[1.02]"
+            />
+            
+            {/* Grand effet vignette cinématique */}
+            {/* 1. Vignette radiale intense du centre vers les bords */}
+            <div 
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{
+                background: 'radial-gradient(ellipse at center, transparent 15%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.88) 72%, #000000 100%)'
+              }}
+            />
+
+            {/* 2. Fondu haut et bas pour s'intégrer harmonieusement au fond noir */}
+            <div 
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{
+                background: 'linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.75) 8%, transparent 22%, transparent 78%, rgba(0,0,0,0.85) 92%, #000000 100%)'
+              }}
+            />
+
+            {/* 3. Fondu latéral gauche et droite */}
+            <div 
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{
+                background: 'linear-gradient(to right, rgba(0,0,0,0.85) 0%, transparent 12%, transparent 88%, rgba(0,0,0,0.85) 100%)'
+              }}
+            />
           </div>
         </div>
 
