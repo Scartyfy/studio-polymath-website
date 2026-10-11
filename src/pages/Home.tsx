@@ -88,7 +88,7 @@ const TimelineRow = ({
       className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative ${
         bgVideo 
           ? 'min-h-[85vh] md:min-h-screen pt-20 sm:pt-28 md:pt-36 pb-20 sm:pb-28' 
-          : ''
+          : 'pb-20 sm:pb-28'
       } ${number !== '01' ? 'mt-16 md:mt-0' : ''}`}
     >
       {/* Background Video plein écran collé à l'image du dessus avec dégradé noir partant du bas */}

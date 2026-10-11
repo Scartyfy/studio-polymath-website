@@ -38,47 +38,13 @@ export function Manifest() {
   return (
     <PageLayout title={t('page.manifest.title')}>
       <article className="max-w-3xl">
-        {/* Lead declaration */}
-        <div className="text-base sm:text-lg md:text-xl font-light text-white leading-relaxed border-b border-[var(--line-strong)] pb-8 mb-8">
-          {t('manifest.p1')}
-        </div>
-
-        {/* Narrative blocks */}
-        <div className="space-y-6 text-sm sm:text-base text-[var(--text-dim)] font-light leading-relaxed">
-          <p>
-            {(() => {
-              const text = t('manifest.p2') || '';
-              const dotIndex = text.indexOf('.');
-              if (dotIndex !== -1) {
-                return (
-                  <>
-                    <strong className="font-medium text-white tracking-wide">{text.slice(0, dotIndex + 1)}</strong>
-                    {text.slice(dotIndex + 1)}
-                  </>
-                );
-              }
-              return text;
-            })()}
-          </p>
-
-          {/* Highlight / Core Nature Thesis */}
-          <div className="relative border-l-2 border-white pl-5 md:pl-6 py-2 my-8 bg-white/[0.02]">
-            <p className="text-base sm:text-lg text-white font-normal leading-relaxed">
-              {t('manifest.p3')}
-            </p>
-          </div>
-
-          <p>
-            {t('manifest.p4')}
-          </p>
-
-          <p>
-            {t('manifest.p5')}
-          </p>
-
-          <p>
-            {t('manifest.p6')}
-          </p>
+        {/* Pavé de texte épuré sans bold ni différence de taille */}
+        <div className="space-y-6 text-sm sm:text-base text-white/85 font-light leading-relaxed">
+          <p>{t('manifest.p1')}</p>
+          <p>{t('manifest.p2')}</p>
+          <p>{t('manifest.p4')}</p>
+          <p>{t('manifest.p5')}</p>
+          <p>{t('manifest.p6')}</p>
         </div>
 
         {/* Footer sign-off */}
@@ -432,11 +398,14 @@ export function Projects() {
         loop 
         muted 
         playsInline 
-        className="w-full h-full object-cover opacity-85 sm:opacity-90"
+        className="w-full h-full object-cover opacity-75 sm:opacity-80"
       >
         <source src={`${import.meta.env.BASE_URL}robot/video-robot.mp4`} type="video/mp4" />
         <source src={`${import.meta.env.BASE_URL}PICS%20PROJET%20ROBOT/VIDEO%20ROBOT.mp4`} type="video/mp4" />
       </video>
+
+      {/* Voile tamisé très léger */}
+      <div className="absolute inset-0 bg-black/20 pointer-events-none" />
 
       {/* Dégradé noir adouci : subtil et discret uniquement vers le bas */}
       <div 
@@ -522,11 +491,11 @@ export function Projects() {
               }}
             />
 
-            {/* Annotation animée au scroll : Ligne technique pointant le robot Louis */}
+            {/* Annotation animée épurée au scroll : Ligne technique pointant le robot Louis */}
             <motion.div 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.6 }}
               className="absolute z-20 pointer-events-none"
               style={{
@@ -535,120 +504,80 @@ export function Projects() {
               }}
             >
               <div className="relative">
-                {/* 1. Point d'ancrage sur le robot avec pulsation radar */}
+                {/* 1. Point discret sur le robot */}
                 <div className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-                  <span className="absolute w-8 h-8 rounded-full border border-white/40 animate-ping pointer-events-none" />
-                  <span className="absolute w-5 h-5 rounded-full border border-white/60 bg-white/10 backdrop-blur-sm" />
-                  <span className="relative block w-2 h-2 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,1)]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,1)]" />
                 </div>
 
-                {/* 2. Ligne technique SVG orientée vers le haut et la droite (Desktop) */}
-                <div className="hidden sm:block absolute overflow-visible pointer-events-none" style={{ top: '-45px', left: '0px', width: '140px', height: '50px' }}>
-                  <svg width="140" height="50" viewBox="0 0 140 50" className="overflow-visible">
+                {/* 2. Ligne technique SVG ultra-fine (Desktop) */}
+                <div className="hidden sm:block absolute overflow-visible pointer-events-none" style={{ top: '-40px', left: '0px', width: '120px', height: '40px' }}>
+                  <svg width="120" height="40" viewBox="0 0 120 40" className="overflow-visible">
                     <motion.path 
-                      d="M 0,45 L 55,5 L 130,5"
+                      d="M 0,40 L 40,5 L 110,5"
                       fill="none"
-                      stroke="rgba(255, 255, 255, 0.9)"
-                      strokeWidth="1.5"
-                      strokeDasharray="4 2"
+                      stroke="rgba(255, 255, 255, 0.75)"
+                      strokeWidth="1"
                       initial={{ pathLength: 0 }}
                       whileInView={{ pathLength: 1 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-                    />
-                    <motion.circle 
-                      cx="130" 
-                      cy="5" 
-                      r="2.5" 
-                      fill="white"
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: 0.85 }}
+                      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                     />
                   </svg>
                 </div>
 
                 {/* 2bis. Ligne technique SVG (Mobile) */}
-                <div className="sm:hidden absolute overflow-visible pointer-events-none" style={{ top: '-35px', left: '0px', width: '70px', height: '40px' }}>
-                  <svg width="70" height="40" viewBox="0 0 70 40" className="overflow-visible">
+                <div className="sm:hidden absolute overflow-visible pointer-events-none" style={{ top: '-30px', left: '0px', width: '60px', height: '30px' }}>
+                  <svg width="60" height="30" viewBox="0 0 60 30" className="overflow-visible">
                     <motion.path 
-                      d="M 0,35 L 25,5 L 60,5"
+                      d="M 0,30 L 25,5 L 50,5"
                       fill="none"
-                      stroke="rgba(255, 255, 255, 0.9)"
-                      strokeWidth="1.5"
-                      strokeDasharray="3 2"
+                      stroke="rgba(255, 255, 255, 0.75)"
+                      strokeWidth="1"
                       initial={{ pathLength: 0 }}
                       whileInView={{ pathLength: 1 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-                    />
-                    <motion.circle 
-                      cx="60" 
-                      cy="5" 
-                      r="2" 
-                      fill="white"
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: 0.8 }}
+                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                     />
                   </svg>
                 </div>
 
-                {/* 3. Badge au bout de la ligne : "Louis" avec animation */}
+                {/* 3. Texte épuré au maximum : "Louis, le robot de surveillance français" */}
                 <motion.div
-                  initial={{ opacity: 0, x: -14, scale: 0.95 }}
-                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                  initial={{ opacity: 0, x: -8 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.55, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.5, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute -translate-y-1/2 pointer-events-auto"
                   style={{
-                    top: '-40px',
-                    left: '136px'
+                    top: '-35px',
+                    left: '116px'
                   }}
                 >
-                  <div className="hidden sm:block bg-black/85 backdrop-blur-md border border-white/25 px-3.5 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] space-y-0.5 min-w-[130px] select-none hover:border-white/50 transition-colors">
-                    <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-1">
-                      <span className="font-mono text-[9px] text-white/50 uppercase tracking-[0.2em]">
-                        ROBOT // 01
-                      </span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)] animate-pulse" />
-                    </div>
-                    
-                    <div className="text-xl font-light text-white tracking-wide leading-tight pt-0.5">
-                      Louis
-                    </div>
-
-                    <div className="font-mono text-[9px] text-white/60 tracking-wider uppercase pt-0.5">
-                      {lang === 'FR' ? 'Robot quadrupède' : 'Quadruped robot'}
-                    </div>
+                  <div className="hidden sm:inline-flex items-center text-xs md:text-sm tracking-wide text-white drop-shadow-md whitespace-nowrap pl-1">
+                    <span className="font-medium text-white">Louis</span>
+                    <span className="text-white/80 font-light">
+                      {lang === 'FR' ? ', le robot de surveillance français' : ', the French surveillance robot'}
+                    </span>
                   </div>
                 </motion.div>
 
-                {/* 3bis. Badge mobile */}
+                {/* 3bis. Version mobile épurée */}
                 <motion.div
-                  initial={{ opacity: 0, x: -10, scale: 0.95 }}
-                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                  initial={{ opacity: 0, x: -6 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.5, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
                   className="sm:hidden absolute -translate-y-1/2 pointer-events-auto"
                   style={{
-                    top: '-30px',
-                    left: '66px'
+                    top: '-25px',
+                    left: '56px'
                   }}
                 >
-                  <div className="bg-black/90 backdrop-blur-md border border-white/25 px-2.5 py-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] space-y-0.5 min-w-[95px] select-none">
-                    <div className="flex items-center justify-between gap-1 border-b border-white/10 pb-0.5">
-                      <span className="font-mono text-[8px] text-white/50 uppercase tracking-[0.2em]">
-                        ROBOT
-                      </span>
-                      <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
-                    </div>
-                    
-                    <div className="text-base font-light text-white tracking-wide leading-tight pt-0.5">
-                      Louis
-                    </div>
+                  <div className="inline-flex items-center text-[11px] tracking-wide text-white drop-shadow-md whitespace-nowrap pl-1">
+                    <span className="font-medium text-white">Louis</span>
+                    <span className="text-white/80 font-light">
+                      {lang === 'FR' ? ', le robot de surveillance français' : ', the French surveillance robot'}
+                    </span>
                   </div>
                 </motion.div>
               </div>
