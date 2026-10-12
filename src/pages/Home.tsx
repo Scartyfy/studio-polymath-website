@@ -248,7 +248,7 @@ export function Home() {
               <p className="text-base sm:text-xl md:text-2xl lg:text-[26px] font-medium leading-snug text-white uppercase group-hover:text-white transition-colors duration-300 tracking-tight">
                 <ScrambleIn text={t('manifest.scroll.part1')} autoStart />
               </p>
-              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm md:text-base lg:text-lg font-light text-white/75 uppercase tracking-wider group-hover:text-white/90 transition-colors duration-300">
+              <p className="mt-1 sm:mt-1.5 text-base sm:text-xl md:text-2xl lg:text-[26px] font-medium leading-snug text-white uppercase group-hover:text-white transition-colors duration-300 tracking-tight">
                 <ScrambleIn text={t('manifest.scroll.part2')} autoStart />
               </p>
             </div>

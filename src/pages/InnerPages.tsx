@@ -68,7 +68,6 @@ export function Team() {
       bio: t('team.alec.bio'),
       skills: [
         { title: t('team.alec.skill1.title'), desc: t('team.alec.skill1.desc') },
-        { title: t('team.alec.skill2.title'), desc: t('team.alec.skill2.desc') },
         { title: t('team.alec.skill3.title'), desc: t('team.alec.skill3.desc') },
         { title: t('team.alec.skill4.title'), desc: t('team.alec.skill4.desc') },
       ],
