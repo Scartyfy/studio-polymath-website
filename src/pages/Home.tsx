@@ -244,9 +244,12 @@ export function Home() {
             <div className="absolute inset-0 bg-black/40 z-10" />
 
             {/* Translating Text inside Transition Band */}
-            <div className="relative z-20 max-w-[320px] md:max-w-lg text-white" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-              <p className="text-sm md:text-base font-light leading-relaxed text-white/80 text-justify uppercase group-hover:text-white transition-colors duration-300">
-                <ScrambleIn text={t('manifest.scroll')} autoStart />
+            <div className="relative z-20 max-w-xl md:max-w-2xl lg:max-w-3xl text-white" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+              <p className="text-base sm:text-xl md:text-2xl lg:text-[26px] font-medium leading-snug text-white uppercase group-hover:text-white transition-colors duration-300 tracking-tight">
+                <ScrambleIn text={t('manifest.scroll.part1')} autoStart />
+              </p>
+              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm md:text-base lg:text-lg font-light text-white/75 uppercase tracking-wider group-hover:text-white/90 transition-colors duration-300">
+                <ScrambleIn text={t('manifest.scroll.part2')} autoStart />
               </p>
             </div>
             
@@ -327,14 +330,14 @@ export function Home() {
           </div>
 
           {/* Sticky footer */}
-          <div className="sticky z-0 bottom-0 left-0 w-full h-[75vh] md:h-[65vh] bg-black border-t border-[var(--line-strong)] flex justify-center items-center overflow-hidden">
+          <div className="sticky z-0 bottom-0 left-0 w-full h-[36vh] md:h-[40vh] min-h-[220px] md:min-h-[260px] bg-black border-t border-[var(--line-strong)] flex justify-center items-center overflow-hidden">
             {/* Background Image Rotated */}
-            <div className="absolute top-1/2 left-1/2 w-[75vh] md:w-[65vh] h-[100vw] -translate-x-1/2 -translate-y-1/2 -rotate-90 z-0">
+            <div className="absolute top-1/2 left-1/2 w-[36vh] md:w-[40vh] h-[100vw] -translate-x-1/2 -translate-y-1/2 -rotate-90 z-0">
               <img src={`${import.meta.env.BASE_URL}mur.jpg`} className="w-full h-full object-cover" alt="Footer Background" />
             </div>
             
-            <div className="relative w-full h-full flex justify-end px-[var(--gutter)] pt-[15vh] text-white items-start z-10">
-              <div className="flex flex-row space-x-12 sm:space-x-16 md:space-x-24 text-sm sm:text-lg md:text-xl text-white relative z-10">
+            <div className="relative w-full h-full flex justify-end px-[var(--gutter)] pt-6 sm:pt-8 md:pt-10 text-white items-start z-10">
+              <div className="flex flex-row space-x-12 sm:space-x-16 md:space-x-24 text-sm sm:text-base md:text-lg text-white relative z-10">
                 <ul className="flex flex-col gap-2 items-end">
                   <FooterLink onClick={() => navigate('/')}>{t('footer.home')}</FooterLink>
                   <FooterLink onClick={() => navigate('/projects')}>{t('footer.projects')}</FooterLink>
@@ -358,16 +361,16 @@ export function Home() {
               </div>
 
               {/* Emblem Logo replacing polymath studio text */}
-              <div className="absolute bottom-6 sm:bottom-8 md:bottom-12 left-4 sm:left-8 md:left-12 pointer-events-none z-10 select-none">
+              <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-8 md:left-12 pointer-events-none z-10 select-none">
                 <img 
                   src={`${import.meta.env.BASE_URL}logosimple.png`} 
                   alt="Polymath Studio" 
-                  className="w-28 sm:w-36 md:w-48 lg:w-56 h-auto object-contain opacity-60" 
+                  className="w-20 sm:w-28 md:w-36 h-auto object-contain opacity-60" 
                 />
               </div>
 
               {/* Copyrights and Legal Mentions (Bottom Right of Footer) */}
-              <div className="absolute bottom-4 right-4 text-right text-white/50 text-[10px] md:text-xs font-mono uppercase tracking-widest leading-relaxed pointer-events-auto">
+              <div className="absolute bottom-3 sm:bottom-4 right-4 sm:right-8 text-right text-white/50 text-[10px] md:text-xs font-mono uppercase tracking-widest leading-relaxed pointer-events-auto">
                 <span>{t('footer.rights')}</span><br />
                 <span className="cursor-pointer hover:text-white transition-colors" onClick={() => navigate('/manifest')}>{t('footer.legal')}</span>
               </div>

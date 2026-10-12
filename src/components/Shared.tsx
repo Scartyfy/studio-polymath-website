@@ -266,15 +266,32 @@ export function Footer() {
   const navigate = useNavigate();
   const { t } = useLanguage();
   return (
-    <footer className="relative w-full h-[25vh] md:h-[35vh] bg-black border-t border-[var(--line-strong)] mt-24 overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 w-[25vh] md:w-[35vh] h-[100vw] -translate-x-1/2 -translate-y-1/2 -rotate-90 z-0">
-        <img src={`${import.meta.env.BASE_URL}mur.jpg`} className="w-full h-full object-cover" alt="Footer Background" />
+    <footer className="relative w-full h-16 sm:h-20 bg-black border-t border-[var(--line-strong)] mt-16 sm:mt-24 overflow-hidden flex items-center justify-between px-4 sm:px-8 md:px-12">
+      {/* Background Concrete Image Band */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <img 
+          src={`${import.meta.env.BASE_URL}mur.jpg`} 
+          className="w-full h-full object-cover opacity-70" 
+          alt="Footer Background" 
+        />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
-      <div className="absolute inset-0 bg-black/20 z-10" />
 
-      {/* Copyrights and Legal Mentions (placed in the corner just like Home.tsx) */}
-      <div className="absolute bottom-4 right-4 text-right text-white/50 text-[10px] md:text-xs font-mono uppercase tracking-widest leading-relaxed z-20 pointer-events-auto">
-        <span>{t('footer.rights')}</span><br />
+      {/* Left side: subtle logo emblem */}
+      <div className="relative z-10 flex items-center pointer-events-auto">
+        <Link to="/" className="flex items-center opacity-70 hover:opacity-100 transition-opacity">
+          <img 
+            src={`${import.meta.env.BASE_URL}logo_simple.png`} 
+            alt="Polymath Studio" 
+            className="h-5 sm:h-6 w-auto object-contain" 
+          />
+        </Link>
+      </div>
+
+      {/* Right side: Copyrights and Legal Mentions */}
+      <div className="relative z-10 text-right text-white/60 text-[10px] sm:text-xs font-mono uppercase tracking-widest leading-relaxed pointer-events-auto">
+        <span>{t('footer.rights')}</span>
+        <span className="mx-2 text-white/30">•</span>
         <span className="cursor-pointer hover:text-white transition-colors" onClick={() => navigate('/manifest')}>{t('footer.legal')}</span>
       </div>
     </footer>

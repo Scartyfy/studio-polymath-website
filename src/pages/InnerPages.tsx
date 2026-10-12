@@ -619,7 +619,7 @@ export function Projects() {
               {capabilities.map((cap, idx) => (
                 <div 
                   key={idx}
-                  className="p-6 border border-white/10 bg-white/[0.015] hover:border-white/30 hover:bg-white/[0.03] transition-all duration-300 flex flex-col justify-between group"
+                  className="p-6 border border-white/10 bg-white/[0.015] flex flex-col justify-between"
                 >
                   <div>
                     <div className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest mb-3">
@@ -777,9 +777,9 @@ export function Projects() {
                 </div>
 
                 <div className="space-y-2.5">
-                  <div className="p-3 border border-white/20 bg-white/[0.04] flex items-center gap-3">
-                    <span className="w-2 h-2 rounded-full bg-white shrink-0 shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
-                    <span className="text-white text-xs font-medium tracking-wide">Reinforcement Learning</span>
+                  <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
+                    <span className="text-white/90 text-xs font-light">Reinforcement Learning</span>
                   </div>
 
                   <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
@@ -809,7 +809,7 @@ export function Projects() {
 
         {/* CTA Section */}
         <div className="border-t border-[var(--line-strong)] pt-14 pb-8 flex flex-col items-center text-center">
-          <div className="inline-flex items-center text-xs font-mono tracking-[0.25em] text-white/90 uppercase px-3.5 py-1.5 border border-white/20 bg-white/[0.03] mb-4">
+          <div className="inline-flex items-center text-sm sm:text-base md:text-lg font-mono tracking-[0.2em] font-medium text-white uppercase px-5 sm:px-7 py-2.5 sm:py-3 border border-white/25 bg-white/[0.04] mb-5 shadow-lg">
             <span>{t('projects.cta.badge')}</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-light text-white mb-3">
