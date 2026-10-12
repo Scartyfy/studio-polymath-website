@@ -50,7 +50,7 @@ export function Manifest() {
         {/* Footer sign-off */}
         <div className="mt-16 pt-8 border-t border-[var(--line-strong)] flex justify-between items-center">
           <div className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--text-dimmer)]">
-            Polymath Studio — Design & Ingénierie
+            {t('manifest.signoff')}
           </div>
         </div>
       </article>
@@ -283,7 +283,7 @@ export function Contact() {
               </p>
               {isActivationSent && (
                 <div className="mb-6 p-3 border border-amber-400/30 bg-amber-950/20 text-amber-200 text-xs font-mono text-left max-w-md">
-                  ℹ️ <strong>Première configuration :</strong> FormSubmit a envoyé un e-mail à <code>studiopolymath.contact@gmail.com</code> (vérifiez spams/promotions) contenant un bouton <em>"Activate Form"</em>. Cliquez dessus une fois pour autoriser la réception directe de tous vos messages !
+                  ℹ️ <strong>{t('form.activation.title')}</strong> {t('form.activation.desc')}
                 </div>
               )}
               <button 
@@ -555,7 +555,7 @@ export function Projects() {
                   <div className="hidden sm:inline-flex items-center text-xs md:text-sm tracking-wide text-white drop-shadow-md whitespace-nowrap pl-1">
                     <span className="font-medium text-white">Louis</span>
                     <span className="text-white/80 font-light">
-                      {lang === 'FR' ? ', le robot de surveillance français' : ', the French surveillance robot'}
+                      {t('projects.callout.desc')}
                     </span>
                   </div>
                 </motion.div>
@@ -575,7 +575,7 @@ export function Projects() {
                   <div className="inline-flex items-center text-[11px] tracking-wide text-white drop-shadow-md whitespace-nowrap pl-1">
                     <span className="font-medium text-white">Louis</span>
                     <span className="text-white/80 font-light">
-                      {lang === 'FR' ? ', le robot de surveillance français' : ', the French surveillance robot'}
+                      {t('projects.callout.desc')}
                     </span>
                   </div>
                 </motion.div>
@@ -622,7 +622,7 @@ export function Projects() {
                 >
                   <div>
                     <div className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest mb-3">
-                      {`0${idx + 1} // SPÉCIFICATION`}
+                      {`0${idx + 1} // ${t('projects.sheet.specification')}`}
                     </div>
                     <h5 className="text-base font-medium text-white mb-2.5">
                       {cap.title}
@@ -641,7 +641,7 @@ export function Projects() {
             <div className="lg:col-span-2 p-6 sm:p-8 border border-white/15 bg-white/[0.015] flex flex-col justify-between">
               <div>
                 <div className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest mb-3">
-                  Architecture // VMS & SOC
+                  {t('projects.sheet.vms_badge')}
                 </div>
                 <h4 className="text-lg sm:text-xl font-light text-white mb-3">
                   {t('projects.sheet.supervision.title')}
@@ -655,7 +655,7 @@ export function Projects() {
             <div className="p-6 sm:p-8 border border-white/15 bg-white/[0.015] flex flex-col justify-between">
               <div>
                 <div className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest mb-3">
-                  Typologie Cible
+                  {t('projects.sheet.sites_badge')}
                 </div>
                 <h4 className="text-lg sm:text-xl font-light text-white mb-3">
                   {t('projects.sheet.sites.title')}
@@ -665,7 +665,7 @@ export function Projects() {
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-white/10 font-mono text-[11px] text-white/40 uppercase tracking-wider">
-                {lang === 'FR' ? 'Périmètres Extérieurs & Espaces Ouverts' : 'Outdoor Perimeters & Open Facilities'}
+                {t('projects.sheet.sites_footer')}
               </div>
             </div>
           </div>
@@ -674,7 +674,7 @@ export function Projects() {
           <div className="space-y-4 pt-4 border-t border-white/15">
             <div className="mb-4">
               <span className="font-mono text-[11px] text-white/40 uppercase tracking-[0.2em] block mb-1">
-                FAQ // Clarifications
+                {t('projects.sheet.faq_badge')}
               </span>
               <h4 className="text-xl sm:text-2xl font-light text-white tracking-tight">
                 {t('projects.sheet.faq.title')}
@@ -757,7 +757,7 @@ export function Projects() {
               <div className="aspect-[16/10] sm:aspect-[4/3] lg:aspect-auto lg:h-full w-full overflow-hidden bg-neutral-950 relative min-h-[300px]">
                 <img 
                   src={`${import.meta.env.BASE_URL}robot/jo-expertise.jpg`}
-                  alt="Travaux et expertise robotique quadrupède"
+                  alt={t('projects.jo.img_alt')}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
               </div>
@@ -768,7 +768,7 @@ export function Projects() {
               <div className="space-y-5">
                 <div className="flex items-center justify-between border-b border-white/20 pb-3">
                   <div className="text-white uppercase tracking-wider font-medium text-sm">
-                    <span>{lang === 'FR' ? 'Tableau des Compétences' : 'Competencies Matrix'}</span>
+                    <span>{t('projects.skills.title')}</span>
                   </div>
                   <span className="text-[10px] tracking-widest text-white/50 uppercase border border-white/20 px-2 py-0.5">
                     R&D
@@ -778,27 +778,27 @@ export function Projects() {
                 <div className="space-y-2.5">
                   <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
-                    <span className="text-white/90 text-xs font-light">Reinforcement Learning</span>
+                    <span className="text-white/90 text-xs font-light">{t('projects.skills.skill1')}</span>
                   </div>
 
                   <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
-                    <span className="text-white/90 text-xs font-light">Architecture logicielle ROS / ROS 2</span>
+                    <span className="text-white/90 text-xs font-light">{t('projects.skills.skill2')}</span>
                   </div>
 
                   <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
-                    <span className="text-white/90 text-xs font-light">Fusion de capteurs LiDAR, IMU & caméras embarquées</span>
+                    <span className="text-white/90 text-xs font-light">{t('projects.skills.skill3')}</span>
                   </div>
 
                   <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
-                    <span className="text-white/90 text-xs font-light">Traitement bord-machine temps réel faible latence</span>
+                    <span className="text-white/90 text-xs font-light">{t('projects.skills.skill4')}</span>
                   </div>
 
                   <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
-                    <span className="text-white/90 text-xs font-light">Conception de bancs d'essais et de transmission</span>
+                    <span className="text-white/90 text-xs font-light">{t('projects.skills.skill5')}</span>
                   </div>
                 </div>
               </div>

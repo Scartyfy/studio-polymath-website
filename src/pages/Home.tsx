@@ -244,11 +244,11 @@ export function Home() {
             <div className="absolute inset-0 bg-black/40 z-10" />
 
             {/* Translating Text inside Transition Band */}
-            <div className="relative z-20 max-w-xl md:max-w-2xl lg:max-w-3xl text-white" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-              <p className="text-base sm:text-xl md:text-2xl lg:text-[26px] font-medium leading-snug text-white uppercase group-hover:text-white transition-colors duration-300 tracking-tight">
+            <div className="relative z-20 max-w-xl md:max-w-2xl text-white" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-snug text-white uppercase group-hover:text-white transition-colors duration-300 tracking-tight">
                 <ScrambleIn text={t('manifest.scroll.part1')} autoStart />
               </p>
-              <p className="mt-1 sm:mt-1.5 text-base sm:text-xl md:text-2xl lg:text-[26px] font-medium leading-snug text-white uppercase group-hover:text-white transition-colors duration-300 tracking-tight">
+              <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-snug text-white uppercase group-hover:text-white transition-colors duration-300 tracking-tight">
                 <ScrambleIn text={t('manifest.scroll.part2')} autoStart />
               </p>
             </div>
@@ -256,10 +256,17 @@ export function Home() {
             {/* Motion Button "Explore" with Arrow Down-Left */}
             <div className="relative z-20 flex items-center shrink-0 ml-4">
               <MotionButton 
-                label="Explore" 
+                label={t('home.explore')} 
                 shape="angular"
                 icon={<ArrowDownLeft className="text-black w-6 h-6 stroke-[1.5px]" />}
-                classes="border border-white/20 bg-black/60 backdrop-blur-sm w-44 sm:w-48 rounded-none"
+                onClick={() => {
+                  try {
+                    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+                  } catch {
+                    window.scrollTo(0, window.innerHeight);
+                  }
+                }}
+                classes="border border-white/20 bg-transparent w-44 sm:w-48 rounded-none"
               />
             </div>
           </div>

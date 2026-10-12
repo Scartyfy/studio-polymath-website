@@ -146,12 +146,12 @@ export function Navigation({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
             <div className="w-[calc(100vw-32px)] max-w-[310px] border border-white/20 bg-neutral-950/95 backdrop-blur-2xl shadow-2xl p-2.5 flex flex-col gap-1">
               {/* Header with Close */}
               <div className="flex items-center justify-between px-2 py-1.5 border-b border-white/10 text-[10px] font-mono tracking-widest text-white/50 uppercase mb-1">
-                <span>Navigation</span>
+                <span>{t('nav.title')}</span>
                 <button 
                   type="button" 
                   onClick={() => setIsMobileOpen(false)}
                   className="p-1 text-white/60 hover:text-white"
-                  aria-label="Fermer le menu"
+                  aria-label={t('nav.close')}
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>

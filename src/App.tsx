@@ -3,6 +3,7 @@ import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Manifest, Team, Contact, Projects } from './pages/InnerPages';
 import { LanguageProvider } from './LanguageContext';
+import { IntroScreen } from './components/IntroScreen';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -93,6 +94,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <LanguageProvider>
+        <IntroScreen />
         <HashRouter>
           <ScrollToTop />
           <Routes>

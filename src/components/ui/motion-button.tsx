@@ -36,7 +36,7 @@ const MotionButton: FC<MotionButtonProps> = ({
     <button
       onClick={onClick}
       className={cn(
-        'group/btn bg-background relative h-auto w-50 cursor-pointer border border-white/20 p-1 outline-none transition-colors duration-300 select-none overflow-hidden',
+        'group/btn bg-transparent relative h-auto w-50 cursor-pointer border border-white/20 p-1 outline-none transition-colors duration-300 select-none overflow-hidden',
         isAngular ? 'rounded-none' : 'rounded-full',
         classes,
         className
