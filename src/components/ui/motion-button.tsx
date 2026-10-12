@@ -18,6 +18,7 @@ export interface MotionButtonProps {
   delay?: number
   icon?: React.ReactNode
   onClick?: () => void
+  shape?: 'rounded' | 'angular'
 }
 
 const MotionButton: FC<MotionButtonProps> = ({ 
@@ -26,19 +27,26 @@ const MotionButton: FC<MotionButtonProps> = ({
   className,
   variant = 'primary',
   icon,
-  onClick
+  onClick,
+  shape = 'angular'
 }) => {
+  const isAngular = shape === 'angular'
+
   return (
     <button
       onClick={onClick}
       className={cn(
-        'group/btn bg-background relative h-auto w-50 cursor-pointer rounded-full border border-white/20 p-1 outline-none transition-colors duration-300 select-none',
+        'group/btn bg-background relative h-auto w-50 cursor-pointer border border-white/20 p-1 outline-none transition-colors duration-300 select-none overflow-hidden',
+        isAngular ? 'rounded-none' : 'rounded-full',
         classes,
         className
       )}
     >
       <span
-        className='circle bg-primary m-0 block h-12 w-12 overflow-hidden rounded-full duration-500 ease-out group-hover/btn:w-full'
+        className={cn(
+          'circle bg-primary m-0 block h-12 w-12 overflow-hidden duration-500 ease-out group-hover/btn:w-full',
+          isAngular ? 'rounded-none' : 'rounded-full'
+        )}
         aria-hidden='true'
       />
       <div className='icon absolute top-1/2 left-4 translate-x-0 -translate-y-1/2 duration-500 ease-out group-hover/btn:translate-x-[0.35rem] flex items-center justify-center pointer-events-none'>

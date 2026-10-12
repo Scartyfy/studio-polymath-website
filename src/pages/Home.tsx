@@ -257,8 +257,9 @@ export function Home() {
             <div className="relative z-20 flex items-center shrink-0 ml-4">
               <MotionButton 
                 label="Explore" 
+                shape="angular"
                 icon={<ArrowDownLeft className="text-black w-6 h-6 stroke-[1.5px]" />}
-                classes="border border-white/20 bg-black/60 backdrop-blur-sm w-44 sm:w-48"
+                classes="border border-white/20 bg-black/60 backdrop-blur-sm w-44 sm:w-48 rounded-none"
               />
             </div>
           </div>
