@@ -245,11 +245,11 @@ export function Home() {
 
             {/* Translating Text inside Transition Band */}
             <div className="relative z-20 max-w-xl md:max-w-2xl text-white" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-snug text-white uppercase group-hover:text-white transition-colors duration-300 tracking-tight">
-                <ScrambleIn text={t('manifest.scroll.part1')} autoStart />
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-snug text-white uppercase group-hover:text-white transition-colors duration-300 tracking-tight min-h-[1.25em]">
+                <ScrambleIn text={t('manifest.scroll.part1')} autoStart delay={2000} />
               </p>
-              <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-snug text-white uppercase group-hover:text-white transition-colors duration-300 tracking-tight">
-                <ScrambleIn text={t('manifest.scroll.part2')} autoStart />
+              <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-snug text-white uppercase group-hover:text-white transition-colors duration-300 tracking-tight min-h-[1.25em]">
+                <ScrambleIn text={t('manifest.scroll.part2')} autoStart delay={2200} />
               </p>
             </div>
             
