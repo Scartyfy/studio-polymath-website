@@ -1,6 +1,5 @@
 {
-  "name": "POLYMATHE — Nous faisons de la robotique",
-  "description": "POLYMATHE — Nous faisons de la robotique",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "name": "Remix Remix:  Blue print PORTFOLIO 1.3",
+  "description": "A magical, interactive portfolio where a card trick reveals the designer\u0027s work.",
+  "requestFramePermissions": []
 }

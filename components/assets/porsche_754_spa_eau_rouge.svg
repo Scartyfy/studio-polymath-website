@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500">
+  <defs>
+    <linearGradient id="eauRougeSky" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#73848e"/>
+      <stop offset="50%" stop-color="#8e9ea7"/>
+      <stop offset="100%" stop-color="#b8c5cc"/>
+    </linearGradient>
+    <linearGradient id="climbTarmac" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#15191f"/>
+      <stop offset="60%" stop-color="#222a35"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    <linearGradient id="porscheRedRear" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b0015"/>
+      <stop offset="25%" stop-color="#d0112b"/>
+      <stop offset="50%" stop-color="#ff2233"/>
+      <stop offset="75%" stop-color="#d0112b"/>
+      <stop offset="100%" stop-color="#8b0015"/>
+    </linearGradient>
+    <filter id="laserGlow">
+      <feGaussianBlur stdDeviation="6" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1500" fill="#0b0e14"/>
+
+  <!-- ========================================================================= -->
+  <!-- PANEL 1 (TOP): REAR VIEW ASCENDING RAIDILLON INTO THE MIST                -->
+  <!-- ========================================================================= -->
+  <g id="panel-top">
+    <rect width="1200" height="748" fill="url(#eauRougeSky)"/>
+
+    <!-- Ardennes Hill Forest Slopes in Mist -->
+    <g fill="#1c2925" opacity="0.9">
+      <!-- Left Hill Pine Forest -->
+      <polygon points="0,0 480,0 420,400 0,600" opacity="0.7"/>
+      <polygon points="0,120 440,120 380,480 0,650"/>
+      <!-- Right Hill Pine Forest -->
+      <polygon points="1200,0 680,0 740,400 1200,600" opacity="0.7"/>
+      <polygon points="1200,120 720,120 780,480 1200,650"/>
+    </g>
+
+    <!-- Dense Fog Wall at Hill Crest -->
+    <ellipse cx="580" cy="150" rx="350" ry="120" fill="#cbd5e1" opacity="0.6" filter="url(#laserGlow)"/>
+
+    <!-- Steep Uphill Track Perspective (Vanishing High Up in Mist at 580, 160) -->
+    <polygon points="0,748 1200,748 640,160 520,160" fill="url(#climbTarmac)"/>
+
+    <!-- Curving Red & Yellow Kerb Snaking Up the Left Side of Raidillon -->
+    <g>
+      <!-- Base Curb Ribbon -->
+      <path d="M 0 540 Q 320 440 520 160 L 536 160 Q 345 440 100 560 Z" fill="#111"/>
+      <!-- Alternating Kerb Strips -->
+      <polygon points="0,540 80,510 110,525 30,555" fill="#eab308"/>
+      <polygon points="80,510 160,475 190,490 110,525" fill="#dc2626"/>
+      <polygon points="160,475 240,430 265,445 190,490" fill="#eab308"/>
+      <polygon points="240,430 320,380 340,395 265,445" fill="#dc2626"/>
+      <polygon points="320,380 400,320 415,335 340,395" fill="#eab308"/>
+      <polygon points="400,320 460,250 472,262 415,335" fill="#dc2626"/>
+      <polygon points="460,250 520,160 536,160 472,262" fill="#eab308"/>
+    </g>
+
+    <!-- Tire Rubber Lines on Track Leading Uphill -->
+    <g stroke="#0a0d14" stroke-width="14" opacity="0.55" fill="none">
+      <path d="M 420 748 Q 520 500 565 240"/>
+      <path d="M 820 748 Q 660 500 595 240"/>
+    </g>
+
+    <!-- Porsche 754 Rear Supercar Silhouette (Climbing Raidillon) -->
+    <g transform="translate(570, 260)">
+      <!-- Ground Shadow & Water Spray -->
+      <ellipse cx="150" cy="170" rx="220" ry="30" fill="#05080e" opacity="0.8"/>
+      <ellipse cx="150" cy="180" rx="160" ry="20" fill="#94a3b8" opacity="0.3" filter="url(#laserGlow)"/>
+
+      <!-- Wide Muscular Rear Haunches -->
+      <path d="M -80 140 
+               C -70 90, -40 50, 20 45 
+               C 70 40, 100 0, 150 0 
+               C 200 0, 230 40, 280 45 
+               C 340 50, 370 90, 380 140 
+               L 390 170 
+               C 330 180, 240 190, 150 190 
+               C 60 190, -30 180, -90 170 Z" 
+            fill="url(#porscheRedRear)" stroke="#991b1b" stroke-width="2"/>
+
+      <!-- High Downforce Suspended Rear Wing on Twin Pylons -->
+      <line x1="60" y1="-15" x2="80" y2="30" stroke="#1f2937" stroke-width="6"/>
+      <line x1="240" y1="-15" x2="220" y2="30" stroke="#1f2937" stroke-width="6"/>
+      <path d="M -120 -20 L 420 -20 C 435 -20, 440 -12, 430 -4 L -130 -4 C -140 -12, -135 -20, -120 -20 Z" 
+            fill="#111827" stroke="#dc2626" stroke-width="2"/>
+      <!-- Endplates -->
+      <polygon points="-135,-30 -120,5 -140,5" fill="#dc2626"/>
+      <polygon points="435,-30 420,5 440,5" fill="#dc2626"/>
+
+      <!-- Laser OLED Continuous Horizon Rear Taillight Bar (Glowing) -->
+      <path d="M -50 85 Q 150 78 350 85" fill="none" stroke="#ff2233" stroke-width="7" filter="url(#laserGlow)"/>
+      <path d="M -50 85 Q 150 78 350 85" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+
+      <!-- Carbon Rear Diffuser Tunnel with Vertical Aero Strakes -->
+      <path d="M 40 160 L 260 160 L 250 185 L 50 185 Z" fill="#080a0f" stroke="#334155" stroke-width="1.5"/>
+      <rect x="85" y="160" width="5" height="24" fill="#475569"/>
+      <rect x="125" y="158" width="5" height="27" fill="#475569"/>
+      <rect x="170" y="158" width="5" height="27" fill="#475569"/>
+      <rect x="210" y="160" width="5" height="24" fill="#475569"/>
+
+      <!-- Wide Rear Track Slicks -->
+      <rect x="-75" y="110" width="45" height="65" rx="8" fill="#090c12" stroke="#111" stroke-width="2"/>
+      <rect x="330" y="110" width="45" height="65" rx="8" fill="#090c12" stroke="#111" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- Divider Line -->
+  <line x1="0" y1="750" x2="1200" y2="750" stroke="#000000" stroke-width="4"/>
+
+  <!-- ========================================================================= -->
+  <!-- PANEL 2 (BOTTOM): LOW-ANGLE FRONT 3/4 GROUND STANCE BY SPA KERB           -->
+  <!-- ========================================================================= -->
+  <g id="panel-bottom" transform="translate(0, 752)">
+    <!-- Sky & Misty Hill Background Rising in Distance -->
+    <rect width="1200" height="748" fill="url(#eauRougeSky)"/>
+
+    <!-- Hill slope rising towards right and fog -->
+    <polygon points="0,400 1200,100 1200,600 0,600" fill="#1e2d27" opacity="0.85"/>
+    <!-- Distant fog envelope -->
+    <ellipse cx="850" cy="140" rx="350" ry="120" fill="#ffffff" opacity="0.4" filter="url(#laserGlow)"/>
+
+    <!-- Rising Straight Asphalt -->
+    <polygon points="0,748 1200,748 1200,420 0,550" fill="#181e26"/>
+
+    <!-- FOREGROUND SHARP KERB (Alternating Red and Yellow) Leading Perspective Up -->
+    <g>
+      <!-- Base Curb outline -->
+      <polygon points="0,680 1200,600 1200,748 0,748" fill="#0f131a"/>
+      
+      <!-- Serrated Kerb Blocks in High Contrast -->
+      <polygon points="0,680 180,665 180,748 0,748" fill="#dc2626"/>
+      <polygon points="180,665 380,650 380,748 180,748" fill="#eab308"/>
+      <polygon points="380,650 580,638 580,748 380,748" fill="#dc2626"/>
+      <polygon points="580,638 780,626 780,748 580,748" fill="#eab308"/>
+      <polygon points="780,626 980,614 980,748 780,748" fill="#dc2626"/>
+      <polygon points="980,614 1200,600 1200,748 980,748" fill="#eab308"/>
+
+      <!-- White Inner Edge Line of Curb -->
+      <line x1="0" y1="680" x2="1200" y2="600" stroke="#ffffff" stroke-width="6"/>
+    </g>
+
+    <!-- Porsche 754 Low Ground-Hugging Stance -->
+    <g transform="translate(240, 280)">
+      <!-- Ground Shadow Under Carbon Splitter -->
+      <ellipse cx="360" cy="340" rx="340" ry="35" fill="#05070c" opacity="0.9"/>
+
+      <!-- Bodywork in Low Front 3/4 Stance -->
+      <path d="M 60 290 
+               C 90 230, 160 170, 260 150 
+               C 340 140, 420 80, 520 80 
+               C 620 80, 680 130, 760 180 
+               L 880 200 
+               C 910 220, 930 260, 900 290 
+               L 830 310 
+               C 720 330, 560 340, 420 340 
+               C 280 340, 140 330, 70 310 Z" 
+            fill="url(#porscheRedRear)" stroke="#991b1b" stroke-width="2"/>
+
+      <!-- Hood Crest & Contours -->
+      <path d="M 100 280 C 220 200, 380 150, 560 170 L 620 210 C 440 190, 260 220, 120 290 Z" fill="#ffffff" opacity="0.25"/>
+
+      <!-- Low-Slung Cockpit Glass Canopy -->
+      <path d="M 300 150 
+               C 360 85, 450 60, 540 60 
+               C 620 60, 690 100, 730 160 
+               C 600 150, 460 150, 300 150 Z" 
+            fill="#07090f" stroke="#1e293b" stroke-width="2"/>
+
+      <!-- Twin Razor Matrix 4-Point LED Headlamps -->
+      <g transform="translate(420, 220)">
+        <ellipse cx="0" cy="0" rx="45" ry="22" fill="#0a0e17" stroke="#475569" stroke-width="2"/>
+        <rect x="-28" y="-10" width="12" height="8" fill="#ffffff" rx="2"/>
+        <rect x="-12" y="-10" width="12" height="8" fill="#ffffff" rx="2"/>
+        <rect x="-28" y="2" width="12" height="8" fill="#ffffff" rx="2"/>
+        <rect x="-12" y="2" width="12" height="8" fill="#ffffff" rx="2"/>
+      </g>
+      <g transform="translate(760, 205)">
+        <ellipse cx="0" cy="0" rx="28" ry="16" fill="#0a0e17" stroke="#475569" stroke-width="2"/>
+        <rect x="-14" y="-6" width="8" height="6" fill="#ffffff" rx="1"/>
+        <rect x="-4" y="-6" width="8" height="6" fill="#ffffff" rx="1"/>
+        <rect x="-14" y="2" width="8" height="6" fill="#ffffff" rx="1"/>
+        <rect x="-4" y="2" width="8" height="6" fill="#ffffff" rx="1"/>
+      </g>
+
+      <!-- Carbon Front Splitter Sniffing Ground -->
+      <polygon points="120,335 480,325 460,355 100,350" fill="#0a0d14" stroke="#334155" stroke-width="1.5"/>
+
+      <!-- Wheels -->
+      <g transform="translate(220, 280)">
+        <ellipse cx="0" cy="0" rx="60" ry="85" fill="#090a0f" stroke="#111" stroke-width="4"/>
+        <ellipse cx="0" cy="0" rx="45" ry="65" fill="#111827" stroke="#475569" stroke-width="2"/>
+        <circle cx="0" cy="0" r="16" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+      </g>
+      <g transform="translate(830, 255)">
+        <ellipse cx="0" cy="0" rx="38" ry="60" fill="#090a0f" stroke="#111" stroke-width="3"/>
+        <circle cx="0" cy="0" r="10" fill="#dc2626"/>
+      </g>
+    </g>
+
+    <!-- Watermark Monospace Stamp -->
+    <text x="1160" y="720" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="14" letter-spacing="2" text-anchor="end">Location: Spa-Francorchamps Circuit Time: 07:00 AM</text>
+  </g>
+</svg>

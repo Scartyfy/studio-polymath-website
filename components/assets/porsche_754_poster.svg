@@ -1,0 +1,350 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" width="1200" height="1600">
+  <defs>
+    <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="12" r="1" fill="#000000" opacity="0.07"/>
+    </pattern>
+    <linearGradient id="carRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2233"/>
+      <stop offset="40%" stop-color="#d0112b"/>
+      <stop offset="70%" stop-color="#8b0015"/>
+      <stop offset="100%" stop-color="#420008"/>
+    </linearGradient>
+    <linearGradient id="redGloss" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="30%" stop-color="#ff4455" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.7"/>
+    </linearGradient>
+    <filter id="sketchShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Paper Canvas -->
+  <rect width="1200" height="1600" fill="#F6F5F2"/>
+  <rect width="1200" height="1600" fill="url(#dotGrid)"/>
+
+  <!-- Red Marker Gestural Swashes in Background -->
+  <path d="M 80 180 C 240 120, 420 130, 460 260 C 490 360, 320 400, 180 380 C 80 370, 70 240, 80 180 Z" fill="#dc2626" opacity="0.82"/>
+  <path d="M 900 1320 C 1040 1340, 1160 1440, 1120 1560 C 1050 1620, 940 1600, 880 1500 C 840 1430, 840 1310, 900 1320 Z" fill="#dc2626" opacity="0.85"/>
+  <path d="M 380 580 Q 420 540 450 560 T 420 620 Z" fill="#b91c1c" opacity="0.4"/>
+
+  <!-- Header: PORSCHE -->
+  <g transform="translate(540, 90)">
+    <text x="0" y="0" fill="#0f141c" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="46" font-weight="900" letter-spacing="18">PORSCHE</text>
+    <line x1="0" y1="20" x2="600" y2="20" stroke="#b91c1c" stroke-width="5" stroke-linecap="square"/>
+  </g>
+
+  <!-- Vertical Left Brutalist Typography: 754 concept & Chequered Flag -->
+  <g transform="translate(80, 1480) rotate(-90)">
+    <text x="0" y="0" fill="#111622" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="140" font-weight="900" letter-spacing="-4">754</text>
+    <text x="260" y="-12" fill="#111622" font-family="'Space Grotesk', sans-serif" font-size="42" font-weight="800" letter-spacing="4">concept</text>
+  </g>
+
+  <!-- Chequered Flag Pattern next to vertical 754 -->
+  <g transform="translate(15, 600)" opacity="0.75">
+    <rect x="0" y="0" width="12" height="12" fill="#111"/>
+    <rect x="12" y="12" width="12" height="12" fill="#111"/>
+    <rect x="24" y="0" width="12" height="12" fill="#111"/>
+    <rect x="36" y="12" width="12" height="12" fill="#111"/>
+    <rect x="48" y="0" width="12" height="12" fill="#111"/>
+    <rect x="60" y="12" width="12" height="12" fill="#111"/>
+    <rect x="72" y="0" width="12" height="12" fill="#111"/>
+    <rect x="0" y="24" width="12" height="12" fill="#111"/>
+    <rect x="24" y="24" width="12" height="12" fill="#111"/>
+    <rect x="48" y="24" width="12" height="12" fill="#111"/>
+    <rect x="72" y="24" width="12" height="12" fill="#111"/>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 1. TOP SECTION: SIDE PROFILE SKETCH IN RED GRAPHITE                       -->
+  <!-- ========================================================================= -->
+  <g transform="translate(50, 130)">
+    <!-- Construction Alignment Rays -->
+    <line x1="20" y1="190" x2="1080" y2="190" stroke="#b91c1c" stroke-width="0.8" stroke-opacity="0.4" stroke-dasharray="4 4"/>
+    <line x1="50" y1="260" x2="1050" y2="260" stroke="#111111" stroke-width="0.6" stroke-opacity="0.3"/>
+    <line x1="780" y1="80" x2="1050" y2="160" stroke="#b91c1c" stroke-width="1" stroke-opacity="0.5"/>
+
+    <!-- Side Profile Silhouette Paths (Red ink/pencil hand-stroke aesthetic) -->
+    <!-- Front splitter & nose -->
+    <path d="M 60 260 L 120 260 C 150 260, 170 230, 200 230 L 290 225 C 330 180, 420 150, 520 140 C 660 125, 780 135, 870 190 C 930 195, 980 215, 1020 240 L 1000 260 C 950 260, 920 240, 870 240 C 820 240, 790 265, 730 265 L 340 265 C 290 265, 260 240, 210 240 Z" 
+          fill="none" stroke="#991b1b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Crosshatching Shading across side body -->
+    <g stroke="#b91c1c" stroke-width="1.2" stroke-opacity="0.7">
+      <line x1="180" y1="240" x2="240" y2="210"/>
+      <line x1="200" y1="245" x2="260" y2="215"/>
+      <line x1="220" y1="250" x2="280" y2="220"/>
+      <line x1="380" y1="230" x2="450" y2="180"/>
+      <line x1="410" y1="235" x2="480" y2="185"/>
+      <line x1="440" y1="240" x2="510" y2="190"/>
+      <line x1="470" y1="245" x2="540" y2="195"/>
+      <line x1="560" y1="220" x2="640" y2="180"/>
+      <line x1="590" y1="225" x2="670" y2="185"/>
+      <line x1="620" y1="230" x2="700" y2="190"/>
+      <line x1="740" y1="240" x2="820" y2="190"/>
+      <line x1="770" y1="245" x2="850" y2="195"/>
+    </g>
+
+    <!-- Sleek Canopy Greenhouse -->
+    <path d="M 380 200 C 440 145, 520 135, 640 135 C 720 135, 770 160, 810 200 Z" fill="#1e2530" fill-opacity="0.3" stroke="#991b1b" stroke-width="2.5"/>
+
+    <!-- Prominent Rear Wing & Aero Pylons -->
+    <path d="M 820 170 L 980 140 L 1020 145 L 890 180 Z" fill="#7f1d1d" stroke="#991b1b" stroke-width="2"/>
+    <line x1="880" y1="160" x2="890" y2="195" stroke="#991b1b" stroke-width="3"/>
+    <line x1="930" y1="150" x2="940" y2="200" stroke="#991b1b" stroke-width="3"/>
+
+    <!-- Front Wheel (Large Detailed Spoke Mesh) -->
+    <g transform="translate(255, 250)">
+      <circle cx="0" cy="0" r="65" fill="#0c1017" stroke="#111" stroke-width="3"/>
+      <circle cx="0" cy="0" r="52" fill="none" stroke="#991b1b" stroke-width="2" stroke-dasharray="6 4"/>
+      <circle cx="0" cy="0" r="16" fill="#b91c1c" stroke="#ffffff" stroke-width="2"/>
+      <!-- Brake Caliper & 5 Y-Spokes -->
+      <path d="M -45 -15 Q -52 0 -45 15 L -35 12 Q -40 0 -35 -12 Z" fill="#ef4444"/>
+      <line x1="0" y1="0" x2="0" y2="-50" stroke="#94a3b8" stroke-width="4"/>
+      <line x1="0" y1="0" x2="47" y2="-15" stroke="#94a3b8" stroke-width="4"/>
+      <line x1="0" y1="0" x2="29" y2="40" stroke="#94a3b8" stroke-width="4"/>
+      <line x1="0" y1="0" x2="-29" y2="40" stroke="#94a3b8" stroke-width="4"/>
+      <line x1="0" y1="0" x2="-47" y2="-15" stroke="#94a3b8" stroke-width="4"/>
+    </g>
+
+    <!-- Rear Wheel -->
+    <g transform="translate(780, 250)">
+      <circle cx="0" cy="0" r="65" fill="#0c1017" stroke="#111" stroke-width="3"/>
+      <circle cx="0" cy="0" r="52" fill="none" stroke="#991b1b" stroke-width="2" stroke-dasharray="6 4"/>
+      <circle cx="0" cy="0" r="16" fill="#b91c1c" stroke="#ffffff" stroke-width="2"/>
+      <path d="M -45 -15 Q -52 0 -45 15 L -35 12 Q -40 0 -35 -12 Z" fill="#ef4444"/>
+      <line x1="0" y1="0" x2="0" y2="-50" stroke="#94a3b8" stroke-width="4"/>
+      <line x1="0" y1="0" x2="47" y2="-15" stroke="#94a3b8" stroke-width="4"/>
+      <line x1="0" y1="0" x2="29" y2="40" stroke="#94a3b8" stroke-width="4"/>
+      <line x1="0" y1="0" x2="-29" y2="40" stroke="#94a3b8" stroke-width="4"/>
+      <line x1="0" y1="0" x2="-47" y2="-15" stroke="#94a3b8" stroke-width="4"/>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 2. MIDDLE LEFT: DYNAMIC 3/4 FRONT GUARDS RED RENDER                       -->
+  <!-- ========================================================================= -->
+  <g transform="translate(50, 520)" filter="url(#sketchShadow)">
+    <!-- Ground Shadow -->
+    <ellipse cx="360" cy="350" rx="310" ry="35" fill="#000000" opacity="0.55"/>
+
+    <!-- Front 3/4 Bodywork -->
+    <path d="M 65 310 
+             C 90 280, 140 240, 220 220 
+             C 270 210, 310 170, 370 170 
+             C 450 170, 510 210, 570 240 
+             L 660 255 
+             C 680 270, 700 310, 680 340 
+             L 630 350 
+             C 550 365, 430 375, 330 375 
+             C 220 375, 130 365, 75 345 Z" 
+          fill="url(#carRed)" stroke="#991b1b" stroke-width="2"/>
+
+    <path d="M 100 300 C 180 230, 320 200, 480 220 L 520 250 C 360 250, 240 270, 120 320 Z" 
+          fill="url(#redGloss)"/>
+
+    <!-- Cockpit Windshield & Roof -->
+    <path d="M 230 220 
+             C 280 170, 340 145, 410 145 
+             C 480 145, 520 175, 550 230 
+             C 470 220, 370 215, 230 220 Z" 
+          fill="#090d14" stroke="#111827" stroke-width="2"/>
+
+    <!-- 4-Point Porsche LED Matrix Headlights Left & Right -->
+    <g transform="translate(340, 260)">
+      <ellipse cx="0" cy="0" rx="40" ry="22" fill="#0b0e14" stroke="#334155" stroke-width="1.5"/>
+      <!-- 4 LED Cubes -->
+      <rect x="-25" y="-10" width="9" height="7" fill="#ffffff" rx="1"/>
+      <rect x="-12" y="-10" width="9" height="7" fill="#ffffff" rx="1"/>
+      <rect x="-25" y="1" width="9" height="7" fill="#ffffff" rx="1"/>
+      <rect x="-12" y="1" width="9" height="7" fill="#ffffff" rx="1"/>
+    </g>
+
+    <g transform="translate(590, 250)">
+      <ellipse cx="0" cy="0" rx="24" ry="16" fill="#0b0e14" stroke="#334155" stroke-width="1.5"/>
+      <rect x="-12" y="-6" width="6" height="5" fill="#ffffff" rx="1"/>
+      <rect x="-4" y="-6" width="6" height="5" fill="#ffffff" rx="1"/>
+      <rect x="-12" y="2" width="6" height="5" fill="#ffffff" rx="1"/>
+      <rect x="-4" y="2" width="6" height="5" fill="#ffffff" rx="1"/>
+    </g>
+
+    <!-- Porsche Hood Crest Tiny Badge -->
+    <path d="M 535 272 L 542 272 L 540 282 L 537 282 Z" fill="#eab308" stroke="#991b1b" stroke-width="0.5"/>
+
+    <!-- Front Intakes & Sculpted Aerodynamic Splitter -->
+    <polygon points="290,320 490,310 500,345 280,345" fill="#080a0f" stroke="#1f2937" stroke-width="1.5"/>
+    <polygon points="120,325 240,320 230,350 110,345" fill="#080a0f" stroke="#1f2937" stroke-width="1.5"/>
+    <polygon points="520,310 610,305 600,340 515,340" fill="#080a0f" stroke="#1f2937" stroke-width="1.5"/>
+
+    <!-- Front Wheel in Turn Stance -->
+    <g transform="translate(210, 340)">
+      <ellipse cx="0" cy="0" rx="45" ry="70" fill="#08090d" stroke="#111" stroke-width="3"/>
+      <ellipse cx="0" cy="0" rx="34" ry="55" fill="#0f141d" stroke="#334155" stroke-width="1.5"/>
+      <circle cx="0" cy="0" r="12" fill="#b91c1c" stroke="#ffffff" stroke-width="1.5"/>
+    </g>
+    <!-- Rear Wheel In Distance -->
+    <g transform="translate(650, 310)">
+      <ellipse cx="0" cy="0" rx="25" ry="50" fill="#08090d" stroke="#111" stroke-width="2"/>
+      <circle cx="0" cy="0" r="8" fill="#b91c1c"/>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 3. MIDDLE RIGHT: GRAPHITE SKETCH OF PORSCHE CREST SHIELD                  -->
+  <!-- ========================================================================= -->
+  <g transform="translate(830, 520)">
+    <!-- Fine Radiating Hatching Lines Behind Crest -->
+    <g stroke="#262626" stroke-width="1.2" stroke-opacity="0.6">
+      <line x1="-60" y1="-40" x2="180" y2="-100"/>
+      <line x1="-40" y1="-20" x2="200" y2="-80"/>
+      <line x1="-20" y1="0" x2="220" y2="-60"/>
+      <line x1="0" y1="20" x2="230" y2="-40"/>
+      <line x1="20" y1="40" x2="240" y2="-20"/>
+      <line x1="160" y1="180" x2="260" y2="110"/>
+      <line x1="170" y1="210" x2="270" y2="130"/>
+      <line x1="180" y1="240" x2="280" y2="150"/>
+    </g>
+
+    <!-- Shield Outer Contour -->
+    <path d="M 0 0 
+             L 160 0 
+             C 160 80, 140 180, 80 230 
+             C 20 180, 0 80, 0 0 Z" 
+          fill="none" stroke="#111827" stroke-width="5" stroke-linejoin="round"/>
+
+    <path d="M 10 10 
+             L 150 10 
+             C 150 75, 130 165, 80 215 
+             C 30 165, 10 75, 10 10 Z" 
+          fill="#ffffff" fill-opacity="0.7" stroke="#262626" stroke-width="2"/>
+
+    <!-- Porsche Crest Quarters: Antlers & Red/Black Stripes -->
+    <!-- Top Bar with PORSCHE inscription -->
+    <rect x="15" y="15" width="130" height="22" fill="#1e293b" opacity="0.2"/>
+    <text x="80" y="32" fill="#111" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="900" letter-spacing="4" text-anchor="middle">PORSCHE</text>
+
+    <!-- Center Inset Shield with Stuttgart Prancing Horse -->
+    <path d="M 50 65 L 110 65 C 110 110, 95 145, 80 165 C 65 145, 50 110, 50 65 Z" fill="#f1f5f9" stroke="#111" stroke-width="2"/>
+    
+    <!-- Prancing Horse Hand Sketch Silhouette -->
+    <path d="M 78 135 
+             C 74 130, 72 120, 76 115 
+             C 72 112, 70 105, 74 100 
+             C 74 95, 78 90, 80 82 
+             C 83 82, 86 86, 85 92 
+             C 89 95, 92 104, 88 112 
+             C 92 120, 88 128, 84 135 Z" 
+          fill="#111827"/>
+    <!-- Rearing Front Legs -->
+    <path d="M 82 92 L 72 82 M 82 96 L 70 92" stroke="#111827" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Antler Quarters Top-Left and Bottom-Right -->
+    <g stroke="#111827" stroke-width="1.8" fill="none">
+      <!-- Top Left Antler -->
+      <path d="M 25 50 Q 35 48 45 50 M 32 49 L 30 42 M 38 49 L 38 42"/>
+      <!-- Bottom Right Antler -->
+      <path d="M 115 155 Q 125 150 135 155 M 122 152 L 120 146 M 128 153 L 130 146"/>
+      <!-- Black & Red Stripes in Quarters -->
+      <line x1="115" y1="50" x2="145" y2="50" stroke="#dc2626" stroke-width="3"/>
+      <line x1="115" y1="56" x2="145" y2="56" stroke="#111" stroke-width="3"/>
+      <line x1="115" y1="62" x2="145" y2="62" stroke="#dc2626" stroke-width="3"/>
+      <line x1="25" y1="150" x2="45" y2="150" stroke="#111" stroke-width="3"/>
+      <line x1="20" y1="156" x2="45" y2="156" stroke="#dc2626" stroke-width="3"/>
+    </g>
+  </g>
+
+  <!-- Technical Wheel Arch Bounding Box Diagram -->
+  <g transform="translate(740, 780)" stroke="#991b1b" stroke-width="1.2" fill="none">
+    <rect x="0" y="0" width="340" height="180" stroke="#d1d5db" stroke-width="1"/>
+    <!-- Wheel Arch curve -->
+    <path d="M 60 170 C 80 80, 180 40, 260 40 C 310 40, 330 80, 340 120" stroke="#111" stroke-width="2.5"/>
+    <circle cx="180" cy="150" r="90" stroke="#991b1b" stroke-dasharray="6 4"/>
+    <!-- Coordinate Rays -->
+    <line x1="180" y1="40" x2="180" y2="160"/>
+    <line x1="60" y1="150" x2="320" y2="150"/>
+    <text x="10" y="25" fill="#b91c1c" font-family="monospace" font-size="12" stroke="none">AERO OVERHANG // FRONT DOWNFORCE</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 4. TEXT CALLOUTS (EXACT QUOTES FROM USER IMAGE 1)                         -->
+  <!-- ========================================================================= -->
+  <g transform="translate(480, 480)">
+    <!-- Callout 1 -->
+    <rect x="0" y="0" width="5" height="68" fill="#dc2626"/>
+    <text x="16" y="20" fill="#111622" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="16" font-weight="800" max-width="340">
+      The Porsche 754 honors its
+    </text>
+    <text x="16" y="42" fill="#111622" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="16" font-weight="800">
+      iconic lineage while introducing
+    </text>
+    <text x="16" y="64" fill="#111622" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="16" font-weight="800">
+      an uncompromising, track-
+    </text>
+    <text x="16" y="86" fill="#111622" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="16" font-weight="800">
+      focused aerodynamic silhouette
+    </text>
+  </g>
+
+  <g transform="translate(240, 970)">
+    <!-- Callout 2 -->
+    <rect x="0" y="0" width="4" height="44" fill="#dc2626"/>
+    <text x="16" y="18" fill="#111622" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="15" font-weight="800">
+      A sculpted homage to the
+    </text>
+    <text x="16" y="38" fill="#111622" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="15" font-weight="800">
+      past, engineered for the
+    </text>
+    <text x="16" y="58" fill="#111622" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="15" font-weight="800">
+      absolute limits of tomorrow
+    </text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 5. BOTTOM SECTION: REAR 3/4 GUARDS RED RENDER & CARBON DIFFUSER           -->
+  <!-- ========================================================================= -->
+  <g transform="translate(290, 1020)" filter="url(#sketchShadow)">
+    <!-- Ground Shadow -->
+    <ellipse cx="460" cy="440" rx="380" ry="40" fill="#000000" opacity="0.6"/>
+
+    <!-- Rear Muscular Body Shape -->
+    <path d="M 60 380 
+             C 80 320, 140 260, 220 250 
+             C 320 240, 420 220, 520 220 
+             C 640 220, 740 260, 830 310 
+             L 810 400 
+             C 740 435, 620 460, 480 460 
+             C 340 460, 200 450, 100 420 Z" 
+          fill="url(#carRed)" stroke="#991b1b" stroke-width="2"/>
+
+    <!-- Continuous Horizontal Red OLED Lightbar Blade -->
+    <path d="M 260 330 Q 510 320 760 335" fill="none" stroke="#ff2233" stroke-width="7" stroke-linecap="round"/>
+    <path d="M 260 330 Q 510 320 760 335" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Massive Rear Carbon Diffuser & Aero Fins -->
+    <path d="M 320 440 L 660 440 L 640 480 L 340 480 Z" fill="#070a0f" stroke="#334155" stroke-width="2"/>
+    <!-- Diffuser Vertical Strakes -->
+    <rect x="390" y="435" width="6" height="45" fill="#334155" rx="2"/>
+    <rect x="445" y="430" width="6" height="52" fill="#334155" rx="2"/>
+    <rect x="500" y="428" width="6" height="55" fill="#334155" rx="2"/>
+    <rect x="555" y="430" width="6" height="52" fill="#334155" rx="2"/>
+    <rect x="610" y="435" width="6" height="45" fill="#334155" rx="2"/>
+
+    <!-- Rear Active Aero Wing Elevated on Pylons -->
+    <g transform="translate(500, 220)">
+      <line x1="-120" y1="0" x2="-90" y2="50" stroke="#1f2937" stroke-width="6"/>
+      <line x1="120" y1="0" x2="90" y2="50" stroke="#1f2937" stroke-width="6"/>
+      <!-- Wing Blade -->
+      <path d="M -340 -12 L 340 -12 C 355 -12, 360 -6, 350 0 L -350 0 C -360 -6, -355 -12, -340 -12 Z" 
+            fill="#111827" stroke="#b91c1c" stroke-width="1.5"/>
+      <path d="M -350 -18 L -340 4 L -355 4 Z" fill="#dc2626"/>
+      <path d="M 350 -18 L 340 4 L 355 4 Z" fill="#dc2626"/>
+    </g>
+
+    <!-- Extreme Wide Rear Wheel -->
+    <g transform="translate(210, 400)">
+      <ellipse cx="0" cy="0" rx="55" ry="90" fill="#08090d" stroke="#111" stroke-width="4"/>
+      <ellipse cx="0" cy="0" rx="40" ry="70" fill="#0f141d" stroke="#334155" stroke-width="2"/>
+      <circle cx="0" cy="0" r="14" fill="#b91c1c" stroke="#ffffff" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

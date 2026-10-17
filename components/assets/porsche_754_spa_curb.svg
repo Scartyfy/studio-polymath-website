@@ -1,0 +1,227 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500">
+  <defs>
+    <linearGradient id="spaSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4e5d65"/>
+      <stop offset="40%" stop-color="#6b7c85"/>
+      <stop offset="80%" stop-color="#8c9ba3"/>
+      <stop offset="100%" stop-color="#707f87"/>
+    </linearGradient>
+    <linearGradient id="wetTarmac" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#181c22"/>
+      <stop offset="50%" stop-color="#222831"/>
+      <stop offset="100%" stop-color="#12151a"/>
+    </linearGradient>
+    <linearGradient id="porscheRed" x1="0%" y1="0%" x2="100%" y2="80%">
+      <stop offset="0%" stop-color="#f42036"/>
+      <stop offset="40%" stop-color="#c8102e"/>
+      <stop offset="80%" stop-color="#80081a"/>
+      <stop offset="100%" stop-color="#3e030b"/>
+    </linearGradient>
+    <linearGradient id="aerialForest" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#13241b"/>
+      <stop offset="50%" stop-color="#1a3327"/>
+      <stop offset="100%" stop-color="#0e1c14"/>
+    </linearGradient>
+    <filter id="fogBlur">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="1500" fill="#0d1117"/>
+
+  <!-- ========================================================================= -->
+  <!-- PANEL 1 (TOP): 3/4 FRONT ANGLE ON WET SPA TRACK WITH PINES & MIST        -->
+  <!-- ========================================================================= -->
+  <g id="panel-top">
+    <!-- Sky & Misty Ardennes Background -->
+    <rect x="0" y="0" width="1200" height="748" fill="url(#spaSky)"/>
+
+    <!-- Mist Gradient Overlay -->
+    <rect x="0" y="100" width="1200" height="280" fill="#ffffff" opacity="0.2" filter="url(#fogBlur)"/>
+
+    <!-- Pine Forest Silhouettes in Background -->
+    <g fill="#1c2826" opacity="0.95">
+      <!-- Far tree line in fog -->
+      <polygon points="0,360 80,240 140,360 220,220 300,360 380,250 460,360 540,210 620,360 700,230 780,360 860,200 940,360 1020,240 1100,360 1180,220 1200,360 1200,420 0,420" opacity="0.6"/>
+      <!-- Closer tree line -->
+      <polygon points="0,390 100,290 160,390 260,260 340,390 440,280 520,390 640,270 720,390 840,250 920,390 1040,280 1120,390 1200,270 1200,430 0,430"/>
+    </g>
+
+    <!-- Guardrail Barrier & Marshal Tower in Distance -->
+    <line x1="0" y1="390" x2="1200" y2="380" stroke="#94a3b8" stroke-width="4" opacity="0.7"/>
+    <line x1="0" y1="398" x2="1200" y2="388" stroke="#64748b" stroke-width="3" opacity="0.7"/>
+    <rect x="1020" y="310" width="40" height="60" fill="#ffffff" stroke="#334155" stroke-width="2" opacity="0.8"/>
+    <polygon points="1010,310 1040,285 1070,310" fill="#dc2626" opacity="0.9"/>
+
+    <!-- Uphill Sweeping Asphalt Track -->
+    <path d="M 0 748 L 0 420 Q 500 370 1200 420 L 1200 748 Z" fill="url(#wetTarmac)"/>
+
+    <!-- Black Tire Rubber Skid Lines on Wet Track -->
+    <g stroke="#090c10" stroke-width="8" opacity="0.65" fill="none" stroke-linecap="round">
+      <path d="M 100 748 Q 500 680 920 620"/>
+      <path d="M 120 748 Q 520 680 940 620" stroke-width="12"/>
+      <path d="M 320 748 Q 660 620 1060 540" stroke-width="10"/>
+      <path d="M 350 748 Q 690 620 1090 540" stroke-width="6"/>
+      <path d="M 650 748 Q 850 640 1180 580" stroke-width="14"/>
+    </g>
+
+    <!-- Spa Curving Kerbing (Red & Yellow Alternating Blocks) in Foreground -->
+    <g transform="translate(0, 520)">
+      <!-- Curb Border Line -->
+      <path d="M 0 100 Q 240 100 480 60" stroke="#ffffff" stroke-width="3" fill="none"/>
+      <path d="M 0 140 Q 240 140 480 90" stroke="#111" stroke-width="2" fill="none"/>
+      <!-- Blocks -->
+      <polygon points="0,100 80,100 80,140 0,140" fill="#eab308"/>
+      <polygon points="80,100 160,98 160,138 80,140" fill="#dc2626"/>
+      <polygon points="160,98 240,94 240,132 160,138" fill="#eab308"/>
+      <polygon points="240,94 320,86 320,122 240,132" fill="#dc2626"/>
+      <polygon points="320,86 400,74 400,108 320,122" fill="#eab308"/>
+      <polygon points="400,74 480,60 480,90 400,108" fill="#dc2626"/>
+    </g>
+
+    <!-- Red Porsche 754 on Track (Front 3/4 Stance) -->
+    <g transform="translate(250, 290)">
+      <!-- Wet Ground Mirror Reflection -->
+      <ellipse cx="360" cy="350" rx="340" ry="40" fill="#07090d" opacity="0.8"/>
+      <path d="M 180 340 Q 400 370 680 340 L 620 380 Q 380 400 200 370 Z" fill="#b91c1c" opacity="0.35" filter="url(#fogBlur)"/>
+
+      <!-- Car Body -->
+      <path d="M 50 280 
+               C 80 230, 150 180, 280 160 
+               C 360 145, 430 80, 520 80 
+               C 620 80, 690 130, 780 180 
+               L 890 200 
+               C 920 220, 940 260, 920 290 
+               L 850 310 
+               C 740 330, 560 340, 420 340 
+               C 260 340, 140 330, 60 310 Z" 
+            fill="url(#porscheRed)" stroke="#991b1b" stroke-width="2"/>
+
+      <!-- Gloss Highlight on Roof and Fender -->
+      <path d="M 100 260 C 220 180, 420 130, 620 160 L 680 200 C 440 180, 260 210, 120 280 Z" 
+            fill="#ffffff" opacity="0.2"/>
+
+      <!-- Canopy Windshield -->
+      <path d="M 320 160 
+               C 380 95, 460 70, 560 70 
+               C 640 70, 710 115, 750 180 
+               C 620 165, 470 160, 320 160 Z" 
+            fill="#06080d" stroke="#1f2937" stroke-width="2"/>
+
+      <!-- Rear Wing Profile Raised at Back -->
+      <path d="M 740 130 L 910 110 L 930 115 L 780 145 Z" fill="#1e293b" stroke="#dc2626" stroke-width="1.5"/>
+
+      <!-- Front Left & Right Headlamps Glowing Matrix LED -->
+      <g transform="translate(440, 220)">
+        <ellipse cx="0" cy="0" rx="45" ry="22" fill="#0a0e17" stroke="#475569" stroke-width="2"/>
+        <rect x="-28" y="-10" width="12" height="8" fill="#ffffff" rx="2"/>
+        <rect x="-12" y="-10" width="12" height="8" fill="#ffffff" rx="2"/>
+        <rect x="-28" y="2" width="12" height="8" fill="#ffffff" rx="2"/>
+        <rect x="-12" y="2" width="12" height="8" fill="#ffffff" rx="2"/>
+      </g>
+      <g transform="translate(780, 210)">
+        <ellipse cx="0" cy="0" rx="28" ry="16" fill="#0a0e17" stroke="#475569" stroke-width="2"/>
+        <rect x="-14" y="-6" width="8" height="6" fill="#ffffff" rx="1"/>
+        <rect x="-4" y="-6" width="8" height="6" fill="#ffffff" rx="1"/>
+        <rect x="-14" y="2" width="8" height="6" fill="#ffffff" rx="1"/>
+        <rect x="-4" y="2" width="8" height="6" fill="#ffffff" rx="1"/>
+      </g>
+
+      <!-- Wheels -->
+      <g transform="translate(240, 290)">
+        <ellipse cx="0" cy="0" rx="60" ry="85" fill="#090a0f" stroke="#111" stroke-width="4"/>
+        <ellipse cx="0" cy="0" rx="45" ry="65" fill="#111827" stroke="#475569" stroke-width="2"/>
+        <circle cx="0" cy="0" r="16" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+      </g>
+      <g transform="translate(850, 260)">
+        <ellipse cx="0" cy="0" rx="40" ry="65" fill="#090a0f" stroke="#111" stroke-width="3"/>
+        <circle cx="0" cy="0" r="10" fill="#dc2626"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Divider Line Between Panels -->
+  <line x1="0" y1="750" x2="1200" y2="750" stroke="#000000" stroke-width="4"/>
+
+  <!-- ========================================================================= -->
+  <!-- PANEL 2 (BOTTOM): HIGH-ANGLE AERIAL BIRD'S EYE VIEW OVER SPA HAIRPIN       -->
+  <!-- ========================================================================= -->
+  <g id="panel-bottom" transform="translate(0, 752)">
+    <!-- Forest Background Framing Top and Bottom -->
+    <rect width="1200" height="748" fill="url(#aerialForest)"/>
+
+    <!-- Pine Canopy Texture Dots and Clusters -->
+    <g fill="#1c382b" opacity="0.8">
+      <circle cx="100" cy="80" r="40"/>
+      <circle cx="160" cy="120" r="50"/>
+      <circle cx="80" cy="180" r="45"/>
+      <circle cx="1100" cy="100" r="60"/>
+      <circle cx="1040" cy="160" r="50"/>
+      <circle cx="1120" cy="220" r="45"/>
+      <circle cx="120" cy="620" r="70"/>
+      <circle cx="200" cy="660" r="60"/>
+      <circle cx="980" cy="620" r="70"/>
+      <circle cx="1080" cy="650" r="60"/>
+      <circle cx="600" cy="680" r="50"/>
+    </g>
+
+    <!-- Curving Sweeping Tarmac Road (Arc from Left to Right) -->
+    <path d="M 0 540 Q 600 120 1200 540 L 1200 700 Q 600 280 0 700 Z" fill="#1e242c"/>
+    <path d="M 0 540 Q 600 120 1200 540" stroke="#ffffff" stroke-width="2" stroke-dasharray="12 12" fill="none" opacity="0.5"/>
+
+    <!-- Prominent Red and Yellow Curving Kerb Around the Inside of Corner -->
+    <g>
+      <!-- Kerb Base Ribbon -->
+      <path d="M 60 520 Q 600 150 1140 520 L 1180 550 Q 600 190 20 550 Z" fill="#111"/>
+      <!-- Segmented Alternating Yellow / Red blocks -->
+      <path d="M 60 520 Q 200 380 320 280 L 330 310 Q 210 410 70 545 Z" fill="#eab308"/>
+      <path d="M 320 280 Q 420 210 520 170 L 525 200 Q 430 240 330 310 Z" fill="#dc2626"/>
+      <path d="M 520 170 Q 620 155 720 170 L 715 200 Q 620 185 525 200 Z" fill="#eab308"/>
+      <path d="M 720 170 Q 820 210 920 280 L 910 310 Q 815 240 715 200 Z" fill="#dc2626"/>
+      <path d="M 920 280 Q 1040 380 1140 520 L 1130 545 Q 1030 410 910 310 Z" fill="#eab308"/>
+    </g>
+
+    <!-- Heavy Black Rubber Tire Marks on Apex -->
+    <g stroke="#0a0d12" stroke-width="16" opacity="0.6" fill="none">
+      <path d="M 140 600 Q 600 240 1060 600"/>
+      <path d="M 180 620 Q 600 260 1020 620" stroke-width="22"/>
+    </g>
+
+    <!-- Porsche 754 Supercar Top-Down Bird's-Eye Silhouette -->
+    <g transform="translate(600, 390)">
+      <!-- Shadow on Road -->
+      <ellipse cx="4" cy="10" rx="175" ry="95" fill="#080a0f" opacity="0.75"/>
+
+      <!-- Body Shell (Hourglass Aerodynamic Waist) -->
+      <path d="M -150 -60 
+               C -110 -65, -80 -80, -40 -82 
+               C 10 -84, 50 -70, 90 -82 
+               C 130 -90, 160 -80, 180 -55 
+               C 195 -30, 195 30, 180 55 
+               C 160 80, 130 90, 90 82 
+               C 50 70, 10 84, -40 82 
+               C -80 80, -110 65, -150 60 
+               C -175 35, -175 -35, -150 -60 Z" 
+            fill="url(#porscheRed)" stroke="#991b1b" stroke-width="2"/>
+
+      <!-- Roof Cockpit & Engine Bay Louvers -->
+      <ellipse cx="-10" cy="0" rx="75" ry="48" fill="#07090e" stroke="#1f2937" stroke-width="2"/>
+      <path d="M 65 -30 L 130 -35 L 130 35 L 65 30 Z" fill="#1e293b" opacity="0.9"/>
+      <line x1="80" y1="-20" x2="115" y2="-20" stroke="#334155" stroke-width="3"/>
+      <line x1="80" y1="0" x2="115" y2="0" stroke="#334155" stroke-width="3"/>
+      <line x1="80" y1="20" x2="115" y2="20" stroke="#334155" stroke-width="3"/>
+
+      <!-- Rear Wing (Transverse Span across Haunches) -->
+      <rect x="145" y="-85" width="22" height="170" rx="4" fill="#111827" stroke="#dc2626" stroke-width="1.5"/>
+      <rect x="135" y="-92" width="12" height="16" fill="#dc2626"/>
+      <rect x="135" y="76" width="12" height="16" fill="#dc2626"/>
+
+      <!-- Windshield Front Angle -->
+      <path d="M -60 -40 Q -15 0 -60 40 L -75 35 Q -35 0 -75 -35 Z" fill="#38bdf8" opacity="0.4"/>
+    </g>
+
+    <!-- Watermark Monospace Stamp -->
+    <text x="1160" y="720" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="14" letter-spacing="2" text-anchor="end">Location: Spa-Francorchamps Circuit Time: 07:00 AM</text>
+  </g>
+</svg>
