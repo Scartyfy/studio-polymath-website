@@ -149,7 +149,7 @@ export function Team() {
                         rel="noopener noreferrer" 
                         className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-[0.18em] text-[var(--text-dimmer)] hover:text-white transition-colors pb-0.5 border-b border-transparent hover:border-white"
                       >
-                        LinkedIn ↗
+                        LinkedIn
                       </a>
                     </div>
                   </div>
@@ -298,7 +298,7 @@ export function Contact() {
                       href={`mailto:studiopolymath.contact@gmail.com?subject=${encodeURIComponent(subject || 'Polymath Studio Contact')}&body=${encodeURIComponent(message)}`}
                       className="underline hover:text-white mt-1.5 inline-block text-red-300"
                     >
-                      studiopolymath.contact@gmail.com ↗
+                      studiopolymath.contact@gmail.com
                     </a>
                   </div>
                 </div>
