@@ -46,13 +46,6 @@ export function Manifest() {
           <p>{t('manifest.p5')}</p>
           <p>{t('manifest.p6')}</p>
         </div>
-
-        {/* Footer sign-off */}
-        <div className="mt-16 pt-8 border-t border-[var(--line-strong)] flex justify-between items-center">
-          <div className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--text-dimmer)]">
-            {t('manifest.signoff')}
-          </div>
-        </div>
       </article>
     </PageLayout>
   );

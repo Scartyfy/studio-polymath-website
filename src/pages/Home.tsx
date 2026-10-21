@@ -318,24 +318,6 @@ export function Home() {
             </div>
           </section>
 
-          {/* Bottom Transition Band (Quote) */}
-          <div className="relative z-40 bg-black border-t border-[var(--line-strong)] h-[25vh] md:h-[35vh] py-12 px-4 md:px-8 flex items-center justify-between pointer-events-auto group overflow-hidden">
-            {/* Background Image Rotated */}
-            <div className="absolute top-1/2 left-1/2 w-[100vh] h-[100vw] -translate-x-1/2 -translate-y-1/2 -rotate-90 z-0">
-              <img src={`${import.meta.env.BASE_URL}metal.jpg`} className="w-full h-full object-cover opacity-60" alt="Scroll Background Bottom" />
-            </div>
-            {/* Scrim/Overlay */}
-            <div className="absolute inset-0 bg-black/40 z-10" />
-
-            {/* Quote Text */}
-            <div className="relative z-20 max-w-[320px] md:max-w-lg text-white" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-              <p className="text-sm md:text-base font-light leading-relaxed text-white/80 text-justify uppercase group-hover:text-white transition-colors duration-300">
-                {t('quote.text')}
-                <br /><br />
-                <span className="text-xs md:text-sm text-white/50 tracking-widest">{t('quote.author')}</span>
-              </p>
-            </div>
-          </div>
 
           {/* Sticky footer */}
           <div className="sticky z-0 bottom-0 left-0 w-full h-[36vh] md:h-[40vh] min-h-[220px] md:min-h-[260px] bg-black border-t border-[var(--line-strong)] flex justify-center items-center overflow-hidden">
