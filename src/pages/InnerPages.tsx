@@ -149,7 +149,7 @@ export function Team() {
                         rel="noopener noreferrer" 
                         className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-[0.18em] text-[var(--text-dimmer)] hover:text-white transition-colors pb-0.5 border-b border-transparent hover:border-white"
                       >
-                        LinkedIn
+                        LinkedIn<span className="hidden md:inline"> ↗</span>
                       </a>
                     </div>
                   </div>
