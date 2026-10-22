@@ -42,9 +42,20 @@ export function Manifest() {
         <div className="space-y-6 text-sm sm:text-base text-white/85 font-light leading-relaxed">
           <p>{t('manifest.p1')}</p>
           <p>{t('manifest.p2')}</p>
+          <p>{t('manifest.p3')}</p>
           <p>{t('manifest.p4')}</p>
           <p>{t('manifest.p5')}</p>
           <p>{t('manifest.p6')}</p>
+        </div>
+
+        {/* Conclusion / Signoff */}
+        <div className="mt-16 pt-8 border-t border-[var(--line-strong)] space-y-1.5">
+          <p className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-white font-medium">
+            {t('manifest.conclusion1')}
+          </p>
+          <p className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-[var(--text-dimmer)]">
+            {t('manifest.conclusion2')}
+          </p>
         </div>
       </article>
     </PageLayout>
