@@ -405,7 +405,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     } catch {
       // ignore
     }
-    return 'EN';
+    return 'FR';
   });
 
   const setLang = (newLang: Language) => {

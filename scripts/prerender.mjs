@@ -10,7 +10,7 @@ const seo = JSON.parse(readFileSync(join(root, 'src', 'seo.json'), 'utf8'));
 const template = readFileSync(join(dist, 'index.html'), 'utf8');
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
-const LANG = 'EN';
+const LANG = 'FR';
 
 function setTag(html, regex, replacement) {
   if (!regex.test(html)) throw new Error(`Balise introuvable : ${regex}`);
