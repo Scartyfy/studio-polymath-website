@@ -431,9 +431,9 @@ export function Projects() {
             <span>{t('projects.badge')}</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight mb-8 drop-shadow-sm max-w-4xl">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight mb-8 drop-shadow-sm max-w-4xl">
             {t('projects.main.title')}
-          </h2>
+          </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm sm:text-base text-white/90 font-light leading-relaxed border-t border-white/20 pt-8">
             <p className="bg-black/35 backdrop-blur-sm p-4 border border-white/10">{t('projects.intro.p1')}</p>
@@ -467,7 +467,7 @@ export function Projects() {
           <div className="relative w-full h-full overflow-hidden">
             <img 
               src={`${import.meta.env.BASE_URL}robot/misealechelle.jpeg`}
-              alt="Robot quadrupède autonome Polymath"
+              alt="Louis, robot quadrupède de patrouille autonome conçu par Polymath Studio"
               className="w-full h-full object-cover object-center scale-[1.02]"
             />
             
