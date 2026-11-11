@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Navigation, Footer, CyberGrid } from '../components/Shared';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { LiquidButton } from '../components/ui/primitives-buttons-liquid';
 import MotionButton from '../components/ui/motion-button';
 import { ArrowUpRight, ArrowDownLeft } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useLanguage } from '../LanguageContext';
+import seo from '../seo.json';
 import { ScrambleIn } from '../components/ui/scramble-in';
 
-const FooterLink = ({ children, onClick }: { children: React.ReactNode, onClick?: () => void }) => (
-  <li className="relative group cursor-pointer inline-block overflow-hidden" onClick={onClick}>
-    <span className="relative z-10 px-1 transition-colors duration-300 group-hover:text-black">{children}</span>
+const FooterLink = ({ children, to }: { children: React.ReactNode, to: string }) => (
+  <li className="relative group cursor-pointer inline-block overflow-hidden">
+    <Link to={to} className="relative z-10 px-1 block transition-colors duration-300 group-hover:text-black">{children}</Link>
     <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white transition-all duration-300 ease-out group-hover:h-full -z-0"></span>
   </li>
 );
@@ -55,7 +56,7 @@ const TimelineRow = ({
   subtitle, 
   desc, 
   linkText, 
-  onClick, 
+  to, 
   isRight, 
   isLast,
   bgVideo,
@@ -66,7 +67,7 @@ const TimelineRow = ({
   subtitle: string, 
   desc: string, 
   linkText: string, 
-  onClick: () => void, 
+  to: string, 
   isRight?: boolean, 
   isLast?: boolean,
   bgVideo?: string,
@@ -150,12 +151,14 @@ const TimelineRow = ({
         <p className="text-[var(--text-dim)] text-lg leading-relaxed mb-8 drop-shadow-sm max-w-xl">
           {desc}
         </p>
-        <LiquidButton 
-          onClick={onClick}
-          className="inline-flex items-center gap-2 border border-[var(--line-strong)] px-8 py-4 uppercase tracking-[0.15em] text-sm hover:text-black cursor-pointer overflow-hidden [--liquid-button-color:white] [--liquid-button-background-color:transparent]"
-        >
-          {linkText} <ArrowUpRight className="w-4 h-4" />
-        </LiquidButton>
+        <Link to={to} className="inline-block">
+          <LiquidButton
+            type="button"
+            className="inline-flex items-center gap-2 border border-[var(--line-strong)] px-8 py-4 uppercase tracking-[0.15em] text-sm hover:text-black cursor-pointer overflow-hidden [--liquid-button-color:white] [--liquid-button-background-color:transparent]"
+          >
+            {linkText} <ArrowUpRight className="w-4 h-4" />
+          </LiquidButton>
+        </Link>
       </div>
 
       {/* Contenu à droite (ex: 4 têtes animées dans "Qui sommes-nous ?") */}
@@ -171,10 +174,11 @@ const TimelineRow = ({
 export function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <main>
+      <h1 className="sr-only">{seo.routes['/'][lang].h1}</h1>
       {/* FIXED BACKGROUND */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <CyberGrid />
@@ -183,7 +187,7 @@ export function Home() {
         <div className="absolute inset-0 z-[-1] bg-black overflow-hidden">
           {/* Background image container with bleed (-inset-24) to avoid showing borders when shifted */}
           <div className="absolute -inset-24 -translate-y-16 md:-translate-y-[110px]">
-            <img src={`${import.meta.env.BASE_URL}mur10.jpeg`} alt="Background" className="w-full h-full object-cover opacity-80" />
+            <img src={`${import.meta.env.BASE_URL}mur10.jpeg`} alt="" aria-hidden="true" className="w-full h-full object-cover opacity-80" />
           </div>
 
           <div className="absolute inset-0 flex items-center justify-center p-6 md:p-12 lg:p-20 -translate-y-9 md:-translate-y-[72px]">
@@ -237,7 +241,7 @@ export function Home() {
           >
             {/* Background Image Rotated - no hover lighting effect */}
             <div className="absolute top-1/2 left-1/2 w-[100vh] h-[100vw] -translate-x-1/2 -translate-y-1/2 -rotate-90 z-0">
-              <img src={`${import.meta.env.BASE_URL}metal.jpg`} className="w-full h-full object-cover opacity-60" alt="Scroll Background" />
+              <img src={`${import.meta.env.BASE_URL}metal.jpg`} className="w-full h-full object-cover opacity-60" alt="" aria-hidden="true" />
             </div>
             
             {/* Scrim/Overlay to ensure readability */}
@@ -283,7 +287,7 @@ export function Home() {
                 title={t('home.timeline3.title')}
                 desc={t('home.timeline3.desc')}
                 linkText={t('home.timeline3.link')}
-                onClick={() => navigate('/projects')}
+                to="/projects"
                 bgVideo={`${import.meta.env.BASE_URL}presrobot.mp4`}
               />
               <TimelineRow 
@@ -292,7 +296,7 @@ export function Home() {
                 title={t('home.timeline2.title')}
                 desc={t('home.timeline2.desc')}
                 linkText={t('home.timeline2.link')}
-                onClick={() => navigate('/manifest')}
+                to="/manifest"
                 isRight
               />
               <TimelineRow 
@@ -301,7 +305,7 @@ export function Home() {
                 title={t('home.timeline1.title')}
                 desc={t('home.timeline1.desc')}
                 linkText={t('home.timeline1.link')}
-                onClick={() => navigate('/team')}
+                to="/team"
                 rightContent={<TeamHeadsPreview onClick={() => navigate('/team')} />}
               />
               <TimelineRow 
@@ -310,7 +314,7 @@ export function Home() {
                 title={t('home.timeline4.title')}
                 desc={t('home.timeline4.desc')}
                 linkText={t('home.timeline4.link')}
-                onClick={() => navigate('/contact')}
+                to="/contact"
                 isRight
                 isLast
               />
@@ -323,19 +327,19 @@ export function Home() {
           <div className="sticky z-0 bottom-0 left-0 w-full h-[36vh] md:h-[40vh] min-h-[220px] md:min-h-[260px] bg-black border-t border-[var(--line-strong)] flex justify-center items-center overflow-hidden">
             {/* Background Image Rotated */}
             <div className="absolute top-1/2 left-1/2 w-[36vh] md:w-[40vh] h-[100vw] -translate-x-1/2 -translate-y-1/2 -rotate-90 z-0">
-              <img src={`${import.meta.env.BASE_URL}mur.jpg`} className="w-full h-full object-cover" alt="Footer Background" />
+              <img src={`${import.meta.env.BASE_URL}mur.jpg`} className="w-full h-full object-cover" alt="" aria-hidden="true" />
             </div>
             
             <div className="relative w-full h-full flex justify-end px-[var(--gutter)] pt-6 sm:pt-8 md:pt-10 text-white items-start z-10">
               <div className="flex flex-row space-x-12 sm:space-x-16 md:space-x-24 text-sm sm:text-base md:text-lg text-white relative z-10">
                 <ul className="flex flex-col gap-2 items-end">
-                  <FooterLink onClick={() => navigate('/')}>{t('footer.home')}</FooterLink>
-                  <FooterLink onClick={() => navigate('/projects')}>{t('footer.projects')}</FooterLink>
-                  <FooterLink onClick={() => navigate('/manifest')}>{t('footer.manifest')}</FooterLink>
-                  <FooterLink onClick={() => navigate('/team')}>{t('footer.team')}</FooterLink>
+                  <FooterLink to="/">{t('footer.home')}</FooterLink>
+                  <FooterLink to="/projects">{t('footer.projects')}</FooterLink>
+                  <FooterLink to="/manifest">{t('footer.manifest')}</FooterLink>
+                  <FooterLink to="/team">{t('footer.team')}</FooterLink>
                 </ul>
                 <ul className="flex flex-col gap-2 items-end">
-                  <FooterLink onClick={() => navigate('/contact')}>{t('footer.contact')}</FooterLink>
+                  <FooterLink to="/contact">{t('footer.contact')}</FooterLink>
                   <li className="relative group cursor-pointer inline-block overflow-hidden">
                     <a 
                       href="https://www.tiktok.com/@polymath.studio" 

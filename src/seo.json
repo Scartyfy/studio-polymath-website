@@ -1,0 +1,77 @@
+{
+  "siteUrl": "https://polymathstudio.eu",
+  "siteName": "Polymath Studio",
+  "ogImage": "/og-image.jpg",
+  "routes": {
+    "/": {
+      "EN": {
+        "title": "Polymath Studio — Robotics studio, autonomous quadruped patrol robot",
+        "description": "Polymath Studio is a French studio of engineer-designers building ethical, modular robots. Meet Louis, the autonomous quadruped patrol robot for open sites.",
+        "h1": "Polymath Studio — Robotics engineering and design studio",
+        "text": "Human-Machine Interaction. Robotic Engineering. Global Design. We design modular, sustainable and ethical robotic systems, engineered for humans."
+      },
+      "FR": {
+        "title": "Polymath Studio — Studio de robotique, robot quadrupède de patrouille autonome",
+        "description": "Polymath Studio est un studio français d'ingénieurs-designers qui conçoit des robots éthiques et modulaires. Découvrez Louis, le robot quadrupède de patrouille autonome pour sites ouverts.",
+        "h1": "Polymath Studio — Studio d'ingénierie et de design robotique",
+        "text": "Interaction Homme-Machine. Ingénierie Robotique. Design Global. Nous concevons des systèmes robotiques modulaires, durables et éthiques, pensés pour l'humain."
+      }
+    },
+    "/manifest": {
+      "EN": {
+        "title": "Manifesto — Polymath Studio",
+        "description": "Against overproduction and planned obsolescence, Polymath Studio defends a technological pivot: modular, sustainable and ethical robotics engineered for humans.",
+        "h1": "Manifesto",
+        "text": "In a world dominated by overproduction, particularly in robotics and artificial intelligence, the world needs a technological pivot."
+      },
+      "FR": {
+        "title": "Manifeste — Polymath Studio",
+        "description": "Face à la surproduction et à l'obsolescence programmée, Polymath Studio défend un pivot technologique : une robotique modulaire, durable et éthique, pensée pour l'humain.",
+        "h1": "Manifeste",
+        "text": "Dans un monde dominé par la surproduction, particulièrement dans les domaines de la robotique et de l'intelligence artificielle, le monde a besoin d'un pivot technologique."
+      }
+    },
+    "/team": {
+      "EN": {
+        "title": "Team — Polymath Studio",
+        "description": "Meet the four engineer-designers behind Polymath Studio: AI, reinforcement learning, human-machine interaction and design.",
+        "h1": "The Polymath Studio team",
+        "text": "Four engineer-designers sharing a unified vision of the future, with complementary expertise in artificial intelligence, reinforcement learning, human-machine interaction and design."
+      },
+      "FR": {
+        "title": "Équipe — Polymath Studio",
+        "description": "Découvrez les quatre ingénieurs-designers de Polymath Studio : intelligence artificielle, apprentissage par renforcement, interaction homme-machine et design.",
+        "h1": "L'équipe Polymath Studio",
+        "text": "Quatre ingénieurs-designers partageant une vision commune de l'avenir, aux expertises complémentaires en intelligence artificielle, apprentissage par renforcement, interaction homme-machine et design."
+      }
+    },
+    "/projects": {
+      "EN": {
+        "title": "Louis — Autonomous quadruped patrol robot made in France | Polymath Studio",
+        "description": "Louis is the first French autonomous quadruped patrol robot, designed to secure campuses and large open sites. Mobile, discreet, modular and sovereign.",
+        "h1": "Louis — The first European autonomous quadruped patrol robot",
+        "text": "Louis is the first autonomous patrol quadruped robot developed in France by Polymath Studio. Engineered to secure expansive open facilities, it is mobile, restrained, modular and respectful of people."
+      },
+      "FR": {
+        "title": "Louis — Robot quadrupède de patrouille autonome made in France | Polymath Studio",
+        "description": "Louis est le premier robot quadrupède de patrouille autonome développé en France, conçu pour sécuriser campus et grands sites ouverts. Mobile, discret, modulaire et souverain.",
+        "h1": "Louis — Le premier robot quadrupède de patrouille autonome européen",
+        "text": "Louis est le premier robot quadrupède de patrouille autonome développé en France par Polymath Studio. Conçu pour sécuriser les grands périmètres ouverts, il est mobile, sobre, modulaire et respectueux des personnes."
+      }
+    },
+    "/contact": {
+      "EN": {
+        "title": "Contact — Polymath Studio",
+        "description": "Contact Polymath Studio to discuss robotics projects, partnerships or pilots of the Louis patrol robot.",
+        "h1": "Contact Polymath Studio",
+        "text": "Initiate the dialogue. Send us your requests or projects, our team will study each proposal carefully."
+      },
+      "FR": {
+        "title": "Contact — Polymath Studio",
+        "description": "Contactez Polymath Studio pour discuter de projets de robotique, de partenariats ou de pilotes du robot de patrouille Louis.",
+        "h1": "Contacter Polymath Studio",
+        "text": "Engagez le dialogue. Envoyez-nous vos demandes ou projets, notre équipe étudiera chaque proposition avec attention."
+      }
+    }
+  }
+}

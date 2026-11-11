@@ -1,9 +1,19 @@
 import React, { Component, ErrorInfo, ReactNode, useEffect } from 'react';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Manifest, Team, Contact, Projects } from './pages/InnerPages';
 import { LanguageProvider } from './LanguageContext';
 import { IntroScreen } from './components/IntroScreen';
+import { Seo } from './components/Seo';
+
+function NotFound() {
+  return (
+    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, fontFamily: 'monospace', textAlign: 'center' }}>
+      <h1 style={{ fontSize: 20, letterSpacing: '0.1em' }}>404</h1>
+      <Link to="/" style={{ textDecoration: 'underline' }}>Polymath Studio</Link>
+    </main>
+  );
+}
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -95,17 +105,18 @@ export default function App() {
     <ErrorBoundary>
       <LanguageProvider>
         <IntroScreen />
-        <HashRouter>
+        <BrowserRouter>
           <ScrollToTop />
+          <Seo />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/manifest" element={<Manifest />} />
             <Route path="/team" element={<Team />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
-        </HashRouter>
+        </BrowserRouter>
       </LanguageProvider>
     </ErrorBoundary>
   );
