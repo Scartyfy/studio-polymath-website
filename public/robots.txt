@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://polymathstudio.eu/sitemap.xml
+Sitemap: https://polymath-studio.eu/sitemap.xml
