@@ -19,7 +19,7 @@ function setTag(html, regex, replacement) {
 
 function render(path) {
   const d = seo.routes[path][LANG];
-  const url = seo.siteUrl + path;
+  const url = seo.siteUrl + (path === '/' ? '/' : path + '/');
   let html = template;
   html = setTag(html, /<title>[\s\S]*?<\/title>/, `<title>${esc(d.title)}</title>`);
   html = setTag(html, /<meta name="description"[^>]*>/, `<meta name="description" content="${esc(d.description)}" />`);
@@ -50,7 +50,7 @@ writeFileSync(join(dist, '404.html'), notFound);
 
 const today = new Date().toISOString().slice(0, 10);
 const urls = Object.keys(seo.routes)
-  .map((p) => `  <url>\n    <loc>${seo.siteUrl}${p === '/' ? '/' : p}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${p === '/' ? '1.0' : p === '/projects' ? '0.9' : '0.7'}</priority>\n  </url>`)
+  .map((p) => `  <url>\n    <loc>${seo.siteUrl}${p === '/' ? '/' : p + '/'}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${p === '/' ? '1.0' : p === '/projects' ? '0.9' : '0.7'}</priority>\n  </url>`)
   .join('\n');
 writeFileSync(
   join(dist, 'sitemap.xml'),

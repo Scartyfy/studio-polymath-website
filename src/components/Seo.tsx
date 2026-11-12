@@ -26,7 +26,7 @@ export function Seo() {
     const entry = routes[path]?.[lang];
     const known = Boolean(entry);
     const data = entry ?? routes['/'][lang];
-    const url = seo.siteUrl + (known ? (path === '/' ? '/' : path) : '/');
+    const url = seo.siteUrl + (known && path !== '/' ? path + '/' : '/');
 
     document.title = known ? data.title : `404 — ${seo.siteName}`;
     setMeta('meta[name="description"]', 'name', 'description', data.description);
