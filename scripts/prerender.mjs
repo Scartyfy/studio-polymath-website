@@ -32,7 +32,12 @@ function render(path) {
   const nav = Object.keys(seo.routes)
     .map((p) => `<a href="${p}">${esc(seo.routes[p][LANG].h1.split(' — ')[0])}</a>`)
     .join(' ');
-  const fallback = `<main style="padding:24px;font-family:monospace"><h1>${esc(d.h1)}</h1><p>${esc(d.text)}</p><nav>${nav}</nav></main>`;
+  const faqHtml = (d.faq || []).map((f) => `<h2>${esc(f.q)}</h2><p>${esc(f.a)}</p>`).join('');
+  const fallback = `<main style="padding:24px;font-family:monospace"><h1>${esc(d.h1)}</h1><p>${esc(d.text)}</p>${faqHtml}<nav>${nav}</nav></main>`;
+  if (d.faq) {
+    const ld = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: d.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+    html = html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>\n  </head>`);
+  }
   return setTag(html, /<!--prerender-->/, fallback);
 }
 
@@ -50,7 +55,7 @@ writeFileSync(join(dist, '404.html'), notFound);
 
 const today = new Date().toISOString().slice(0, 10);
 const urls = Object.keys(seo.routes)
-  .map((p) => `  <url>\n    <loc>${seo.siteUrl}${p === '/' ? '/' : p + '/'}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${p === '/' ? '1.0' : p === '/projects' ? '0.9' : '0.7'}</priority>\n  </url>`)
+  .map((p) => `  <url>\n    <loc>${seo.siteUrl}${p === '/' ? '/' : p + '/'}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${p === '/' ? '1.0' : p === '/projects' || p === '/robot-de-surveillance' ? '0.9' : '0.7'}</priority>\n  </url>`)
   .join('\n');
 writeFileSync(
   join(dist, 'sitemap.xml'),

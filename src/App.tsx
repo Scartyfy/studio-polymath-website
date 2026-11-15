@@ -2,6 +2,7 @@ import React, { Component, ErrorInfo, ReactNode, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Manifest, Team, Contact, Projects } from './pages/InnerPages';
+import { Surveillance } from './pages/Surveillance';
 import { LanguageProvider } from './LanguageContext';
 import { IntroScreen } from './components/IntroScreen';
 import { Seo } from './components/Seo';
@@ -114,6 +115,7 @@ export default function App() {
             <Route path="/team" element={<Team />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/robot-de-surveillance" element={<Surveillance />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

@@ -6,7 +6,7 @@ import { Navigation, Footer } from '../components/Shared';
 import { useLanguage } from '../LanguageContext';
 import { LiquidButton } from '../components/ui/primitives-buttons-liquid';
 
-function PageLayout({ 
+export function PageLayout({ 
   title, 
   subtitle, 
   bgElement, 

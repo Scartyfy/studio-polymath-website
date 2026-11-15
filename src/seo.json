@@ -72,6 +72,56 @@
         "h1": "Contacter Polymath Studio",
         "text": "Engagez le dialogue. Envoyez-nous vos demandes ou projets, notre équipe étudiera chaque proposition avec attention."
       }
+    },
+    "/robot-de-surveillance": {
+      "FR": {
+        "title": "Robot de surveillance autonome : chien robot de patrouille Louis | Polymath Studio",
+        "description": "Louis, le chien robot de surveillance autonome développé en France : patrouille de nuit des campus et grands sites ouverts, sans angles morts, conforme RGPD.",
+        "h1": "Robot de surveillance autonome : Louis, le chien robot de patrouille",
+        "text": "Louis est le premier robot de surveillance quadrupède de patrouille autonome développé en France par Polymath Studio. Ce chien robot sécurise les grands sites ouverts : campus, sites de recherche, sites industriels et tertiaires.",
+        "faq": [
+          {
+            "q": "Qu'est-ce qu'un chien robot de surveillance ?",
+            "a": "C'est un robot quadrupède qui patrouille de façon autonome sur un site pour le surveiller. Louis, développé en France par Polymath Studio, couvre les grands sites ouverts et les angles morts que les caméras fixes ne voient pas."
+          },
+          {
+            "q": "Un chien robot remplace-t-il un agent de sécurité ?",
+            "a": "Il ne remplace pas vos équipes, il vient combler les limites d'un système sous tension. Louis effectue les rondes autonomes de nuit et le week-end, soulageant vos agents et couvrant les angles morts inaccessibles aux caméras fixes."
+          },
+          {
+            "q": "Qu'en est-il de la sécurité de nos données ?",
+            "a": "Louis est conçu en France et soumis au droit français et européen (RGPD). Le matériel et le logiciel sont locaux, pour un périmètre de confiance strict."
+          },
+          {
+            "q": "Le robot est-il un investissement durable ?",
+            "a": "Oui. Louis est conçu pour recevoir des mises à jour logicielles et une maintenance modulaire directement sur site, ce qui évite de racheter un nouveau robot et réduit le gaspillage technologique."
+          }
+        ]
+      },
+      "EN": {
+        "title": "Autonomous surveillance robot: Louis the patrol robot dog | Polymath Studio",
+        "description": "Louis, the autonomous surveillance robot dog developed in France: night patrols for campuses and large open sites, no blind spots, GDPR-compliant.",
+        "h1": "Autonomous surveillance robot: Louis, the patrol robot dog",
+        "text": "Louis is the first autonomous quadruped surveillance patrol robot developed in France by Polymath Studio. This robot dog secures large open sites: campuses, research sites, industrial and commercial facilities.",
+        "faq": [
+          {
+            "q": "What is a surveillance robot dog?",
+            "a": "It is a quadruped robot that patrols a site autonomously to monitor it. Louis, developed in France by Polymath Studio, covers large open sites and the blind spots that static cameras cannot see."
+          },
+          {
+            "q": "Does a quadruped robot replace human security guards?",
+            "a": "It does not replace your security personnel; it bridges the gaps of an overburdened security perimeter. Louis handles repetitive nocturnal and weekend rounds, relieving guards and inspecting blind spots unreachable by static cameras."
+          },
+          {
+            "q": "How is data confidentiality guaranteed?",
+            "a": "Louis is engineered in France and subject to French and European privacy law (GDPR). Hardware and software are local, ensuring a strict trust perimeter."
+          },
+          {
+            "q": "Is the robot a sustainable long-term investment?",
+            "a": "Yes. Louis is architected for modular field servicing and continuous software upgrades directly on site, eliminating early obsolescence and reducing technological waste."
+          }
+        ]
+      }
     }
   }
 }
