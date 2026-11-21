@@ -955,85 +955,72 @@ export function Projects() {
           </div>
         </section>
 
-        {/* Section: Joschka's Calgary Quadruped Research (Stage & R&D) */}
-        <div className="space-y-6 border-t border-[var(--line-strong)] pt-12">
-          <div>
-            <h3 className="text-xl sm:text-2xl font-light text-white mb-3">
-              {t('projects.jo.title')}
-            </h3>
-            <p className="text-sm sm:text-base text-white/70 font-light max-w-3xl leading-relaxed">
-              {(() => {
-                const text = t('projects.jo.desc') || '';
-                const target = 'Joschka Mayer';
-                if (!text.includes(target)) return text;
-                const parts = text.split(target);
-                return (
-                  <>
-                    {parts[0]}
-                    <Link 
-                      to="/team" 
-                      className="text-white underline underline-offset-4 decoration-white/40 hover:decoration-white hover:text-white transition-all cursor-pointer font-normal"
-                    >
-                      {target}
-                    </Link>
-                    {parts[1]}
-                  </>
-                );
-              })()}
-            </p>
+        {/* Pourquoi nous : légitimité de l'équipe + CTO */}
+        <div className="space-y-14 border-t border-[var(--line-strong)] pt-12">
+          <div className="space-y-6">
+            <div className="space-y-3">
+              <div className="font-mono text-[11px] text-white/40 uppercase tracking-[0.2em]">{t('v2.us.badge')}</div>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-white tracking-tight">{t('v2.us.title')}</h3>
+            </div>
+            <p className="text-sm sm:text-base text-white/75 font-light leading-relaxed max-w-3xl">{t('v2.us.p')}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {['alann', 'alec', 'arthur', 'joschka'].map((m, i) => (
+                <motion.div
+                  key={m}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="border border-white/10 bg-white/[0.015] p-5"
+                >
+                  <div className="text-base font-medium text-white capitalize mb-1.5">{m}</div>
+                  <p className="text-xs sm:text-sm text-white/65 font-light leading-relaxed">{t(`v2.us.${m}`)}</p>
+                </motion.div>
+              ))}
+            </div>
+            <p className="text-xs sm:text-sm text-white/55 font-light">{t('v2.us.cyb')}</p>
           </div>
 
-          {/* Research images & documentation frame - Mise en avant du tableau des compétences */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-            {/* Primary image */}
-            <div className="border border-[var(--line-strong)] bg-black overflow-hidden group h-full">
-              <div className="aspect-[16/10] sm:aspect-[4/3] lg:aspect-auto lg:h-full w-full overflow-hidden bg-neutral-950 relative min-h-[300px]">
-                <img 
+          {/* CTO : version condensée */}
+          <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-6 md:gap-10 items-center">
+            <div className="border border-[var(--line-strong)] bg-black overflow-hidden group">
+              <div className="aspect-[4/3] w-full overflow-hidden bg-neutral-950">
+                <img
                   src={`${import.meta.env.BASE_URL}robot/jo-expertise.jpg`}
                   alt={t('projects.jo.img_alt')}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
               </div>
             </div>
-
-            {/* Technical skills card - Mis en avant */}
-            <div className="border border-white/20 bg-white/[0.02] p-6 sm:p-8 space-y-6 font-mono text-xs flex flex-col justify-between shadow-xl">
-              <div className="space-y-5">
-                <div className="flex items-center justify-between border-b border-white/20 pb-3">
-                  <div className="text-white uppercase tracking-wider font-medium text-sm">
-                    <span>{t('projects.skills.title')}</span>
-                  </div>
-                  <span className="text-[10px] tracking-widest text-white/50 uppercase border border-white/20 px-2 py-0.5">
-                    R&D
+            <div className="space-y-4">
+              <h4 className="text-lg sm:text-xl font-light text-white">{t('projects.jo.title')}</h4>
+              <p className="text-sm sm:text-base text-white/70 font-light leading-relaxed">
+                {(() => {
+                  const text = t('projects.jo.desc') || '';
+                  const target = 'Joschka Mayer';
+                  if (!text.includes(target)) return text;
+                  const parts = text.split(target);
+                  return (
+                    <>
+                      {parts[0]}
+                      <Link
+                        to="/team"
+                        className="text-white underline underline-offset-4 decoration-white/40 hover:decoration-white hover:text-white transition-all cursor-pointer font-normal"
+                      >
+                        {target}
+                      </Link>
+                      {parts[1]}
+                    </>
+                  );
+                })()}
+              </p>
+              <div className="flex flex-wrap gap-2 pt-1">
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <span key={n} className="font-mono text-[10px] sm:text-[11px] text-white/70 border border-white/15 px-2.5 py-1">
+                    {t(`projects.skills.skill${n}`)}
                   </span>
-                </div>
-
-                <div className="space-y-2.5">
-                  <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
-                    <span className="text-white/90 text-xs font-light">{t('projects.skills.skill1')}</span>
-                  </div>
-
-                  <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
-                    <span className="text-white/90 text-xs font-light">{t('projects.skills.skill2')}</span>
-                  </div>
-
-                  <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
-                    <span className="text-white/90 text-xs font-light">{t('projects.skills.skill3')}</span>
-                  </div>
-
-                  <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
-                    <span className="text-white/90 text-xs font-light">{t('projects.skills.skill4')}</span>
-                  </div>
-
-                  <div className="p-3 border border-white/10 bg-white/[0.015] flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
-                    <span className="text-white/90 text-xs font-light">{t('projects.skills.skill5')}</span>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
