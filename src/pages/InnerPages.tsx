@@ -466,7 +466,7 @@ export function Projects() {
         <div className="relative left-1/2 -translate-x-1/2 w-screen h-screen min-h-[650px] md:min-h-screen overflow-hidden bg-black my-8 sm:my-16">
           <div className="relative w-full h-full overflow-hidden">
             <img 
-              src={`${import.meta.env.BASE_URL}robot/misealechelle.jpeg`}
+              src={`${import.meta.env.BASE_URL}robot/robot1.jpg`}
               alt="Louis, robot quadrupède de patrouille autonome conçu par Polymath Studio"
               className="w-full h-full object-cover object-center scale-[1.02]"
             />
@@ -504,8 +504,8 @@ export function Projects() {
               transition={{ duration: 0.6 }}
               className="absolute z-20 pointer-events-none"
               style={{
-                left: '61%',
-                top: '66%'
+                left: '42%',
+                top: '56%'
               }}
             >
               <div className="relative">
