@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, Cpu, ChevronDown } from 'lucide-react';
+import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, ArrowLeft, ArrowUp, Cpu, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
 import { Navigation, Footer } from '../components/Shared';
 import { useLanguage } from '../LanguageContext';
@@ -448,6 +448,129 @@ function StatusTimeline({ t }: { t: (k: string) => string }) {
   );
 }
 
+const ECO_CLIENTS = [
+  { name: 'Saur', logo: 'saur.png', tag: 'validated', h: 'h-14 sm:h-16' },
+  { name: 'Parc Spirou Provence', logo: 'spirou.png', tag: 'interest', h: 'h-16 sm:h-20' },
+  { name: 'RAID — Police nationale', logo: 'raid.png', tag: 'interest', h: 'h-16 sm:h-20' },
+] as const;
+
+/* Mobotix : logo, chiffres, puis sous-branche des clients, et le robot Louis qui fait le lien */
+function MobotixEcosystem({ t }: { t: (k: string) => string }) {
+  const base = import.meta.env.BASE_URL;
+  const view = { once: true, amount: 0.3 } as const;
+  return (
+    <div className="space-y-10">
+      {/* En-tête Mobotix */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="space-y-4">
+          <motion.img
+            src={`${base}partners/mobotix.png`}
+            alt="Mobotix"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={view}
+            transition={{ duration: 0.6 }}
+            className="h-9 sm:h-11 w-auto"
+          />
+          <h3 className="text-xl sm:text-2xl font-light text-white tracking-tight">{t('v2.mbx.title')}</h3>
+          <p className="text-sm sm:text-base text-white/75 font-light">{t('v2.mbx.lead')}</p>
+          <p className="text-sm sm:text-base text-white/65 font-light leading-relaxed max-w-xl border-l-2 border-white/50 pl-4">{t('v2.mbx.desc')}</p>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          {[1, 2].map((n) => (
+            <div key={n} className="border border-white/10 p-5">
+              <div className="text-3xl sm:text-4xl font-light text-white tracking-tight whitespace-nowrap">{t(`v2.mbx.n${n}`)}</div>
+              <div className="text-xs sm:text-sm text-white/55 font-light mt-1">{t(`v2.mbx.l${n}`)}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Sous-branche : clients de Mobotix  →  Louis */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-6 lg:gap-4 items-stretch border-t border-white/10 pt-10">
+        {/* Clients */}
+        <div className="relative">
+          <div className="font-mono text-[11px] text-white/40 uppercase tracking-[0.2em] mb-5">{t('v2.eco.clients')}</div>
+          <div className="relative pl-7">
+            <motion.div
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={view}
+              transition={{ duration: 0.9, ease: 'easeOut' }}
+              className="absolute left-0 top-0 bottom-6 w-px bg-white/40 origin-top"
+            />
+            <div className="space-y-4">
+              {ECO_CLIENTS.map((c, i) => (
+                <motion.div
+                  key={c.name}
+                  initial={{ opacity: 0, x: -14 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={view}
+                  transition={{ duration: 0.55, delay: 0.5 + i * 0.25 }}
+                  className="relative flex flex-col sm:flex-row items-center gap-3 sm:gap-5 border border-white/10 bg-black/40 px-5 py-4 hover:border-white/30 transition-colors"
+                >
+                  <span className="absolute -left-7 top-1/2 w-7 h-px bg-white/40" />
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={view}
+                    transition={{ delay: 0.7 + i * 0.25, type: 'spring', stiffness: 300 }}
+                    className="absolute -left-[9px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white"
+                  />
+                  <div className="w-28 sm:w-32 shrink-0 flex items-center justify-center">
+                    <img src={`${base}partners/${c.logo}`} alt={c.name} className={`${c.h} w-auto max-w-full object-contain`} loading="lazy" />
+                  </div>
+                  <span className={`sm:ml-auto font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border whitespace-nowrap ${
+                    c.tag === 'validated' ? 'border-white/60 text-white' : 'border-white/20 text-white/55'
+                  }`}>
+                    {t(`v2.eco.tag.${c.tag === 'validated' ? 'validated' : 'interest'}`)}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          <p className="text-xs sm:text-sm text-white/55 font-light leading-relaxed mt-5 max-w-md">{t('v2.eco.need')}</p>
+        </div>
+
+        {/* Connecteur animé : Louis répond au besoin des clients */}
+        <div className="flex flex-col items-center justify-center gap-3 py-2 lg:px-2 text-white/70">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-center max-w-[9rem]">{t('v2.eco.arrow2')}</span>
+          <div className="lg:hidden relative w-px h-16 bg-white/25 overflow-hidden">
+            <motion.span className="absolute left-[-3px] w-2 h-2 rounded-full bg-white"
+              animate={{ y: [64, 0], opacity: [0, 1, 1, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }} />
+          </div>
+          <ArrowUp className="lg:hidden w-4 h-4" />
+          <div className="hidden lg:block relative h-px w-24 bg-white/25 overflow-hidden">
+            <motion.span className="absolute top-[-3px] w-2 h-2 rounded-full bg-white"
+              animate={{ x: [96, 0], opacity: [0, 1, 1, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }} />
+          </div>
+          <ArrowLeft className="hidden lg:block w-4 h-4" />
+        </div>
+
+        {/* Polymath / Louis */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={view}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="border border-white/25 bg-white/[0.03] p-5 sm:p-6 flex flex-col justify-between gap-4"
+        >
+          <div className="flex items-center gap-3">
+            <img src={`${base}logo_simple.png`} alt="Polymath Studio" className="h-8 w-auto" loading="lazy" />
+            <span className="text-white/40 text-lg font-light">+</span>
+            <img src={`${base}partners/mobotix.png`} alt="Mobotix" className="h-4 sm:h-5 w-auto" loading="lazy" />
+            <span className="ml-auto font-mono text-[11px] text-white/60 uppercase tracking-[0.18em]">{t('v2.eco.polymath')}</span>
+          </div>
+          <div className="aspect-[16/10] overflow-hidden bg-white">
+            <img src={`${base}robot/robot2.jpg`} alt="Louis" className="w-full h-full object-contain" loading="lazy" />
+          </div>
+          <p className="text-xs sm:text-sm text-white/75 font-light leading-relaxed">{t('v2.eco.polymath.d')}</p>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
 export function Projects() {
   const { t, lang } = useLanguage();
   const navigate = useNavigate();
@@ -666,23 +789,8 @@ export function Projects() {
             <StatusTimeline t={t} />
           </div>
 
-          {/* Partenaire Mobotix */}
-          <div className="border border-white/15 bg-white/[0.015] p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="space-y-4">
-              <div className="font-mono text-[11px] text-white/40 uppercase tracking-[0.2em]">{t('v2.mbx.badge')}</div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-white tracking-tight">{t('v2.mbx.title')}</h3>
-              <p className="text-base sm:text-lg text-white/85 font-light">{t('v2.mbx.lead')}</p>
-              <p className="text-sm sm:text-base text-white/65 font-light leading-relaxed max-w-xl border-l-2 border-white/50 pl-4">{t('v2.mbx.desc')}</p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {[1, 2].map((n) => (
-                <div key={n} className="border border-white/10 p-5">
-                  <div className="text-3xl sm:text-4xl font-light text-white tracking-tight whitespace-nowrap">{t(`v2.mbx.n${n}`)}</div>
-                  <div className="text-xs sm:text-sm text-white/55 font-light mt-1">{t(`v2.mbx.l${n}`)}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Partenaire Mobotix + écosystème */}
+          <MobotixEcosystem t={t} />
 
           {/* Le problème */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center border-y border-white/15 py-12 sm:py-16">
