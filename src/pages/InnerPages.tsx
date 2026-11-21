@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, Cpu, ChevronDown } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
 import { Navigation, Footer } from '../components/Shared';
 import { useLanguage } from '../LanguageContext';
 import { LiquidButton } from '../components/ui/primitives-buttons-liquid';
@@ -376,19 +376,81 @@ export function Contact() {
   );
 }
 
+const STATUS_ITEMS = [
+  { k: 's1', st: 'done' },
+  { k: 's2', st: 'done' },
+  { k: 's3', st: 'done' },
+  { k: 's4', st: 'doing' },
+  { k: 's5', st: 'next' },
+] as const;
+
+/* Frise d'avancement : une barre se remplit au scroll et allume les points un à un */
+function StatusTimeline({ t }: { t: (k: string) => string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const dotRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [tops, setTops] = useState<number[]>([]);
+  const [lit, setLit] = useState(0);
+  const lastLit = STATUS_ITEMS.map((i) => i.st).lastIndexOf('doing');
+
+  useEffect(() => {
+    const measure = () => {
+      if (!ref.current) return;
+      const base = ref.current.getBoundingClientRect().top;
+      setTops(dotRefs.current.map((d) => (d ? d.getBoundingClientRect().top - base + d.offsetHeight / 2 : 0)));
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    const id = window.setTimeout(measure, 600);
+    return () => { window.removeEventListener('resize', measure); window.clearTimeout(id); };
+  }, []);
+
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 75%', 'end 55%'] });
+  const target = tops[lastLit] ?? 0;
+  const fill = useTransform(scrollYProgress, [0, 0.9], [0, target], { clamp: true });
+  useMotionValueEvent(fill, 'change', (v) => {
+    setLit(tops.filter((tp, i) => i <= lastLit && v >= tp - 2).length);
+  });
+
+  return (
+    <div ref={ref} className="relative ml-2 space-y-6">
+      <div className="absolute left-0 top-0 bottom-0 w-px bg-white/15" />
+      <motion.div className="absolute left-0 top-0 w-px bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]" style={{ height: fill }} />
+      {STATUS_ITEMS.map(({ k, st }, i) => {
+        const on = i < lit;
+        return (
+          <div key={k} className="relative pl-7 sm:pl-9">
+            <span
+              ref={(el) => { dotRefs.current[i] = el; }}
+              className={`absolute -left-[7px] top-1.5 w-3.5 h-3.5 rounded-full border transition-all duration-500 ${
+                on
+                  ? st === 'doing'
+                    ? 'bg-black border-white shadow-[0_0_10px_rgba(255,255,255,0.9)] animate-pulse'
+                    : 'bg-white border-white shadow-[0_0_10px_rgba(255,255,255,0.7)]'
+                  : 'bg-black border-white/30'
+              }`}
+            />
+            <div className={`transition-opacity duration-500 ${on || st === 'next' ? 'opacity-100' : 'opacity-35'}`}>
+              <div className="flex flex-wrap items-center gap-3 mb-1">
+                <h4 className={`text-base sm:text-lg ${st === 'next' ? 'text-white/60' : 'text-white'} font-normal`}>{t(`v2.${k}.t`)}</h4>
+                <span className={`font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border ${
+                  st === 'done' ? 'border-white/40 text-white/80' : st === 'doing' ? 'border-white text-white' : 'border-white/15 text-white/40'
+                }`}>
+                  {t(`v2.status.${st}`)}
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-white/65 font-light leading-relaxed max-w-2xl">{t(`v2.${k}.d`)}</p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export function Projects() {
   const { t, lang } = useLanguage();
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const capabilities = [
-    { title: t('projects.sheet.cap1.title'), desc: t('projects.sheet.cap1.desc') },
-    { title: t('projects.sheet.cap2.title'), desc: t('projects.sheet.cap2.desc') },
-    { title: t('projects.sheet.cap3.title'), desc: t('projects.sheet.cap3.desc') },
-    { title: t('projects.sheet.cap4.title'), desc: t('projects.sheet.cap4.desc') },
-    { title: t('projects.sheet.cap5.title'), desc: t('projects.sheet.cap5.desc') },
-    { title: t('projects.sheet.cap6.title'), desc: t('projects.sheet.cap6.desc') },
-  ];
 
   const faqs = [
     { q: t('projects.sheet.faq1.q'), a: t('projects.sheet.faq1.a') },
@@ -468,7 +530,7 @@ export function Projects() {
             <img 
               src={`${import.meta.env.BASE_URL}robot/robot1.jpg`}
               alt="Louis, robot quadrupède de patrouille autonome conçu par Polymath Studio"
-              className="w-full h-full object-cover object-center scale-[1.02]"
+              className="w-full h-full object-cover object-[40%_center] scale-[1.02]"
             />
             
             {/* Grand effet vignette cinématique adouci */}
@@ -504,8 +566,8 @@ export function Projects() {
               transition={{ duration: 0.6 }}
               className="absolute z-20 pointer-events-none"
               style={{
-                left: '42%',
-                top: '56%'
+                left: '40.5%',
+                top: '50%'
               }}
             >
               <div className="relative">
@@ -516,9 +578,9 @@ export function Projects() {
 
                 {/* 2. Ligne technique SVG ultra-fine vers la droite et le bas (Desktop) */}
                 <div className="hidden sm:block absolute overflow-visible pointer-events-none" style={{ top: '0px', left: '0px', width: '130px', height: '35px' }}>
-                  <svg width="130" height="35" viewBox="0 0 130 35" className="overflow-visible">
+                  <svg width="130" height="35" viewBox="0 -35 130 35" className="overflow-visible" style={{ marginTop: "-35px" }}>
                     <motion.path 
-                      d="M 0,0 L 45,20 L 120,20"
+                      d="M 0,0 L 40,-28 L 120,-28"
                       fill="none"
                       stroke="rgba(255, 255, 255, 0.75)"
                       strokeWidth="1"
@@ -532,9 +594,9 @@ export function Projects() {
 
                 {/* 2bis. Ligne technique SVG vers la droite et le bas (Mobile) */}
                 <div className="sm:hidden absolute overflow-visible pointer-events-none" style={{ top: '0px', left: '0px', width: '70px', height: '30px' }}>
-                  <svg width="70" height="30" viewBox="0 0 70 30" className="overflow-visible">
+                  <svg width="70" height="30" viewBox="0 -30 70 30" className="overflow-visible" style={{ marginTop: "-30px" }}>
                     <motion.path 
-                      d="M 0,0 L 25,15 L 55,15"
+                      d="M 0,0 L 22,-18 L 55,-18"
                       fill="none"
                       stroke="rgba(255, 255, 255, 0.75)"
                       strokeWidth="1"
@@ -554,11 +616,11 @@ export function Projects() {
                   transition={{ duration: 0.5, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute -translate-y-1/2 pointer-events-auto"
                   style={{
-                    top: '20px',
+                    top: '-28px',
                     left: '126px'
                   }}
                 >
-                  <div className="hidden sm:inline-flex items-center text-xs md:text-sm tracking-wide text-white drop-shadow-md whitespace-nowrap pl-1">
+                  <div className="hidden sm:inline-flex items-center text-xs md:text-sm tracking-wide text-white whitespace-nowrap px-2.5 py-1 bg-black/60 backdrop-blur-sm border border-white/15">
                     <span className="font-medium text-white">Louis</span>
                     <span className="text-white/80 font-light">
                       {t('projects.callout.desc')}
@@ -574,11 +636,11 @@ export function Projects() {
                   transition={{ duration: 0.5, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
                   className="sm:hidden absolute -translate-y-1/2 pointer-events-auto"
                   style={{
-                    top: '15px',
+                    top: '-18px',
                     left: '60px'
                   }}
                 >
-                  <div className="inline-flex items-center text-[11px] tracking-wide text-white drop-shadow-md whitespace-nowrap pl-1">
+                  <div className="inline-block text-[11px] leading-tight tracking-wide text-white w-[150px] px-2 py-1 bg-black/60 backdrop-blur-sm border border-white/15">
                     <span className="font-medium text-white">Louis</span>
                     <span className="text-white/80 font-light">
                       {t('projects.callout.desc')}
@@ -590,88 +652,144 @@ export function Projects() {
           </div>
         </div>
 
-        {/* Fiche Solution Détaillée // Pourquoi Louis pour votre campus ? */}
-        <section className="space-y-16 pt-2 sm:pt-6">
-          {/* En-tête de la fiche & Problématique */}
-          <div className="space-y-6">
-            <div className="inline-flex items-center text-[10px] sm:text-xs font-mono tracking-[0.25em] text-white/70 uppercase px-3.5 py-1.5 border border-white/20 bg-white/[0.02]">
-              {t('projects.sheet.badge')}
+        <section className="space-y-20 sm:space-y-28 pt-2 sm:pt-6">
+          {/* Avancement : où en est le projet */}
+          <div className="space-y-8">
+            <div className="space-y-3">
+              <div className="inline-flex items-center text-[10px] sm:text-xs font-mono tracking-[0.25em] text-white/70 uppercase px-3.5 py-1.5 border border-white/20 bg-white/[0.02]">
+                {t('v2.status.badge')}
+              </div>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-light text-white tracking-tight">{t('v2.status.title')}</h3>
+              <p className="text-sm sm:text-base text-white/70 font-light max-w-2xl">{t('v2.status.sub')}</p>
             </div>
-
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-white tracking-tight leading-snug max-w-4xl">
-              {t('projects.sheet.title')}
-            </h3>
-
-            <div className="p-6 sm:p-8 border border-white/15 bg-white/[0.015] backdrop-blur-sm">
-              <p className="text-sm sm:text-base text-white/85 font-light leading-relaxed">
-                {t('projects.sheet.intro')}
-              </p>
-            </div>
+            <StatusTimeline t={t} />
           </div>
 
-          {/* Ce que sait faire Louis (L'approche Polymath Studio) */}
-          <div className="space-y-6">
-            <div className="border-b border-white/15 pb-4">
-              <span className="font-mono text-[11px] text-white/40 uppercase tracking-[0.2em] block mb-1">
-                {t('projects.sheet.approach.subtitle')}
-              </span>
-              <h4 className="text-xl sm:text-2xl font-light text-white tracking-tight">
-                {t('projects.sheet.approach.title')}
-              </h4>
+          {/* Partenaire Mobotix */}
+          <div className="border border-white/15 bg-white/[0.015] p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="space-y-4">
+              <div className="font-mono text-[11px] text-white/40 uppercase tracking-[0.2em]">{t('v2.mbx.badge')}</div>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-white tracking-tight">{t('v2.mbx.title')}</h3>
+              <p className="text-base sm:text-lg text-white/85 font-light">{t('v2.mbx.lead')}</p>
+              <p className="text-sm sm:text-base text-white/65 font-light leading-relaxed max-w-xl border-l-2 border-white/50 pl-4">{t('v2.mbx.desc')}</p>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {capabilities.map((cap, idx) => (
-                <div 
-                  key={idx}
-                  className="p-6 border border-white/10 bg-white/[0.015] flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest mb-3">
-                      {`0${idx + 1} // ${t('projects.sheet.specification')}`}
-                    </div>
-                    <h5 className="text-base font-medium text-white mb-2.5">
-                      {cap.title}
-                    </h5>
-                    <p className="text-xs sm:text-sm text-white/70 font-light leading-relaxed">
-                      {cap.desc}
-                    </p>
-                  </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[1, 2].map((n) => (
+                <div key={n} className="border border-white/10 p-5">
+                  <div className="text-3xl sm:text-4xl font-light text-white tracking-tight whitespace-nowrap">{t(`v2.mbx.n${n}`)}</div>
+                  <div className="text-xs sm:text-sm text-white/55 font-light mt-1">{t(`v2.mbx.l${n}`)}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Supervision Centralisée & Typologie des sites */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 p-6 sm:p-8 border border-white/15 bg-white/[0.015] flex flex-col justify-between">
-              <div>
-                <div className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest mb-3">
-                  {t('projects.sheet.vms_badge')}
+          {/* Le problème */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center border-y border-white/15 py-12 sm:py-16">
+            <div className="space-y-6">
+              <div className="font-mono text-[11px] text-white/40 uppercase tracking-[0.2em]">{t('v2.problem.badge')}</div>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-white leading-snug">{t('v2.problem.lead')}</h3>
+              <ul className="space-y-4 text-sm sm:text-base font-light text-white/75">
+                <li className="border-l-2 border-white/60 pl-4"><span className="text-white font-normal">{t('v2.problem.t1')}</span> : {t('v2.problem.d1')}</li>
+                <li className="border-l-2 border-white/60 pl-4"><span className="text-white font-normal">{t('v2.problem.t2')}</span> : {t('v2.problem.d2')}</li>
+              </ul>
+            </div>
+            <div>
+              <div className="text-5xl sm:text-6xl md:text-7xl font-light text-white tracking-tight">{t('v2.problem.num')}</div>
+              <div className="text-base sm:text-lg text-white/60 font-light mt-2">{t('v2.problem.unit')}</div>
+              <div className="text-[11px] sm:text-xs text-white/35 font-light mt-3">{t('v2.problem.src')}</div>
+            </div>
+          </div>
+
+          {/* Ce que fait Louis */}
+          <div className="space-y-8">
+            <div className="space-y-3">
+              <div className="font-mono text-[11px] text-white/40 uppercase tracking-[0.2em]">{t('v2.does.badge')}</div>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-white tracking-tight max-w-3xl leading-snug">{t('v2.does.title')}</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {[1, 2, 3].map((n) => (
+                <div key={n} className="p-6 sm:p-7 border border-white/10 bg-white/[0.015]">
+                  <div className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest mb-3">{`0${n}`}</div>
+                  <h5 className="text-lg font-medium text-white mb-2.5">{t(`v2.does.t${n}`)}</h5>
+                  <p className="text-xs sm:text-sm text-white/70 font-light leading-relaxed">{t(`v2.does.d${n}`)}</p>
                 </div>
-                <h4 className="text-lg sm:text-xl font-light text-white mb-3">
-                  {t('projects.sheet.supervision.title')}
-                </h4>
-                <p className="text-xs sm:text-sm text-white/75 font-light leading-relaxed">
-                  {t('projects.sheet.supervision.desc')}
-                </p>
+              ))}
+            </div>
+          </div>
+
+          {/* Architecture modulaire */}
+          <div className="space-y-8">
+            <div className="space-y-3">
+              <div className="font-mono text-[11px] text-white/40 uppercase tracking-[0.2em]">{t('v2.arch.badge')}</div>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-white tracking-tight">{t('v2.arch.title')}</h3>
+              <p className="text-sm sm:text-base text-white/70 font-light max-w-2xl">{t('v2.arch.sub')}</p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-stretch">
+              <figure className="lg:col-span-3 border border-white/15 bg-white overflow-hidden">
+                <img
+                  src={`${import.meta.env.BASE_URL}robot/robot4.jpg`}
+                  alt={t('v2.arch.caption')}
+                  loading="lazy"
+                  className="w-full h-full object-contain"
+                />
+              </figure>
+              <div className="lg:col-span-2 space-y-3">
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <div key={n} className="p-4 sm:p-5 border border-white/10 bg-white/[0.015]">
+                    <h5 className="text-sm sm:text-base font-medium text-white mb-1">{t(`v2.arch.m${n}.t`)}</h5>
+                    <p className="text-xs sm:text-sm text-white/65 font-light leading-relaxed">{t(`v2.arch.m${n}.d`)}</p>
+                  </div>
+                ))}
               </div>
             </div>
+          </div>
 
-            <div className="p-6 sm:p-8 border border-white/15 bg-white/[0.015] flex flex-col justify-between">
-              <div>
-                <div className="font-mono text-[10px] sm:text-[11px] text-white/40 uppercase tracking-widest mb-3">
-                  {t('projects.sheet.sites_badge')}
-                </div>
-                <h4 className="text-lg sm:text-xl font-light text-white mb-3">
-                  {t('projects.sheet.sites.title')}
-                </h4>
-                <p className="text-xs sm:text-sm text-white/75 font-light leading-relaxed">
-                  {t('projects.sheet.sites.desc')}
-                </p>
+          {/* Idéation */}
+          <div className="space-y-8">
+            <div className="space-y-3">
+              <div className="font-mono text-[11px] text-white/40 uppercase tracking-[0.2em]">{t('v2.idea.badge')}</div>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-white tracking-tight">{t('v2.idea.title')}</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {[
+                { src: 'robot3.jpg', c: 'v2.idea.c2' },
+                { src: 'robot2.jpg', c: 'v2.idea.c3' },
+              ].map((it) => (
+                <figure key={it.src} className="space-y-3">
+                  <div className="aspect-[4/3] overflow-hidden border border-white/15 bg-neutral-950">
+                    <img
+                      src={`${import.meta.env.BASE_URL}robot/${it.src}`}
+                      alt={t(it.c)}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <figcaption className="font-mono text-[11px] text-white/50 uppercase tracking-wider">{t(it.c)}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          {/* Pourquoi Louis */}
+          <div className="space-y-8">
+            <div className="space-y-2">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-white tracking-tight">{t('v2.why.title')}</h3>
+              <p className="text-xl sm:text-2xl md:text-3xl font-medium text-white">{t('v2.why.sub')}</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 md:divide-x md:divide-white/20">
+              <div className="md:pr-10 border-t border-white/25 pt-5 opacity-70">
+                <div className="font-mono text-[11px] text-white/50 uppercase tracking-widest mb-2">{t('v2.why.others')}</div>
+                <h4 className="text-xl font-medium text-white/80 mb-4">{t('v2.why.others.t')}</h4>
+                <ul className="space-y-2 text-sm text-white/60 font-light list-disc pl-5">
+                  {[1, 2, 3, 4].map((n) => <li key={n}>{t(`v2.why.o${n}`)}</li>)}
+                </ul>
               </div>
-              <div className="mt-6 pt-4 border-t border-white/10 font-mono text-[11px] text-white/40 uppercase tracking-wider">
-                {t('projects.sheet.sites_footer')}
+              <div className="md:pl-10 border-t border-white pt-5">
+                <div className="font-mono text-[11px] text-white uppercase tracking-widest mb-2">{t('v2.why.us')}</div>
+                <h4 className="text-xl font-medium text-white mb-4">{t('v2.why.us.t')}</h4>
+                <ul className="space-y-2 text-sm text-white/90 font-light list-disc pl-5">
+                  {[1, 2, 3, 4].map((n) => <li key={n}>{t(`v2.why.u${n}`)}</li>)}
+                </ul>
               </div>
             </div>
           </div>
@@ -814,9 +932,6 @@ export function Projects() {
 
         {/* CTA Section */}
         <div className="border-t border-[var(--line-strong)] pt-14 pb-8 flex flex-col items-center text-center">
-          <div className="inline-flex items-center text-sm sm:text-base md:text-lg font-mono tracking-[0.2em] font-medium text-white uppercase px-5 sm:px-7 py-2.5 sm:py-3 border border-white/25 bg-white/[0.04] mb-5 shadow-lg">
-            <span>{t('projects.cta.badge')}</span>
-          </div>
           <h3 className="text-xl sm:text-2xl font-light text-white mb-3">
             {t('projects.cta.title')}
           </h3>
