@@ -379,6 +379,7 @@ export function Contact() {
 const STATUS_ITEMS = [
   { k: 's1', st: 'done' },
   { k: 's2', st: 'done' },
+  { k: 's6', st: 'done' },
   { k: 's3', st: 'done' },
   { k: 's4', st: 'doing' },
   { k: 's5', st: 'next' },
