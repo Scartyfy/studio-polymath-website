@@ -335,7 +335,6 @@ export function Home() {
                 <ul className="flex flex-col gap-2 items-end">
                   <FooterLink to="/">{t('footer.home')}</FooterLink>
                   <FooterLink to="/projects">{t('footer.projects')}</FooterLink>
-                  <FooterLink to="/robot-de-surveillance">{t('footer.surveillance')}</FooterLink>
                   <FooterLink to="/manifest">{t('footer.manifest')}</FooterLink>
                   <FooterLink to="/team">{t('footer.team')}</FooterLink>
                 </ul>

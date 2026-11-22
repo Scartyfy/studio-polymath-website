@@ -231,7 +231,6 @@ export function MobileMenu({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean,
       <nav className="mobile-menu__nav" aria-label="Main Mobile" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {[
           { label: t('nav.projects'), href: '/projects' },
-          { label: t('nav.surveillance'), href: '/robot-de-surveillance' },
           { label: t('nav.manifest'), href: '/manifest' },
           { label: t('nav.team'), href: '/team' },
           { label: t('nav.contact'), href: '/contact' },
