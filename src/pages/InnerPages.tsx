@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, ArrowLeft, ArrowUp, Cpu, ChevronDown } from 'lucide-react';
+import { Mail, CheckCircle2, AlertCircle, ArrowUpRight, ArrowLeft, ArrowUp, Cpu, ChevronDown, Droplets, FerrisWheel, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
 import { Navigation, Footer } from '../components/Shared';
 import { useLanguage } from '../LanguageContext';
@@ -448,9 +448,9 @@ function StatusTimeline({ t }: { t: (k: string) => string }) {
 }
 
 const ECO_CLIENTS = [
-  { name: 'Saur', logo: 'saur.png', tag: 'validated', h: 'h-14 sm:h-16' },
-  { name: 'Parc Spirou Provence', logo: 'spirou.png', tag: 'interest', h: 'h-16 sm:h-20' },
-  { name: 'RAID — Police nationale', logo: 'raid.png', tag: 'interest', h: 'h-16 sm:h-20' },
+  { key: 'c1', Icon: Droplets, tag: 'validated' },
+  { key: 'c2', Icon: FerrisWheel, tag: 'interest' },
+  { key: 'c3', Icon: ShieldCheck, tag: 'interest' },
 ] as const;
 
 /* Mobotix : logo, chiffres, puis sous-branche des clients, et le robot Louis qui fait le lien */
@@ -501,12 +501,12 @@ function MobotixEcosystem({ t }: { t: (k: string) => string }) {
             <div className="space-y-4">
               {ECO_CLIENTS.map((c, i) => (
                 <motion.div
-                  key={c.name}
+                  key={c.key}
                   initial={{ opacity: 0, x: -14 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={view}
                   transition={{ duration: 0.55, delay: 0.5 + i * 0.25 }}
-                  className="relative flex flex-col sm:flex-row items-center gap-3 sm:gap-5 border border-white/10 bg-black/40 px-5 py-4 hover:border-white/30 transition-colors"
+                  className="relative flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 border border-white/10 bg-black/40 px-5 py-4 hover:border-white/30 transition-colors"
                 >
                   <span className="absolute -left-7 top-1/2 w-7 h-px bg-white/40" />
                   <motion.span
@@ -516,8 +516,20 @@ function MobotixEcosystem({ t }: { t: (k: string) => string }) {
                     transition={{ delay: 0.7 + i * 0.25, type: 'spring', stiffness: 300 }}
                     className="absolute -left-[9px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white"
                   />
-                  <div className="w-28 sm:w-32 shrink-0 flex items-center justify-center">
-                    <img src={`${base}partners/${c.logo}`} alt={c.name} className={`${c.h} w-auto max-w-full object-contain`} loading="lazy" />
+                  <div className="flex items-center gap-4 min-w-0">
+                    <motion.div
+                      initial={{ rotate: -12, opacity: 0 }}
+                      whileInView={{ rotate: 0, opacity: 1 }}
+                      viewport={view}
+                      transition={{ delay: 0.8 + i * 0.25, type: 'spring', stiffness: 200 }}
+                      className="w-12 h-12 shrink-0 rounded-full border border-white/25 flex items-center justify-center"
+                    >
+                      <c.Icon className="w-5 h-5 text-white" strokeWidth={1.5} />
+                    </motion.div>
+                    <div className="min-w-0">
+                      <div className="text-sm sm:text-base text-white font-normal">{t(`v2.eco.${c.key}.t`)}</div>
+                      <div className="text-xs text-white/55 font-light">{t(`v2.eco.${c.key}.d`)}</div>
+                    </div>
                   </div>
                   <span className={`sm:ml-auto font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 border whitespace-nowrap ${
                     c.tag === 'validated' ? 'border-white/60 text-white' : 'border-white/20 text-white/55'
